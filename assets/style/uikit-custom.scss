@@ -1,26 +1,65 @@
 // 1. Your custom variables and variable overwrites.
 
-// colors
-$ita-blue: #232D4B;
-$ita-orange: #E57200;
+// ita (ideas to action) colors
+$blue: #232d4b;
+$orange: #e57200;
 
-$ita-gray: #D2D2D2;
-$ita-charcoal: #474747;
-$ita-cyan: #007681;
-$ita-gold: #F2CD00;
-$ita-purple: #692A7E;
+$gray: #D2D2D2;
+$gray: #474747;
+$cyan: #007681;
+$gold: #F2CD00;
+$purple: #692A7E;
+
+$colors: (
+  orange: $orange,
+  blue: $blue,
+  gray: $gray,
+  gold: $gold,
+  cyan: $cyan
+);
+
+@mixin generate-color-classes($base-color, $action, $amount, $multiplier) {
+  .bg-#{$base-color}-#{$action}-#{$amount} {
+    background-color: call(
+      get-function($action),
+      map-get($colors, $base-color),
+      $amount * $multiplier 
+      // override colors from other classes
+    ) !important;
+  }
+  .fg-#{$base-color}-#{$action}-#{$amount} {
+    color: call(
+      get-function($action),
+      map-get($colors, $base-color),
+      $amount * $multiplier,
+      // override colors from other classes
+    ) !important;
+  }
+}
+
+@each $color in (orange, blue, gray, gold, cyan) {
+  @each $action in (lighten, saturate, desaturate, fade-out) {
+    @for $i from 0 through 9 {
+      @if $action != fade-out {
+        @include generate-color-classes($color, $action, $i, 10%);
+      } @else {
+        @include generate-color-classes($color, $action, $i, 1/10);
+      }
+    }
+  }
+}
 
 
 // color overrides
-$global-color: $ita-charcoal !default;
-$global-primary-background: $ita-orange !default;
-$global-secondary-background: $ita-blue !default;
+// $global-color: $gray !default;
+$global-primary-background: $orange;
+$global-secondary-background: $blue;
 
-$base-heading-color: $ita-orange !default;
+$base-heading-color: $orange;
 
 // typography overrides
-$global-font-size: 18px;
-$global-font-family: Georgia !default;
+$global-font-size: 16px;
+$global-font-family: Open Sans !default;
 
 $base-heading-font-family: ITC Franklin Gothic;
 $base-heading-font-weight: 700;
@@ -33,21 +72,24 @@ $global-medium-font-size: 1.4rem;
 $global-small-font-size: 0.85rem;
 
 // 2. Import default variables and available mixins.
-@import "uikit/src/scss/variables-theme.scss";
-@import "uikit/src/scss/mixins-theme.scss";
+@import 'uikit/src/scss/variables-theme.scss';
+@import 'uikit/src/scss/mixins-theme.scss';
 
 // 3. Your custom mixin overwrites.
-@mixin hook-card() { color: #000; }
+@mixin hook-card() {
+  color: #000;
+}
 
 // 4. Import UIkit.
-@import "uikit/src/scss/uikit-theme.scss";
+@import 'uikit/src/scss/uikit-theme.scss';
 
-.uk-button { 
+.uk-button,
+.uk-navbar {
   font-family: Roboto;
-  // font-weight: 300;
-
- }
-
+}
+.uk-button-text {
+  color: '';
+}
 
 // All variables from variables-theme; Copied here for easier reference
 
