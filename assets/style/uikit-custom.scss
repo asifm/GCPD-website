@@ -24,29 +24,48 @@
   src: url("/style/font/itc-franklin-gothic/ITCFranklinGothicStd-Hvy.otf") format("opentype");
 }
 
+// typography overrides
+$global-font-size: 18px;
+// $global-font-family: Adobe Caslon Pro !default;
+$global-font-family: Georgia;
+
 
 $base-heading-font-family: 'ITC Franklin Gothic';
 $base-heading-font-weight: lighter;
+$base-heading-text-transform: uppercase;
+
+$global-xxlarge-font-size: 3rem;
+$global-xxlarge-font-size: 2.3rem;
+$global-large-font-size: 1.8rem;
+$global-medium-font-size: 1.4rem;
+$global-small-font-size: 0.85rem;
+
 
 // Custom variables and variable overwrites.
 // ******************************************
 
-// ita (ideas to action) colors
+// darden colors
+// primary palette
 $blue: #232d4b;
 $orange: #e57200;
 
-$gray: #D2D2D2;
-$gray: #474747;
+// secondary palette
 $cyan: #007681;
 $gold: #F2CD00;
 $purple: #692A7E;
+$yellowgreen: #84BD00;
+
+// neutral colors
+$gray: #A5ACAF;
+$horizon: #5C7F92;
+$sanddune: #857363;
+$starkwhite: #CAC0B6;
 
 $colors: (
   orange: $orange,
   blue: $blue,
-  gray: $gray,
   gold: $gold,
-  cyan: $cyan
+  citrus: $citrus
 );
 
 @mixin generate-color-classes($base-color, $action, $amount, $multiplier) {
@@ -68,7 +87,7 @@ $colors: (
   }
 }
 
-@each $color in (orange, blue, gray, gold, cyan) {
+@each $color in (orange, blue,  gold, yellowgreen ) {
   @each $action in (lighten, saturate, desaturate, fade-out) {
     @for $i from 0 through 9 {
       @if $action != fade-out {
@@ -82,24 +101,51 @@ $colors: (
 
 
 // color overrides
+//*******************
+
+// Override foreground colors 
+
+.fg-blue {
+  color: $blue !important;
+}
+
+.fg-orange {
+  color: $orange !important;
+}
+
+.fg-white {
+  color: #ffffff !important
+}
+
+.fg-black {
+  color: #000000 !important  
+}
+
+// Override background colors
+
+.bg-blue {
+  background-color: $blue !important;
+}
+
+.bg-orange {
+  background-color: $orange !important;
+}
+
+.bg-white {
+ background-color: #ffffff !important
+}
+
+.bg-black {
+  background-color: #000000 !important  
+}
+
 // $global-color: $gray !default;
 $global-primary-background: $orange;
 $global-secondary-background: $blue;
 
 $base-heading-color: $orange;
 
-// typography overrides
-$global-font-size: 18px;
-$global-font-family: Adobe Caslon Pro !default;
 
-
-$base-heading-text-transform: uppercase;
-
-$global-xxlarge-font-size: 3rem;
-$global-xxlarge-font-size: 2.3rem;
-$global-large-font-size: 1.8rem;
-$global-medium-font-size: 1.4rem;
-$global-small-font-size: 0.85rem;
 
 
 // Box Shadow overrides
