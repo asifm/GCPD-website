@@ -1,27 +1,29 @@
+
 // Load fonts
 
 @font-face {
-  font-family: 'ITC Franklin Gothic';
-  font-weight: 100;
-  src: url("/style/font/itc-franklin-gothic/ITCFranklinGothicStd-Book.otf") format("opentype");
-}
-
-@font-face {
-  font-family: 'ITC Franklin Gothic';
-  font-weight: 400;
-  src: url("/style/font/itc-franklin-gothic/ITCFranklinGothicStd-Med.otf") format("opentype");
-}
-
-@font-face {
-  font-family: 'ITC Franklin Gothic';
-  font-weight: 700;
-  src: url("/style/font/itc-franklin-gothic/ITCFranklinGothicStd-Demi.otf") format("opentype");
-}
-
-@font-face {
-  font-family: 'ITC Franklin Gothic';
+  font-family: 'FranklinGothicURW';
+  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Hea.woff') format('woff');
   font-weight: 900;
-  src: url("/style/font/itc-franklin-gothic/ITCFranklinGothicStd-Hvy.otf") format("opentype");
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FranklinGothicURW';
+  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Dem.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FranklinGothicURW';
+  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Med.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FranklinGothicURW';
+  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Boo.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
 }
 
 // typography overrides
@@ -30,7 +32,7 @@ $global-font-size: 18px;
 $global-font-family: Georgia;
 
 
-$base-heading-font-family: 'ITC Franklin Gothic';
+$base-heading-font-family: 'FranklinGothicURW';
 $base-heading-font-weight: lighter;
 $base-heading-text-transform: uppercase;
 
@@ -65,7 +67,7 @@ $colors: (
   orange: $orange,
   blue: $blue,
   gold: $gold,
-  citrus: $citrus
+  yellowgreen: $yellowgreen,
 );
 
 @mixin generate-color-classes($base-color, $action, $amount, $multiplier) {
@@ -168,7 +170,8 @@ $global-large-box-shadow: 0 5px 15px rgba(0,0,0,0.16);
 
 .uk-button,
 .uk-navbar {
-  font-family: Roboto;
+  font-family: FranklinGothicURW;
+  font-weight: 300;
 }
 .uk-button-text {
   color: '';
