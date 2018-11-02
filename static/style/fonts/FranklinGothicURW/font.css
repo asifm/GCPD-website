@@ -1,0 +1,17 @@
+@font-face {
+  font-family: 'FranklinGothicURW-Hea';
+  src: url('FranklinGothicURW-Hea.woff2') format('woff2'),
+       url('FranklinGothicURW-Hea.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'newfont';
+  src: url('newfont.eot');
+  src: url('newfont.woff2') format('woff2'),
+       url('newfont.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
