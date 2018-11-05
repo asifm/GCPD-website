@@ -82,3 +82,5 @@ dist
 
 # Local history
 .history
+
+.vscode

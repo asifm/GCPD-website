@@ -1,0 +1,14 @@
+{
+  "typeAcquisition": {
+    // "include": ["lodash", "d3"]
+  },
+  "compilerOptions": {
+    "target": "es5",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+
+  "exclude": ["node_modules", ".nuxt", ".history", "dist"]
+}
