@@ -1,4 +1,9 @@
+// Non-uikit. comes frm nuxt
 
+.nuxt-link-exact-active {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
 // Load fonts
 
 @font-face {
@@ -28,12 +33,16 @@
 
 // typography overrides
 $global-font-size: 16px;
-// $global-font-family: Adobe Caslon Pro !default;
-$global-font-family: Georgia;
+// $global-font-family: Adobe Caslon Pro;
+$global-font-family: FranklinGothicURW;
+$base-body-font-weight: 300;
+.uk-card-default{ color: black !important;}
+// $global-font-family: Georgia;
+// $global-font-family: Lato;
 
 
 $base-heading-font-family: 'FranklinGothicURW';
-$base-heading-font-weight: lighter;
+$base-heading-font-weight: 500;
 $base-heading-text-transform: uppercase;
 
 $global-xxlarge-font-size: 3rem;
@@ -90,8 +99,8 @@ $colors: (
 }
 
 @each $color in (orange, blue,  gold, yellowgreen ) {
-  @each $action in (lighten, saturate, desaturate, fade-out) {
-    @for $i from 0 through 9 {
+  @each $action in (lighten, darken, saturate, desaturate, fade-out) {
+    @for $i from 0 through 4 {
       @if $action != fade-out {
         @include generate-color-classes($color, $action, $i, 10%);
       } @else {
@@ -141,20 +150,30 @@ $colors: (
   background-color: #000000 !important  
 }
 
-// $global-color: $gray !default;
+$global-color: $blue;
 $global-primary-background: $orange;
 $global-secondary-background: $blue;
 
 $base-heading-color: $orange;
 
-
-
-
 // Box Shadow overrides
-$global-small-box-shadow: 0 1px 5px rgba(0,0,0,0.08);
-$global-medium-box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-$global-large-box-shadow: 0 5px 15px rgba(0,0,0,0.16); 
+// $global-small-box-shadow: 0 1px 5px rgba(0,0,0,0.08);
+// $global-medium-box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+// $global-large-box-shadow: 0 5px 15px rgba(0,0,0,0.16); 
 
+.uk-tile-primary, .uk-card-primary :matches(p, h1, h2, h3, h4, h5, h6) {
+  color: $blue !important;
+}
+.uk-tile-secondary, .uk-card-secondary :matches(p, h1, h2, h3, h4, h5, h6) {
+  color: #ffffff !important;
+}
+
+.uk-button,
+.uk-button-default,
+.uk-navbar {
+  font-family: FranklinGothicURW !important;
+  font-weight: 300 !important;
+}
 
 // 2. Import default variables and available mixins.
 @import 'uikit/src/scss/variables-theme.scss';
@@ -167,15 +186,6 @@ $global-large-box-shadow: 0 5px 15px rgba(0,0,0,0.16);
 
 // 4. Import UIkit.
 @import 'uikit/src/scss/uikit-theme.scss';
-
-.uk-button,
-.uk-navbar {
-  font-family: FranklinGothicURW;
-  font-weight: 300;
-}
-.uk-button-text {
-  color: '';
-}
 
 // All variables from variables-theme; Copied here for easier reference
 
