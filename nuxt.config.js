@@ -12,15 +12,15 @@ module.exports = {
       { charset: 'utf-8' },
 
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { hid: 'description', name: 'description', content: pkg.description },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#232d45' },
 
   /*
   ** Global CSS
@@ -39,7 +39,7 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
     // https://github.com/nuxt-community/modules/tree/master/packages/markdownit
-    '@nuxtjs/markdownit'
+    '@nuxtjs/markdownit',
   ],
   /*
   ** Axios module configuration
@@ -52,26 +52,18 @@ module.exports = {
     preset: 'default',
     linkify: true,
     breaks: true,
-    use: ['markdown-it-attrs', 'markdown-it-footnote']
+    use: ['markdown-it-attrs', 'markdown-it-footnote'],
   },
   /*
   ** Build configuration
   */
   build: {
-    /*
-    ** Extend webpack config here
-    
     extend(config, ctx) {
-      // Run ESLint on save
-      if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: "pre",
-          test: /\.(js|vue)$/,
-          loader: "eslint-loader",
-          exclude: /(node_modules)/
-        });
-      }
-    }
-   */
-  }
+      config.module.rules.push({
+        test: /\.csv$/,
+        use: { loader: 'file-loader' },
+      });
+      console.log(config.module.rules);
+    },
+  },
 };
