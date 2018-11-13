@@ -17,5 +17,5 @@ country,Country
 region,Region
 lat,Latitude
 lon,Longitude
-ffcode,Fama-French Industry Classification (12)
+ffcode,Fama-French Industry Code (12)
 ffname,Industry (Fama-French 12)
