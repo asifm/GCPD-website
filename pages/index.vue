@@ -1,11 +1,11 @@
 
 <script>
-import WorldMap from '@/components/WorldMap';
+// import components
+import ExploreMap from '@/components/ExploreMap';
 import CirclePack from '@/components/CirclePack';
-import TopCompanies from '@/components/TopCompanies';
 
 export default {
-  components: { WorldMap, CirclePack, TopCompanies },
+  components: { ExploreMap, CirclePack },
   data() {
     return {
       countrySelected: '',
@@ -22,19 +22,20 @@ div
   
   div
     .uk-height-viewport.uk-text-center.uk-cover-container
-      //- video(uk-cover src="https://res.cloudinary.com/asifm/video/upload/v1540171453/beautiful-white-global-world-map-of-surface-morphing-in-seamless-3d-video-id966450342_zjutqp.mp4")
-      video(uk-cover src="https://res.cloudinary.com/asifm/video/upload/e_loop:5/v1540171185/pan-over-vintage-sepia-colored-world-map-seamless-loopable-background-video-id936915228_vmisxi.mp4")
+      //- todo: uncomment the video (first?) before deploying
       //- video(uk-cover loop src="https://res.cloudinary.com/asifm/video/upload/v1540171607/news-and-business-background-video-id821841228_x6diii.mp4")
+      //- video(uk-cover src="https://res.cloudinary.com/asifm/video/upload/v1540171453/beautiful-white-global-world-map-of-surface-morphing-in-seamless-3d-video-id966450342_zjutqp.mp4")
+      //- video(uk-cover src="https://res.cloudinary.com/asifm/video/upload/e_loop:5/v1540171185/pan-over-vintage-sepia-colored-world-map-seamless-loopable-background-video-id936915228_vmisxi.mp4")
       //- video.uk-animation-fade(uk-cover src="http://res.cloudinary.com/asifm/video/upload/e_accelerate:-40/e_boomerang/e_loop:1/iStock-899258982_mcsfty.mp4")
     
       .uk-grid(uk-grid).uk-text-center.uk-height-viewport
         //- Title on hero
         .uk-width-4-5.uk-margin-remove.uk-position-relative.uk-position-left
           #title.uk-h1.uk-animation-fade.fg-orange.uk-heading-primary.uk-text-bold.uk-position-relative.uk-position-center.bg-blue-fade-out-4.uk-padding-large Global Corporate Patent Data 
-            .uk-h4.fg-blue-lighten-7 Number of USPTO Patents Assigned Every Year to Publicly Listed Companies Worldwide
-              .uk-h5.fg-blue-lighten-6 Patents Issued by the United States Patent and Trademark Office (1950–2017) 
+            .uk-h4.fg-orange-lighten-2 Number of USPTO Patents Assigned Every Year to Publicly Listed Companies Worldwide
+              .uk-h5.fg-orange-lighten-4 Patents Issued by the United States Patent and Trademark Office (1950–2017) 
             .uk-heading-line
-              .uk-h2.fg-orange-lighten-6 2018
+              .uk-h2.fg-white 2018
         //- Text on hero
         .uk-width-1-5.uk-padding-remove.uk-animation-slide-right
           .bg-gold-fade-out-1
@@ -65,7 +66,7 @@ div
 
   //- Map
   .uk-section.uk-text-center.uk-padding.bg-yellowgreen-lighten-7
-    world-map
+    explore-map
 
   .uk-section.uk-section-muted
     div.uk-container.uk-container-large.uk-text-center
