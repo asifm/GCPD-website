@@ -1,15 +1,15 @@
 <template>
   <div>
-    <page-header/>
+    <the-header/>
     <nuxt/>
-    <page-footer/>
+    <the-footer/>
   </div>
 </template>
 
 <script>
-import pageHeader from './header';
-import pageFooter from './footer';
+import TheHeader from './TheHeader';
+import TheFooter from './TheFooter';
 export default {
-  components: { pageHeader, pageFooter }
+  components: { TheHeader, TheFooter },
 };
 </script>

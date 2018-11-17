@@ -3,16 +3,16 @@
   //- Top menu/logo bar
   //- TODO: Hide in small screen / mobile
   //- .bg-blue.uk-position-z-index(uk-sticky="animation:uk-animation-fade" uk-grid).uk-grid
-  .bg-blue(uk-sticky uk-grid).uk-grid.uk-display-block
+  .uk-section.bg-blue(uk-sticky uk-grid).uk-grid
     
-    .uk-width-1-4
+    .uk-width-1-4.uk-padding-remove
       img(src="https://res.cloudinary.com/asifm/image/upload/h_70/v1540605162/darden-logo-dark-new_m2cxtt.png")
     
     div(class="uk-width-3-4@m uk-visible@m")
-      ul.uk-navbar-nav.uk-position-center-right.uk-padding-small.tab
+      ul.tab.uk-navbar-nav.uk-float-right
         li(v-if="this.$route.path != '/'"): nuxt-link(to="/") Home
-        li: nuxt-link(to="/documentation") Documentation
-        li: nuxt-link(to="/aboutdata") About the Data
+        //- li: nuxt-link(to="/documentation") Documentation
+        //- li: nuxt-link(to="/aboutdata") About the Data
         li: nuxt-link(to="/aboutus") About Us
         li: nuxt-link(to="/publications") Publications
         li: nuxt-link(to="/download").highlight Download
@@ -24,7 +24,7 @@ export default {
   data() {
     // console.log(this.$route.path);
     return {};
-  }
+  },
 };
 </script>
 
