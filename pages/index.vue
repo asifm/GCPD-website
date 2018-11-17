@@ -1,16 +1,29 @@
 
 <script>
-// import components
+// ::import components
 import ExploreMap from '@/components/ExploreMap';
 import CirclePack from '@/components/CirclePack';
 
+// ::import content
+import DataIntro from '@/content/DataIntro.md';
+import DownloadIntro from '@/content/DownloadIntro.md';
+import DataCitation from '@/content/DataCitation.md';
+import MethodSummary from '@/content/MethodSummary.md';
+import NoteExploreMain from '@/content/NoteExploreMain.md';
 export default {
-  components: { ExploreMap, CirclePack },
-  data() {
-    return {
-      countrySelected: '',
-    };
+  components: {
+    DataIntro,
+    DownloadIntro,
+    DataCitation,
+    MethodSummary,
+    NoteExploreMain,
+    ExploreMap,
+    CirclePack,
   },
+  data() {
+    return {};
+  },
+  computed: {},
 };
 </script>
 
@@ -23,7 +36,7 @@ div
   div
     .uk-height-viewport.uk-text-center.uk-cover-container
       //- todo: uncomment the video (first?) before deploying
-      //- video(uk-cover loop src="https://res.cloudinary.com/asifm/video/upload/v1540171607/news-and-business-background-video-id821841228_x6diii.mp4")
+      video(uk-cover loop src="https://res.cloudinary.com/asifm/video/upload/v1540171607/news-and-business-background-video-id821841228_x6diii.mp4")
       //- video(uk-cover src="https://res.cloudinary.com/asifm/video/upload/v1540171453/beautiful-white-global-world-map-of-surface-morphing-in-seamless-3d-video-id966450342_zjutqp.mp4")
       //- video(uk-cover src="https://res.cloudinary.com/asifm/video/upload/e_loop:5/v1540171185/pan-over-vintage-sepia-colored-world-map-seamless-loopable-background-video-id936915228_vmisxi.mp4")
       //- video.uk-animation-fade(uk-cover src="http://res.cloudinary.com/asifm/video/upload/e_accelerate:-40/e_boomerang/e_loop:1/iStock-899258982_mcsfty.mp4")
@@ -32,8 +45,8 @@ div
         //- Title on hero
         .uk-width-4-5.uk-margin-remove.uk-position-relative.uk-position-left
           #title.uk-h1.uk-animation-fade.fg-orange.uk-heading-primary.uk-text-bold.uk-position-relative.uk-position-center.bg-blue-fade-out-4.uk-padding-large Global Corporate Patent Data 
-            .uk-h4.fg-orange-lighten-2 Number of USPTO Patents Assigned Every Year to Publicly Listed Companies Worldwide
-              .uk-h5.fg-orange-lighten-4 Patents Issued by the United States Patent and Trademark Office (1950–2017) 
+            .uk-h5.fg-orange-lighten-4 Number of Patents Assigned Every Year to Publicly Listed Companies Worldwide by the United States Patent and Trademark Office 
+              .uk-h6 1950–2017 
             .uk-heading-line
               .uk-h2.fg-white 2018
         //- Text on hero
@@ -48,25 +61,44 @@ div
     .uk-container-expand.uk-grid.uk-grid-small.uk-grid-match
       div.uk-width-1-2
         .uk-card.uk-card-secondary.uk-card-body
-          h2 What's in the Data
-          p Overview. Key numbers.
-          p Do culpa in occaecat duis occaecat nostrud esse ex occaecat ex deserunt minim. Anim Lorem do mollit non irure laborum non quis velit non aliquip aliqua tempor. Nostrud minim laborum velit ex dolore veniam aliquip cupidatat.
-          p Commodo irure excepteur eiusmod mollit non nulla consequat excepteur incididunt duis ea officia. Consectetur consectetur proident sunt eiusmod consectetur nisi magna sit ipsum nostrud. Ut officia tempor minim in sit nulla nostrud pariatur magna. Amet anim tempor elit velit labore dolore. Cupidatat culpa laboris ea ea ex labore consequat excepteur. Duis ex anim et ex duis Lorem nisi laboris ad adipisicing consequat nulla voluptate. Exercitation id excepteur Lorem cupidatat qui in incididunt irure aliquip laboris. 
+          div.uk-text-large
+            data-intro
+          
       div.uk-width-1-4
-        .uk-card.uk-card-default.uk-card-body
-          h3 Download the Data
-          p Duis occaecat nostrud esse ex occaecat ex deserunt minim. Anim Lorem do mollit non irure laborum non quis velit non aliquip aliqua tempor. Nostrud minim laborum velit ex dolore veniam aliquip cupidatat.
-          button.uk-button.uk-button-primary Download
+        .uk-card.uk-card-default.uk-card-body.uk-padding-small
+          .uk-card-header
+            h3 Download the Data
+            download-intro
+            button.uk-button.uk-button-secondary Download
+          .uk-card-footer
+            data-citation
+      
       div.uk-width-1-4
         .uk-card.uk-card-default.uk-card-body.bg-blue-lighten-6
           h3 Interview
-          audio(controls)
-            source(src="https://mcdn.podbean.com/mf/download/zvy6h7/FAMILY_OWNED_BUSINESSES.mp3" type="audio/mp3")
           p To add the podcast interview. The one here is an unrelated sample. Esse commodo veniam consectetur dolore aliquip sit nostrud ad eu proident exercitation amet ad. 
+          div
+            audio(controls).uk-margin-medium.uk-card-media-bottom
+            //- source(src="https://mcdn.podbean.com/mf/download/zvy6h7/FAMILY_OWNED_BUSINESSES.mp3" type="audio/mp3")
+  
+  .uk-section.uk-section-primary       
+    .uk-container.uk-container-small
+      .uk-card.uk-card-body.uk-card-default.bg-orange-lighten-3
+        .uk-h4.uk-card-title.fg-blue How We Compiled the Data
+        .uk-column-1-2.uk-column-divider
+          method-summary
 
   //- Map
-  .uk-section.uk-text-center.uk-padding.bg-yellowgreen-lighten-7
-    explore-map
+  .uk-section.bg-yellowgreen-lighten-7
+    .uk-container.uk-container-large
+      h3 Explore the World of Corporate Patents 
+      p See instructions here.
+      .uk-grid(uk-grid)
+        .uk-width-1-2
+          note-explore-main
+        .uk-width-1-2
+          p [graph placeholder showing globalization of innovation]
+      explore-map
 
   .uk-section.uk-section-muted
     div.uk-container.uk-container-large.uk-text-center
@@ -78,16 +110,7 @@ div
   .uk-section.uk-section-default
     .uk-container
       circle-pack
-      
-      
-  .uk-section.uk-section-primary       
-    .uk-container.uk-container-small
-      .uk-card.uk-card-body.uk-card-default.bg-orange-lighten-3
-        .uk-h4.uk-card-title Some discussion/commentary here
-        .uk-column-1-2.uk-column-divider
-          p Ad deserunt veniam id dolore sit reprehenderit proident. Elit labore et Lorem nisi. Nostrud eu consequat ad incididunt. Sint ea adipisicing ut mollit nostrud pariatur laboris duis nostrud.
-          p Non voluptate cupidatat ex laboris dolore pariatur voluptate quis. Et in nulla nisi laboris sit aliqua minim quis ea aliqua nisi pariatur id. Nostrud amet tempor laborum Lorem sunt. Proident aliquip laboris reprehenderit ipsum. Labore elit eu veniam labore fugiat fugiat incididunt deserunt. Ut nostrud officia aliquip qui.
-          p Ipsum minim deserunt quis ipsum elit aute. Ipsum nulla minim nostrud nulla nulla Lorem magna proident nostrud nostrud aliquip. Mollit sit irure deserunt consectetur sint sint velit ea. Ex laboris ullamco cupidatat magna officia magna magna occaecat commodo anim ad fugiat. Elit duis est est culpa est nostrud. Aliqua deserunt duis exercitation culpa dolor consectetur et esse ad cupidatat duis commodo tempor consequat.
+
   .uk-section.uk-section-secondary       
     .uk-container.uk-container-large
       .uk-card.uk-card-body.uk-card-default.bg-blue-lighten-5
