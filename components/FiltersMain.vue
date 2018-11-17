@@ -2,7 +2,7 @@
 // todo p2: consolidate regions and countries into on select control
 // todo p2: change map based on selection of Years
 // todo p2: highlight circles for selected countries
-import lists from 'assets/data/lists.json';
+import lists from 'assets/data/listData.json';
 
 // To ignore the "Other" region
 let { Other, ...regionsCountries } = lists.regions;
@@ -13,15 +13,15 @@ let allCountries = countries;
 if (!allCountries.includes('All Countries'))
   allCountries.unshift('All Countries');
 
-/* note: ff stands for Fama French industry classification (12-class)
-  ff_desc is a more descriptive name than ff_short
-  ff_short is usually showed to the user */
+/* note: Used here is Fama French industry classification (12-class)
+  industry_desc is a more descriptive name than industry_short
+  industry_short is usually showed to the user */
 
 export default {
   props: {
     region: { type: String, default: '' },
     country: { type: String, default: '' },
-    ff_short: { type: String, default: '' },
+    industry_short: { type: String, default: '' },
     startYear: { type: Number, default: null },
     endYear: { type: Number, default: null },
   },
@@ -32,7 +32,7 @@ export default {
       countries,
       industries,
       regions: ['All Regions', 'Asia Pacific', 'Europe', 'North America'],
-      ff_shorts: industries.map(el => el.ff_short),
+      industry_shorts: industries.map(el => el.industry_short),
       // The range of yers for which data is available in the source file
       dataYearRange,
     };
@@ -60,7 +60,7 @@ export default {
       } else if (targetId == 'country-selection') {
         this.$emit('update:country', targetValue);
       } else if (targetId == 'industry-selection') {
-        this.$emit('update:ff_short', targetValue);
+        this.$emit('update:industry_short', targetValue);
       } else if (targetId == 'start-year-input') {
         if (targetValue > this.endYear) {
           this.$emit('update:startYear', this.endYear);
@@ -80,21 +80,21 @@ export default {
 </script>
 
 <template lang="pug">
-div.uk-grid-small.uk-tile.uk-grid(uk-grid).uk-padding-small.uk-box-shadow-medium
+div.uk-grid-small.uk-tile.uk-grid(uk-grid).uk-padding-small.uk-box-shadow-medium.uk-animation-fade
   div.uk-width-1-5
     select(@change="changeSelection" id="region-selection" :value="region").uk-select
-      option.bg-orange-lighten-4.uk-button-text(v-for="reg in regions" :label="reg") {{ reg }}
+      option.uk-button-text(v-for="reg in regions" :label="reg") {{ reg }}
     
   div.uk-width-1-5
     select(@change="changeSelection" id="country-selection" :value="country" ref="cntry").uk-select
-      option.bg-orange-lighten-4(v-for="coun in countries" :label="coun" ) {{ coun }}
+      option(v-for="coun in countries" :label="coun" ) {{ coun }}
 
   div.uk-width-1-5
-    select(@change="changeSelection" id="industry-selection" :value="ff_short").uk-select
-      option.bg-orange-lighten-4(v-for="ff_sh in ff_shorts" :label="ff_sh") {{ ff_sh }}
+    select(@change="changeSelection" id="industry-selection" :value="industry_short").uk-select
+      option(v-for="industry_sh in industry_shorts" :label="industry_sh") {{ industry_sh }}
 
   div.uk-width-2-5.uk-text-right
-    //- todo: change to range input
+    //- todo p3: change to better range input controls
     //- https://refreshless.com/nouislider/
     //- OR https://leaverou.github.io/multirange/
     h6.uk-float-right.uk-display-inline

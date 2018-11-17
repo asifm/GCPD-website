@@ -1,7 +1,8 @@
 
 <script>
 // ::import components
-import FiltersMain from '@/components/FiltersMain';
+import MapMain from '@/components/MapMain';
+import ControlsMain from '@/components/ControlsMain';
 import ListMain from '@/components/ListMain';
 
 // ::import functions
@@ -10,7 +11,7 @@ import ListMain from '@/components/ListMain';
 import { renderMap } from '@/assets/js/drawWorldMap.js';
 
 export default {
-  components: { FiltersMain, ListMain },
+  components: { MapMain, ControlsMain, ListMain },
   data() {
     return {
       // fix p1: Optimize the first computation so that it doesn't block scrolling and rendering
@@ -54,24 +55,23 @@ export default {
 div
   .uk-grid(uk-grid).uk-container-expand.uk-text-center()
     .uk-width-3-4
-      filters-main(
+      controls-main(
         :region.sync="regionSelected"
         :country.sync="countrySelected"
-        :industry_short.sync="industrySelected"
+        :ff_short.sync="industrySelected"
         :startYear.sync="startYearSelected"
         :endYear.sync="endYearSelected"
       )
       //- div(v-if="spin")
         //- span( uk-spinner="ratio:1")
       .uk-tile.uk-width-expand.uk-padding-remove-top(uk-scrollspy="cls: uk-animation-fade; delay: 100; repeat: true")
-        svg#svg.uk-margin-remove.uk-padding-remove(ref='svgMap')
-          .uk-card 
-            p Officia laborum exercitation tempor ut deserunt commodo occaecat. Voluptate irure aute fugiat ut minim nostrud amet eiusmod do sit sint id labore ex. Enim id consectetur aute sunt sunt voluptate tempor fugiat. Aute in est amet culpa sint ea.
+        map-main
+
     .uk-width-1-4
       list-main(
         :region="regionSelected" 
         :country="countrySelected"
-        :industry_short="industrySelected" 
+        :ff_short="industrySelected" 
         :startYear="startYearSelected" 
         :endYear="endYearSelected"
         :numTopCompanies="numTopCompaniesToSelect"

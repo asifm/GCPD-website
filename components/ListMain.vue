@@ -3,11 +3,15 @@
 // todo p3: tweening to animate number changes: https://vuejs.org/v2/guide/transitioning-state.html#Organizing-Transitions-into-Components
 
 // :: import functions
-import { dataProm } from 'assets/js/fetchData';
-import { filterData } from 'assets/js/filterData';
-import { rollupData } from 'assets/js/rollupData';
+import {
+  filterData,
+  rollupCompany,
+  sumPatentsNumCompanies,
+} from 'assets/js/computeData';
+
 // ::import data
-import lists from 'assets/data/lists.json';
+import lists from 'assets/data/listData.json';
+import { dataProm } from 'assets/js/fetchData';
 
 let { industries, dataYearRange } = lists;
 
@@ -16,7 +20,7 @@ export default {
   props: {
     region: { type: String, default: 'All Regions' },
     country: { type: String, default: 'All Countries' },
-    ff_short: { type: String, default: 'All Industries' },
+    industry_short: { type: String, default: 'All Industries' },
     startYear: { type: Number, default: 2016 },
     endYear: { type: Number, default: 2016 },
     numTopCompanies: { type: Number, default: 10 },
@@ -26,41 +30,50 @@ export default {
       // To track the current subset of data selected
       allData: [],
       industries,
-      // Long name of the ff_short industry
-      ff_desc: 'All Industries',
-      sumPatentInSelectedData: null,
-      numCompaniesInSelectedData: null,
+      // Long name of the industry_short industry
+      industry_desc: 'All Industries',
     };
   },
   computed: {
-    topCompanies: function() {
-      // todo: refactor to transfer some of the code to methods or other computed properties
-      // todo: check if it makes more sense to use watchers
+    rolledupCompany: function() {
       let filteredData = filterData(
         this.allData,
         this.startYear,
         this.endYear,
-        this.ff_short,
         this.region,
         this.country,
+        this.industry_short,
         dataYearRange,
       );
-      let rolledupData = rollupData(filteredData);
-      // Return the list of top n companies along with each company's aggregate data
-      return Array.from(rolledupData)
+      // ! returns Array converted from Map
+      return rollupCompany(filteredData);
+    },
+    topCompanies: function() {
+      // Return array of top n companies along with each company's aggregate data
+      let rolledupCompanyCloned = this.rolledupCompany.slice(0);
+      return rolledupCompanyCloned
         .sort((a, b) => b[1].totalpatent - a[1].totalpatent)
         .slice(0, this.numTopCompanies);
     },
+    aggregateSelectedData: function() {
+      return sumPatentsNumCompanies(this.rolledupCompany);
+    },
   },
   watch: {
-    ff_short: function() {
-      this.ff_desc = industries.find(
-        el => el.ff_short == this.ff_short,
-      ).ff_desc;
+    industry_short: function() {
+      this.industry_desc = industries.find(
+        el => el.industry_short == this.industry_short,
+      ).industry_desc;
     },
   },
   mounted() {
     dataProm.then(data => (this.allData = data));
+  },
+  methods: {
+    removeLastWord(str) {
+      let lastIndex = str.lastIndexOf(' ');
+      return str.substring(0, lastIndex);
+    },
   },
 };
 </script>
@@ -73,12 +86,9 @@ export default {
       span.text-medium.fg-blue(v-if="country == 'All Countries'") {{ region }} | 
       span.fg-orange {{ country }} 
     //- Show end year only if it's different from start year; same start and end means single year selection
-    h5.fg-gold-darken-2.uk-margin-remove.uk-text-small {{ ff_desc }}
-    div.fg-yellowgreen-darken-3 {{  sumPatentInSelectedData | thousandComma  }} Patents | 
-      span {{  numCompaniesInSelectedData | thousandComma  }} companies
-    
-  
-  
+    h5.fg-gold-darken-2.uk-margin-remove-top.uk-text-small {{ industry_desc }}
+    div.uk-text-small.fg-yellowgreen-darken-3.uk-animation-fade <strong class="">{{  aggregateSelectedData[1] | thousandComma  }}</strong> assignee companies <br> <strong class="">{{  aggregateSelectedData[0] | thousandComma  }}</strong> patents
+      span.fg-orange <br> in currently selected data
   ul.uk-list.uk-list-striped
     li(v-for="(company, i) in topCompanies" :key="company[1].gvkey + i").uk-text-left.uk-animation-slide-left
       
@@ -86,7 +96,7 @@ export default {
       div(uk-drop="pos:left-center")
         .uk-card.uk-card-default.uk-card-body.uk-padding-small
           ul.uk-card-header
-            li.uk-text-small.fg-black {{ company[1].ff_short}} | {{ startYear}}<span v-if="startYear != endYear">–{{ endYear }}</span>
+            li.uk-text-small.fg-black {{ company[1].industry_short}} | {{ startYear}}<span v-if="startYear != endYear">–{{ endYear }}</span>
             li.fg-blue.uk-text-bold.uk-text-uppercase.uk-text-break {{ company[0] | removePeriods }}
             li.uk-text-meta {{ company[1].city }}, {{ company[1].country }}
           ul.uk-list.uk-text-right.fg-orange
@@ -101,10 +111,13 @@ export default {
             li Assets 
               span.fg-blue $ <span class="">{{ company[1].totalassets | roundUnit | thousandComma }}</span> M
 
+          div.uk-card-footer
+              a.uk-button.uk-button-small.fg-blue-lighten-1(target="_blank" :href="`https://patents.google.com/?assignee=${ removeLastWord(company[0]) }&before=filing:${endYear}1231&after=filing:${startYear}0101&type=PATENT&num=50&sort=new`") Search Patents
+              a.uk-button.uk-button-small.fg-orange(target="_blank" :href="'https://www.google.com/search?q=%22'+ removeLastWord(company[0]) +'%22+%22'+company[1].country+'%22'") Search Company
       h3.uk-margin-remove.fg-orange.uk-text-large.uk-float-right {{ company[1].totalpatent | thousandComma }}
     
       span.uk-label.bg-blue-lighten-4 {{ i+1 }}
-      span.fg-blue-lighten-3  {{ company[1].ff_short }} <br>
+      span.fg-blue-lighten-3  {{ company[1].industry_short }} <br>
 
    
   </template>
