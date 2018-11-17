@@ -1,22 +1,23 @@
-# patent-viz
+# Vue Components
 
-> Global Corporate Patent Data Visualization
+- ExploreMain
+  - MapMain
+  - Filtersmain
+  - ListMain
+  
+- DynamicList x 10
+  - Filters 
+  - List
 
-## Build Setup
+- DynamicBarGraph x 5
+  - Filters
+  - BarGraph
 
-``` bash
-# install dependencies
-$ yarn install
+- DynamicLineGraph x 5
+  - Filters
+  - LineGraph
 
-# serve with hot reload at localhost:3000
-$ yarn run dev
+- DynamicScatter
+  - FiltersScatter
 
-# build for production and launch server
-$ yarn run build
-$ yarn start
-
-# generate static project
-$ yarn run generate
-```
-
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+- ClusterPack
