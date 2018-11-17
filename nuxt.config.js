@@ -14,22 +14,9 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: pkg.description },
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/icon?family=Material+Icons',
-      },
-      {
-        rel: 'stylesheet',
-        href: 'https://code.getmdl.io/1.3.0/material.indigo-pink.min.css',
-      },
-    ],
   },
 
-  script: [
-    { src: 'https://code.getmdl.io/1.3.0/material.min.js', defer: true },
-  ],
+  script: [],
   /*
   ** Customize the progress-bar color
   */
@@ -79,6 +66,10 @@ module.exports = {
       config.module.rules.push({
         test: /\.csv$/,
         use: { loader: 'file-loader' },
+      });
+      config.module.rules.push({
+        test: /\.md$/,
+        use: ['vue-loader', 'vue-md-loader'],
       });
       console.log(config.module.rules);
     },
