@@ -1,0 +1,194 @@
+{
+  "dataYearRange": {
+    "min": 1950,
+    "max": 2017
+  },
+  "industries": [
+    {
+      "industry_code": 0,
+      "industry_desc": "All Industries",
+      "industry_short": "All Industries"
+    },
+    {
+      "industry_code": 1,
+      "industry_desc": "Consumer NonDurables — Food, Tobacco, Textiles, Apparel, Leather, Toys",
+      "industry_short": "Consumer Non-Durables"
+    },
+    {
+      "industry_code": 2,
+      "industry_desc": "Consumer Durables — Cars, TV's, Furniture, Household Appliances",
+      "industry_short": "Consumer Durables"
+    },
+    {
+      "industry_code": 3,
+      "industry_desc": "Manufacturing — Machinery, Trucks, Planes, Off Furn, Paper, Com Printing",
+      "industry_short": "Manufacturing"
+    },
+    {
+      "industry_code": 4,
+      "industry_desc": "Energy — Oil, Gas, and Coal Extraction and Products",
+      "industry_short": "Energy"
+    },
+    {
+      "industry_code": 5,
+      "industry_desc": "Chemicals and Allied Products",
+      "industry_short": "Chemicals"
+    },
+    {
+      "industry_code": 6,
+      "industry_desc": "Business Equipment — Computers, Software, and Electronic Equipment",
+      "industry_short": "Business Equipment & Software"
+    },
+    {
+      "industry_code": 7,
+      "industry_desc": "Telecom — Telephone and Television Transmission",
+      "industry_short": "Telecommunication"
+    },
+    {
+      "industry_code": 8,
+      "industry_desc": "Utilities",
+      "industry_short": "Utilities"
+    },
+    {
+      "industry_code": 9,
+      "industry_desc": "Shops — Wholesale, Retail, and Some Services (Laundries, Repair Shops)",
+      "industry_short": "Wholesale & Retail"
+    },
+    {
+      "industry_code": 10,
+      "industry_desc": "Healthcare, Medical Equipment, and Drugs",
+      "industry_short": "Healthcare"
+    },
+    {
+      "industry_code": 11,
+      "industry_desc": "Finance",
+      "industry_short": "Finance"
+    },
+    {
+      "industry_code": 12,
+      "industry_desc": "Other — Mines, Constr, BldMt, Trans, Hotels, Bus Serv, Entertainment",
+      "industry_short": "Other"
+    }
+  ],
+
+  "regions": {
+    "North America": {
+      "countries": [
+        "United States",
+        "Bahamas",
+        "Belize",
+        "Bermuda",
+        "Canada",
+        "Cayman Islands",
+        "Mexico",
+        "Netherlands Antilles",
+        "Panama"
+      ]
+    },
+    "Europe": {
+      "countries": [
+        "Austria",
+        "Belgium",
+        "Denmark",
+        "Finland",
+        "France",
+        "Germany",
+        "Gibraltar",
+        "Hungary",
+        "Iceland",
+        "Ireland",
+        "Italy",
+        "Jersey",
+        "Luxembourg",
+        "Netherlands",
+        "Norway",
+        "Russian Federation",
+        "Spain",
+        "Sweden",
+        "Switzerland",
+        "United Kingdom"
+      ]
+    },
+    "Asia Pacific": {
+      "countries": [
+        "Australia",
+        "China",
+        "Hong Kong, SAR China",
+        "India",
+        "Indonesia",
+        "Japan",
+        "Malaysia",
+        "New Zealand",
+        "Saudi Arabia",
+        "Singapore",
+        "South Korea",
+        "Taiwan",
+        "Thailand",
+        "Turkey",
+        "United Arab Emirates"
+      ]
+    },
+    "Other": {
+      "countries": [
+        "Argentina",
+        "Brazil",
+        "Chile",
+        "Israel",
+        "South Africa",
+        "Zimbabwe"
+      ]
+    }
+  },
+  "countries": [
+    "United States",
+    "Argentina",
+    "Australia",
+    "Austria",
+    "Bahamas",
+    "Belgium",
+    "Belize",
+    "Bermuda",
+    "Brazil",
+    "Canada",
+    "Cayman Islands",
+    "Chile",
+    "China",
+    "Denmark",
+    "Finland",
+    "France",
+    "Germany",
+    "Gibraltar",
+    "Hong Kong, SAR China",
+    "Hungary",
+    "Iceland",
+    "India",
+    "Indonesia",
+    "Ireland",
+    "Israel",
+    "Italy",
+    "Japan",
+    "Jersey",
+    "Luxembourg",
+    "Malaysia",
+    "Mexico",
+    "Netherlands Antilles",
+    "Netherlands",
+    "New Zealand",
+    "Norway",
+    "Panama",
+    "Russian Federation",
+    "Saudi Arabia",
+    "Singapore",
+    "South Africa",
+    "South Korea",
+    "Spain",
+    "Sweden",
+    "Switzerland",
+    "Taiwan",
+    "Thailand",
+    "Turkey",
+    "United Arab Emirates",
+    "United Kingdom",
+    "Zimbabwe"
+  ]
+}
