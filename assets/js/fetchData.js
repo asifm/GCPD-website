@@ -2,6 +2,7 @@
 import * as d3 from 'd3';
 let fThousand = d3.format(',');
 
+// todo p2: optimize data: (1) get rid of data that don't matter, (2) NORMALIZE: have separate files for country coordinates and such data
 // Reads the main data file: has all data; each row is for one company-year
 const dataProm = d3
   .csv(require('@/assets/data/20181106_PatentData-ShortVariableNames.csv'))
@@ -42,7 +43,7 @@ const patentByCountryProm = d3
 
 // todo p3: refactor: webpack can directly read json; no need for d3
 const worldGeojsonProm = d3
-  .json('/data/maps/world-110m.json')
+  .json('/data/world-110m.json')
   .then(mapData => mapData);
 
 export { dataProm, fieldNamesProm, patentByCountryProm, worldGeojsonProm };

@@ -2,9 +2,15 @@
 import * as d3 from 'd3';
 
 // ::import data (as promises)
-import { patentByCountryProm, worldGeojsonProm } from 'assets/js/fetchData';
+import { patentByCountryProm } from 'assets/js/fetchData';
 
-export function renderMap(width = 1160, height = 500) {
+// todo: receive per country aggregate data from ExploreMap.vue and render updated map
+export function renderMap(
+  width = 1160,
+  height = 500,
+  geoProjection = d3.geoMercator,
+  geoJsonPath = '/data/world-110m.json',
+) {
   let margin = {
     left: 10,
     right: 10,
@@ -12,19 +18,18 @@ export function renderMap(width = 1160, height = 500) {
     bottom: 10,
   };
 
-  var projection = d3.geoMercator().translate([width / 2, height / 2 + 50]);
-  // .scale(1.ii5);
+  const projection = geoProjection().translate([width / 2, height / 2 + 50]);
 
-  var path = d3.geoPath().projection(projection);
+  const path = d3.geoPath().projection(projection);
 
-  var svg = d3
+  const svg = d3
     .select('#svg')
     .attr('width', width + 'px')
     .attr('height', height + 'px');
 
   const radScale = d3.scaleSqrt().range([1, 30]);
 
-  worldGeojsonProm
+  d3.json(geoJsonPath)
     .then(countries => {
       let mapG = svg.append('g');
       let map = svg.append('g');
@@ -62,18 +67,6 @@ export function renderMap(width = 1160, height = 500) {
       patentByCountryProm.then(d => {
         let data = d;
 
-        let f = d3.format(',');
-        // let tip = d3Tip()
-        //   .attr('class', 'd3-tip uk-animation-fade')
-        //   .html(
-        //     d =>
-        //       `<div class="uk-card uk-card-default uk-card-body uk-padding-small uk-box-shadow-large"><span class="uk-text-large fg-orange">${
-        //         d.country
-        //       }</span><br/><span>Patents: ${f(d.patentCount)}</span></div>`,
-        //   );
-
-        // mapG.call(tip);
-
         let maxPatentCount = d3.max(data, d => d.patentCount);
 
         radScale.domain([1, maxPatentCount]);
@@ -83,18 +76,24 @@ export function renderMap(width = 1160, height = 500) {
           .enter()
           .append('circle')
           // .attr('class', 'circle')
-          .attr('fill', 'white')
+          .attr('fill', '#232d4b')
+          .attr('opacity', 0.5)
           .attr('stroke-width', '0.5px')
           .attr('stroke', 'gray')
           .attr('cx', d => projection([d.longitude, d.latitude])[0])
           .attr('cy', d => projection([d.longitude, d.latitude])[1])
-          .attr('r', d => radScale(d.patentCount));
-
-        // Turn off tooltips
-        // circles.on('mouseover', tip.show).on('mouseout', tip.hide);
+          .attr('r', d => radScale(d.patentCount))
+          .attr(
+            'uk-tooltip',
+            d =>
+              `title:${d.country} <br> ${d3.format(',')(
+                d.patentCount,
+              )} patents;pos:top`,
+          );
       });
     })
     .catch(error => {
       console.log('Something went wrong:', error);
+      throw error;
     });
 }

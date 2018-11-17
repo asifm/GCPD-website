@@ -1,62 +1,111 @@
 import * as d3 from 'd3';
-import { dataProm } from 'assets/js/fetchData';
+import { rollup } from 'd3-array';
+import keyBy from 'lodash/keyBy';
 
-// todo get by year
-export const getCountriesProm = dataProm.then(data => {
-  return [...new Set(data.map(el => el.country))];
-});
+/**
+ *
+ * Groups and aggregates data by company
+ * @export
+ * @param {Array<{}>} data
+ * @returns {Array<Array>} aggregated patent and other data for each company
+ */
+export function rollupCompany(data) {
+  console.log(data);
+  let rolledupCompany = rollup(
+    data,
+    v => {
+      return {
+        totalpatent: d3.sum(v, d => d.patentcount),
+        totalrdex: d3.sum(v, d => d.rdex),
+        totalcapex: d3.sum(v, d => d.capex),
+        totalsales: d3.sum(v, d => d.sales),
+        totalebitda: d3.sum(v, d => d.ebitda),
+        totalassets: d3.sum(v, d => d.assets),
+        city: v[0].city,
+        country: v[0].country,
+        industry_short: v[0].industry_short,
+        gvkey: v[0].gvkey,
+      };
+    },
+    d => d.company,
+  );
 
-// Get top n companies by country
-export function getTopCompaniesByCountryProm(country, n, year) {
-  return dataProm.then(data => {
-    if (country == 'The World') {
-      return data
-        .filter(el => el.year == year)
-        .sort((a, b) => d3.descending(a.patentcount, b.patentcount))
-        .slice(0, n);
-    }
-    return data
-      .filter(el => el.year == year)
-      .filter(el => el.country == country)
-      .sort((a, b) => d3.descending(a.patentcount, b.patentcount))
-      .slice(0, n);
+  return Array.from(rolledupCompany);
+}
+
+/**
+ *
+ *
+ * @param {Array<Array>} rolledupCompany
+ * @returns {Array<Array>} total number of patents and companies in the selected data
+ */
+export function sumPatentsNumCompanies(rolledupCompany) {
+  return [
+    d3.sum(rolledupCompany, el => el[1].totalpatent),
+    rolledupCompany.length,
+  ];
+}
+
+/**
+ *
+ * First groups by country and then by year and returns total for each country-year.
+ * @param {Array<{}>} rolledupCompany
+ * @returns {Array<Array>}
+ */
+export function rollupCountryYear(rolledupCompany) {
+  const rolledupCountryYear = rollup(
+    rolledupCompany,
+    v => d3.sum(v, d => d.patentcount),
+    d => d.country,
+    d => d.year,
+  );
+  return Array.from(rolledupCountryYear);
+}
+
+/**
+ *
+ *
+ * @export
+ * @param {Array<{}>} data
+ * @param {number} startYear
+ * @param {number} endYear
+ * @param {string} region
+ * @param {string}country
+ * @param {string} industry_short
+ * @param {{}} dataYearRange
+ * @returns
+ */
+export function filterData(
+  data,
+  startYear,
+  endYear,
+  region,
+  country,
+  industry_short,
+  dataYearRange,
+) {
+  let filteredDataYears = data.filter(el => {
+    if (startYear == dataYearRange.min && endYear == dataYearRange.max)
+      return data;
+    return el.year >= startYear && el.year <= endYear;
   });
-}
 
-// try to use the following simpler function instead of the one above.
-// TODO: seems these can all be combined into one function
-export function filterCompaniesInYears(data, startYear, endYear) {
-  if (startYear == 1950 && endYear == 2017) return data;
-  return data.filter(el => el.year >= startYear && el.year <= endYear);
-}
+  // industry_short is the short name of an industry.
+  // It's a property in industry objects in the "industries" array in lists.jsons
+  let filteredDataIndustry = filteredDataYears.filter(el => {
+    if (industry_short == 'All Industries') return filteredDataYears;
+    return el.industry_short == industry_short;
+  });
 
-export function filterCompaniesInRegion(data, region) {
-  // debugger;
-  if (region == 'All Regions') return data;
-  // debugger;
-  console.log('executing filter in region');
-  return data.filter(el => el.region == region);
-}
+  let filteredDataRegion = filteredDataIndustry.filter(el => {
+    if (region == 'All Regions') return filteredDataIndustry;
+    return el.region == region;
+  });
 
-export function filterCompaniesInCountry(data, country) {
-  if (country == 'All Countries') return data;
-  return data.filter(el => el.country == country);
-}
+  let filteredDataCountry = filteredDataRegion.filter(el => {
+    if (country == 'All Countries') return filteredDataRegion;
+    return el.country == country;
+  });
 
-// Industry: fama french industry name as in lists.jsons
-export function filterCompaniesInIndustry(data, industry) {
-  // Move on if all industries
-  if (industry == 'All Industries') return data;
-  return data.filter(el => el.industry == industry);
-}
-
-// Generic version of the four above
-export function filterCompaniesInXattr(data, Xattr) {
-  if (Xattr.startsWith('All')) return;
-  return data.filter(el.Xattr == Xattr);
-}
-
-export function sortCompanies(data) {
-  console.log('sort', data);
-  return data.sort((a, b) => d3.descending(a.patentcount, b.patentcount));
+  return filteredDataCountry;
 }
