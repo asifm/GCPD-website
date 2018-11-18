@@ -20,7 +20,7 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#232d45' },
+  loading: { color: '#fff' },
 
   /*
   ** Global CSS
@@ -36,31 +36,14 @@ module.exports = {
     './plugins/filters.js',
   ],
 
-  /*
-  ** Nuxt.js modules
-  */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
-    // https://github.com/nuxt-community/modules/tree/master/packages/markdownit
-    '@nuxtjs/markdownit',
   ],
-  /*
-  ** Axios module configuration
-  */
   axios: {
-    // See https://github.com/nuxt-community/axios-module#options
+    // module configuration: https://github.com/nuxt-community/axios-module#options
   },
-  markdownit: {
-    // Available options: See https://github.com/markdown-it/markdown-it
-    preset: 'default',
-    linkify: true,
-    breaks: true,
-    use: ['markdown-it-attrs', 'markdown-it-footnote'],
-  },
-  /*
-  ** Build configuration
-  */
+
   build: {
     extend(config, ctx) {
       config.module.rules.push({
@@ -69,7 +52,10 @@ module.exports = {
       });
       config.module.rules.push({
         test: /\.md$/,
-        use: ['vue-loader', 'vue-md-loader'],
+        use: [
+          'vue-loader', //
+          'vue-md-loader',
+        ],
       });
       console.log(config.module.rules);
     },
