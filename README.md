@@ -1,23 +1,35 @@
-# Vue Components
+# Components
 
-- ExploreMain
-  - MapMain
-  - Filtersmain
-  - ListMain
-  
-- DynamicList x 10
-  - Filters 
-  - List
+### Building Blocks
 
-- DynamicBarGraph x 5
-  - Filters
-  - BarGraph
+- IndustryFilter
+- CountryFilter
+- YearFilter
 
-- DynamicLineGraph x 5
-  - Filters
-  - LineGraph
+- Map 
+- BareList
+- DetailList
+- BarGraph
+- LineGraph 
+- DonutGraph
+- TimeAnimatedBarGraph
 
-- DynamicScatter
-  - FiltersScatter
+- VariableSelector
 
-- ClusterPack
+- CirclePack
+
+
+Other
+- Publication
+- TheHeader
+- TheFooter
+
+### Composed
+
+DynamicScatterPlot
+WorldMapExplorer
+MakeYourList
+MakeYourGraph
+TopTenSince2000
+
+
