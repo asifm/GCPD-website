@@ -79,7 +79,7 @@ export default {
 </script>
 
 <template lang="pug">
-.uk-tile.uk-box-shadow-large.uk-padding-small
+.uk-tile.uk-padding-remove
   div.uk-text-left.uk-card-header.uk-padding-small
     h5.uk-text-large.fg-yellowgreen-darken-0.uk-margin-small.uk-text-left {{ startYear }}<span v-if="startYear != endYear">–{{ endYear }}</span>
     h4.uk-margin-remove
@@ -87,8 +87,9 @@ export default {
       span.fg-orange {{ country }} 
     //- Show end year only if it's different from start year; same start and end means single year selection
     h5.fg-gold-darken-2.uk-margin-remove-top.uk-text-small {{ industry_desc }}
-    div.uk-text-small.fg-yellowgreen-darken-3.uk-animation-fade <strong class="">{{  aggregateSelectedData[1] | thousandComma  }}</strong> assignee companies <br> <strong class="">{{  aggregateSelectedData[0] | thousandComma  }}</strong> patents
-      span.fg-orange <br> in currently selected data
+    div(v-if="aggregateSelectedData[1] == 0 && aggregateSelectedData[0] == 0") No patent found in the currently selected data.
+    div(v-else).fg-yellowgreen-darken-3.uk-animation-fade <strong class="">{{  aggregateSelectedData[1] | thousandComma  }}</strong> assignee companies <br> <strong class="">{{  aggregateSelectedData[0] | thousandComma  }}</strong> patents
+      span.fg-orange.uk-text-small <br> in the currently selected data
   ul.uk-list.uk-list-striped
     li(v-for="(company, i) in topCompanies" :key="company[1].gvkey + i").uk-text-left.uk-animation-slide-left
       
@@ -117,7 +118,10 @@ export default {
       h3.uk-margin-remove.fg-orange.uk-text-large.uk-float-right {{ company[1].totalpatent | thousandComma }}
     
       span.uk-label.bg-blue-lighten-4 {{ i+1 }}
-      span.fg-blue-lighten-3  {{ company[1].industry_short }} <br>
+      span.fg-blue-lighten-3.uk-text-small  {{ company[1].industry_short }} <br>
 
    
   </template>
+
+<style lang="scss" scoped>
+</style>

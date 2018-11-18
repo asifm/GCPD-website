@@ -45,8 +45,8 @@ div
         //- Title on hero
         .uk-width-4-5.uk-margin-remove.uk-position-relative.uk-position-left
           #title.uk-h1.uk-animation-fade.fg-orange.uk-heading-primary.uk-text-bold.uk-position-relative.uk-position-center.bg-blue-fade-out-4.uk-padding-large Global Corporate Patent Data 
-            .uk-h5.fg-orange-lighten-4 Number of Patents Assigned Every Year to Publicly Listed Companies Worldwide by the United States Patent and Trademark Office 
-              .uk-h6 1950–2017 
+            .uk-h3.fg-orange-lighten-4.uk-margin-remove Number of Patents Assigned Every Year to Publicly Listed Companies Worldwide <br>by the United States Patent and Trademark Office 
+            .uk-h4.uk-margin-remove-top 1950–2017 
             .uk-heading-line
               .uk-h2.fg-white 2018
         //- Text on hero
@@ -60,27 +60,30 @@ div
   .uk-section.uk-section-secondary.uk-padding(uk-scrollspy="cls:uk-animation-slide-top-small; delay: 100; repeat: true").uk-preserve-color
     .uk-container-expand.uk-grid.uk-grid-small.uk-grid-match
       div.uk-width-1-2
-        .uk-card.uk-card-secondary.uk-card-body
-          div.uk-text-large
+        .uk-card.uk-card-body.uk-padding-large
+          div.text-medium.fg-white
             data-intro
-          
+            p This research project was made possible with the financial support from the <em>Batten Institute for Entrepreneurship and Innovation</em> and the <em>Richard A. Mayo Center for Asset Management</em> at the UVA Darden School of Business.
       div.uk-width-1-4
-        .uk-card.uk-card-default.uk-card-body.uk-padding-small
-          .uk-card-header
-            h3 Download the Data
+        .uk-card.uk-card-default.uk-card-body.uk-box-shadow-small
+          .uk-card
+            h4 Download the Data
             download-intro
             button.uk-button.uk-button-secondary Download
-          .uk-card-footer
-            data-citation
+          
+        div.uk-background-muted.uk-padding
+          data-citation
       
       div.uk-width-1-4
-        .uk-card.uk-card-default.uk-card-body.bg-blue-lighten-6
-          h3 Interview
-          p To add the podcast interview. The one here is an unrelated sample. Esse commodo veniam consectetur dolore aliquip sit nostrud ad eu proident exercitation amet ad. 
-          div
-            audio(controls).uk-margin-medium.uk-card-media-bottom
+        .uk-card.uk-card-default.uk-card-body
+          h4 Interview
+          p To add the podcast interview. The one here is an unrelated sample. Esse commodo veniam consectetur dolore aliquip sit nostrud ad eu proident exercitation amet ad.
+          audio(controls).uk-margin-remove
             //- source(src="https://mcdn.podbean.com/mf/download/zvy6h7/FAMILY_OWNED_BUSINESSES.mp3" type="audio/mp3")
-  
+        .uk-background-muted.uk-padding
+          h4 Excepteur esse aliqua
+          p Nisi cillum anim mollit anim commodo anim labore culpa incididunt do est enim. Ea elit veniam fugiat voluptate esse quis officia non nulla dolor labore veniam. Deserunt excepteur culpa minim consequat fugiat commodo.
+          p Pariatur proident esse excepteur deserunt. Dolor veniam ea Lorem sunt. Dolore id non aute enim mollit culpa quis proident ea.
   .uk-section.uk-section-primary       
     .uk-container.uk-container-small
       .uk-card.uk-card-body.uk-card-default.bg-orange-lighten-3
@@ -132,7 +135,7 @@ div
 <style lang="scss">
 audio {
   // min-width: 400px;
-  height: 40px;
+  height: 60px;
   object-fit: inherit;
 }
 

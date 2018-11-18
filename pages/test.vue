@@ -2,9 +2,9 @@
 import MapMain from '@/components/MapMain';
 import BarGraph from '@/components/BarGraph';
 export default {
-  components: { MapMain, BarGraph },
-  data() {
-    return {};
+  components: {
+    BarGraph,
+    MapMain,
   },
 };
 </script>
