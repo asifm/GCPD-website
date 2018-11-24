@@ -57,7 +57,7 @@ module.exports = {
           'vue-md-loader',
         ],
       });
-      console.log(config.module.rules);
+      // console.log(config);
     },
   },
 };
