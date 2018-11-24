@@ -1,15 +1,15 @@
 <template>
   <div>
-    <the-header/>
+    <the-header-partial/>
     <nuxt/>
-    <the-footer/>
+    <the-footer-partial/>
   </div>
 </template>
 
 <script>
-import TheHeader from './TheHeader';
-import TheFooter from './TheFooter';
+import TheHeaderPartial from './TheHeaderPartial';
+import TheFooterPartial from './TheFooterPartial';
 export default {
-  components: { TheHeader, TheFooter },
+  components: { TheHeaderPartial, TheFooterPartial },
 };
 </script>

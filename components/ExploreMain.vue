@@ -3,7 +3,7 @@
 // ::import components
 import MapMain from '@/components/MapMain';
 import ControlsMain from '@/components/ControlsMain';
-import ListMain from '@/components/ListMain';
+import ListCompanyDetailed from '@/components/ListCompanyDetailed';
 
 // ::import functions
 // todo: get country name by clicking on the map
@@ -11,7 +11,7 @@ import ListMain from '@/components/ListMain';
 import { renderMap } from '@/assets/js/drawWorldMap.js';
 
 export default {
-  components: { MapMain, ControlsMain, ListMain },
+  components: { MapMain, ControlsMain, ListCompanyDetailed },
   data() {
     return {
       // fix p1: Optimize the first computation so that it doesn't block scrolling and rendering
@@ -68,7 +68,7 @@ div
         map-main
 
     .uk-width-1-4
-      list-main(
+      list-company-detailed(
         :region="regionSelected" 
         :country="countrySelected"
         :ff_short="industrySelected" 

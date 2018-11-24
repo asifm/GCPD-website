@@ -1,27 +1,32 @@
 
 <script>
+// ::import npm modules
+
 // ::import components
-import FiltersMain from '@/components/FiltersMain';
-import ListMain from '@/components/ListMain';
+import SelectFromList from '@/components/SelectFromList';
+import InputNumber from '@/components/InputNumber';
+import ListCompanyBasic from '@/components/ListCompanyBasic';
 
 // ::import functions
-// todo: get country name by clicking on the map
-// todo p1: Remove from data the unimportant countries
 import { renderMap } from '@/assets/js/drawWorldMap.js';
 
+// ::import content
+import NoteExploreMain from '@/content/NoteExploreMain.md';
+
+// todo p2: get country name by clicking on the map
+// todo p1: Remove from data the unimportant countries
+
 export default {
-  components: { FiltersMain, ListMain },
+  components: {
+    SelectFromList,
+    InputNumber,
+    ListCompanyBasic,
+    NoteExploreMain,
+  },
   data() {
     return {
-      // fix p1: Optimize the first computation so that it doesn't block scrolling and rendering
-      regionSelected: 'All Regions',
-      countrySelected: 'All Countries',
-      industrySelected: 'All Industries',
-
-      startYearSelected: 2017,
-      endYearSelected: 2017,
-      numTopCompaniesToSelect: 10,
-      // spin: false,
+      // todo p1: Optimize the first computation so that it doesn't block scrolling and rendering
+      listLengthSelected: 50,
     };
   },
   mounted() {
@@ -35,48 +40,50 @@ export default {
     pass data to renderMap function on every update 
     get aggregate numbers for each country 
      */
-    console.log(
-      Array.from(document.getElementsByTagName('circle')).map(
-        el => el.__data__,
-      ),
-    );
-    // todo p3: implement spinner
-    // ? nextTick not working
-    // this.$nextTick(() => {
-    // console.log('next ticked', this.spin);
-    // this.spin = false;
-    // });
+    // console.log(
+    //   Array.from(document.getElementsByTagName('circle')).map(
+    //     el => el.__data__,
+    //   ),
+    // );
+  },
+  methods: {
+    initRenderMap() {
+      console.log('got to div');
+      // renderMap();
+    },
   },
 };
 </script>
 
 <template lang="pug">
-div
-  .uk-grid(uk-grid).uk-container-expand.uk-text-center()
-    .uk-width-3-4
-      filters-main(
-        :region.sync="regionSelected"
-        :country.sync="countrySelected"
-        :industry_short.sync="industrySelected"
-        :startYear.sync="startYearSelected"
-        :endYear.sync="endYearSelected"
-      )
-      //- div(v-if="spin")
-        //- span( uk-spinner="ratio:1")
-      .uk-tile.uk-width-expand.uk-padding-remove-top(uk-scrollspy="cls: uk-animation-fade; delay: 100; repeat: true")
-        svg#svg.uk-margin-remove.uk-padding-remove(ref='svgMap')
-          .uk-card 
-            p Officia laborum exercitation tempor ut deserunt commodo occaecat. Voluptate irure aute fugiat ut minim nostrud amet eiusmod do sit sint id labore ex. Enim id consectetur aute sunt sunt voluptate tempor fugiat. Aute in est amet culpa sint ea.
-    .uk-width-1-4
-      list-main(
-        :region="regionSelected" 
-        :country="countrySelected"
-        :industry_short="industrySelected" 
-        :startYear="startYearSelected" 
-        :endYear="endYearSelected"
-        :numTopCompanies="numTopCompaniesToSelect"
-        )
+
+.uk-container.uk-container-large
+  .uk-grid(uk-grid).uk-grid-collapse
+    .uk-width-1-3.uk-padding-remove
+      h3 Explore the World of Corporate Patents 
+      note-explore-main
+    .uk-width-2-3
+      p [a smaller map]
       
+  .uk-grid.uk-container-expand.uk-text-center.uk-grid-small(uk-grid)
+    .uk-width-1-4
+      select-from-list(param-list="countries")
+    .uk-width-1-4
+      select-from-list(param-list="industries")
+    .uk-width-1-4.uk-grid(uk-grid).uk-grid-collapse
+      .uk-width-1-3
+        input-number(type="text" event-name="change-startyear").uk-input.uk-form-width-small
+        input-number(type="text" event-name="change-endyear").uk-input.uk-form-width-small
+
+      .uk-width-2-3
+        input-number(type="range" event-name="change-startyear").uk-range
+        input-number(type="range" event-name="change-endyear").uk-range
+        
+    .uk-width-1-4.uk-panel-scrollable.uk-height-large
+      list-company-basic(:topCompaniesListLength="listLengthSelected")
+    div  
+      svg#svg.uk-margin-remove.uk-padding-remove(ref='svgMap')
+ 
 </template>
 
 <style lang="scss" scoped>

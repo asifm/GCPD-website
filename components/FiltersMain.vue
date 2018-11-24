@@ -2,7 +2,7 @@
 // todo p2: consolidate regions and countries into on select control
 // todo p2: change map based on selection of Years
 // todo p2: highlight circles for selected countries
-import lists from 'assets/data/listData.json';
+import { lists } from 'assets/data/listData';
 
 // To ignore the "Other" region
 let { Other, ...regionsCountries } = lists.regions;
