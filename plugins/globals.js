@@ -1,8 +1,11 @@
 import Vue from 'vue';
 import Vuikit from 'vuikit';
 import vSelect from 'vue-select';
+import vuescroll from 'vue-scroll';
 
 Vue.use(Vuikit);
-Vue.component('v-select', vSelect);
 
-// console.log(new Vue());
+// ? not working, uninstall
+Vue.use(vuescroll);
+
+Vue.component('v-select', vSelect);
