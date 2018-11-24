@@ -1,2 +1,3 @@
+import Vue from 'vue';
 // an event bus to manage and communicate states between components
-export default (EventBus = new Vue());
+export const FilterBus = new Vue();

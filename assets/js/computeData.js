@@ -1,7 +1,6 @@
 import * as d3 from 'd3';
 import { rollup } from 'd3-array';
-import keyBy from 'lodash/keyBy';
-
+import { lists } from '@/assets/data/listData';
 /**
  *
  * Groups and aggregates data by company
@@ -9,41 +8,55 @@ import keyBy from 'lodash/keyBy';
  * @param {Array<{}>} data
  * @returns {Array<Array>} aggregated patent and other data for each company
  */
-export function rollupCompany(data) {
-  console.log(data);
-  let rolledupCompany = rollup(
-    data,
-    v => {
-      return {
-        totalpatent: d3.sum(v, d => d.patentcount),
-        totalrdex: d3.sum(v, d => d.rdex),
-        totalcapex: d3.sum(v, d => d.capex),
-        totalsales: d3.sum(v, d => d.sales),
-        totalebitda: d3.sum(v, d => d.ebitda),
-        totalassets: d3.sum(v, d => d.assets),
-        city: v[0].city,
-        country: v[0].country,
-        industry_short: v[0].industry_short,
-        gvkey: v[0].gvkey,
-      };
-    },
-    d => d.company,
-  );
+export function rollupCompanies(data, toSort = true) {
+  if (data && data.length > 0) {
+    let rolledupCompanies = rollup(
+      data,
+      v => {
+        return {
+          totalpatent: d3.sum(v, d => d.patentcount),
+          totalrdex: d3.sum(v, d => d.rdex),
+          totalcapex: d3.sum(v, d => d.capex),
+          totalsales: d3.sum(v, d => d.sales),
+          totalebitda: d3.sum(v, d => d.ebitda),
+          totalassets: d3.sum(v, d => d.assets),
+          city: v[0].city,
+          country: v[0].country,
+          industry_short: v[0].industry_short,
+          gvkey: v[0].gvkey,
+        };
+      },
+      d => d.company,
+    );
 
-  return Array.from(rolledupCompany);
+    const rolledupCompaniesArr = Array.from(rolledupCompanies);
+    if (toSort) {
+      return rolledupCompaniesArr.sort(
+        (a, b) => b[1].totalpatent - a[1].totalpatent,
+      );
+    } else {
+      return rolledupCompaniesArr;
+    }
+  } else {
+    return [];
+  }
 }
 
 /**
  *
  *
- * @param {Array<Array>} rolledupCompany
+ * @param {Array<Array>} rolledupCompanies
  * @returns {Array<Array>} total number of patents and companies in the selected data
  */
-export function sumPatentsNumCompanies(rolledupCompany) {
-  return [
-    d3.sum(rolledupCompany, el => el[1].totalpatent),
-    rolledupCompany.length,
-  ];
+export function sumPatentsNumCompanies(rolledupCompanies) {
+  if (rolledupCompanies && rolledupCompanies.length > 0) {
+    return [
+      d3.sum(rolledupCompanies, el => el[1].totalpatent),
+      rolledupCompanies.length,
+    ];
+  } else {
+    return [];
+  }
 }
 
 /**
@@ -52,60 +65,62 @@ export function sumPatentsNumCompanies(rolledupCompany) {
  * @param {Array<{}>} rolledupCompany
  * @returns {Array<Array>}
  */
-export function rollupCountryYear(rolledupCompany) {
-  const rolledupCountryYear = rollup(
-    rolledupCompany,
+export function rollupCountryYears(rolledupCompanies) {
+  const rolledupCountryYears = rollup(
+    rolledupCompanies,
     v => d3.sum(v, d => d.patentcount),
     d => d.country,
     d => d.year,
   );
-  return Array.from(rolledupCountryYear);
+  return Array.from(rolledupCountryYears);
 }
+
+// save in variables to avoid unnecessary lookups
+const minYear = lists.dataYearRange.min;
+const maxYear = lists.dataYearRange.max;
 
 /**
  *
  *
- * @export
- * @param {Array<{}>} data
- * @param {number} startYear
- * @param {number} endYear
- * @param {string} region
- * @param {string}country
- * @param {string} industry_short
- * @param {{}} dataYearRange
- * @returns
+ * @param {*} {
+ *   data,
+ *   startyear,
+ *   endyear,
+ *   industry_short,
+ *   country,
+ *   dataYearRange = lists.dataYearRange,
+ * }
+ * @returns {{}[]}
  */
 export function filterData(
   data,
-  startYear,
-  endYear,
-  region,
-  country,
-  industry_short,
-  dataYearRange,
+  startyear = 2000,
+  endyear = 2017,
+  industry_short = 'All Industries',
+  country = 'All Countries',
 ) {
-  let filteredDataYears = data.filter(el => {
-    if (startYear == dataYearRange.min && endYear == dataYearRange.max)
-      return data;
-    return el.year >= startYear && el.year <= endYear;
-  });
-
-  // industry_short is the short name of an industry.
-  // It's a property in industry objects in the "industries" array in lists.jsons
-  let filteredDataIndustry = filteredDataYears.filter(el => {
-    if (industry_short == 'All Industries') return filteredDataYears;
-    return el.industry_short == industry_short;
-  });
-
-  let filteredDataRegion = filteredDataIndustry.filter(el => {
-    if (region == 'All Regions') return filteredDataIndustry;
-    return el.region == region;
-  });
-
-  let filteredDataCountry = filteredDataRegion.filter(el => {
-    if (country == 'All Countries') return filteredDataRegion;
-    return el.country == country;
-  });
-
-  return filteredDataCountry;
+  if (data && data.length > 0) {
+    return data
+      .filter(el => {
+        if (startyear === minYear && endyear === maxYear) return true;
+        return el.year >= startyear && el.year <= endyear;
+      })
+      .filter(el => {
+        if (industry_short === 'All Industries') return true;
+        return el.industry_short === industry_short;
+      })
+      .filter(el => {
+        if (country === 'All Countries') {
+          return true;
+        } else if (
+          ['Asia Pacific', 'Europe', 'North America'].includes(country)
+        ) {
+          return el.region === country;
+        } else {
+          return el.country === country;
+        }
+      });
+  } else {
+    return [];
+  }
 }
