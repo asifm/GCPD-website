@@ -1,35 +1,36 @@
-# Components
+## Components
 
 ### Building Blocks
 
-- IndustryFilter
-- CountryFilter
-- YearFilter
+- FilterList (country, industry)
+- InputNumber (year)
 
 - Map 
-- BareList
-- DetailList
-- BarGraph
-- LineGraph 
-- DonutGraph
-- TimeAnimatedBarGraph
+- ListBasic
+- ListDetailed [x]
+- ListCustomize
+- GraphBar
+- GraphLine 
+- GraphDonut
+- GraphCustomize
+- GraphTimeAnimatedBar
+- GraphCompanyDetailed
 
-- VariableSelector
+- GraphDynamicScatter
+- ExploreAllData
+- ListsTopTenSince2000
 
-- CirclePack
+- SelectorVariable (scatter)
 
+- GraphCirclePack
+
+- FeatureDownloadExtract (input: gvkey; output: patent count each year)
 
 Other
-- Publication
-- TheHeader
-- TheFooter
+- Publication [x]
+- TheHeader [x]
+- TheFooter [x]
 
-### Composed
 
-DynamicScatterPlot
-WorldMapExplorer
-MakeYourList
-MakeYourGraph
-TopTenSince2000
-
+## Update Process
 
