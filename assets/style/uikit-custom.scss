@@ -1,84 +1,73 @@
 // Non-uikit. comes frm nuxt
-
 .nuxt-link-exact-active {
   color: #ffffff !important;
   font-weight: 700 !important;
 }
-// Load fonts
-
-@font-face {
-  font-family: 'FranklinGothicURW';
-  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Hea.woff') format('woff');
-  font-weight: 900;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'FranklinGothicURW';
-  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Dem.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'FranklinGothicURW';
-  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Med.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'FranklinGothicURW';
-  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Boo.woff') format('woff');
-  font-weight: 300;
-  font-style: normal;
-}
-
-// typography overrides
-$global-font-size: 16px;
-// $global-font-family: Adobe Caslon Pro;
-$global-font-family: Georgia;
-// $global-font-family: FranklinGothicURW;
-$base-body-font-weight: 300;
-.uk-card-default{ color: black !important;}
-.text-medium { font-size: 1.2rem; font-weight: 300; }
-// $global-font-family: Georgia;
-// $global-font-family: Lato;
 
 
-$base-heading-font-family: 'FranklinGothicURW';
-$base-heading-font-weight: 500;
-$base-heading-text-transform: uppercase;
-
-$global-xxlarge-font-size: 2.2rem;
-$global-xxlarge-font-size: 1.8rem;
-$global-large-font-size: 1.4rem;
-$global-medium-font-size: 1rem;
-$global-small-font-size: 0.8rem;
+//:: Custom variables and variable overwrites.
 
 
-// Custom variables and variable overwrites.
-// ******************************************
+// ::COLORS
 
-// darden colors
-// primary palette
+// light and dark using https://material.io/tools/
 $blue: #232d4b;
-$orange: #e57200;
+$blue-light: #4d5677;
+$blue-dark: #000123;
 
-// secondary palette
-$cyan: #007681;
-$gold: #F2CD00;
-$purple: #692A7E;
-$yellowgreen: #84BD00;
+$orange: #e57200;
+$orange-light: #ffa23f;
+$orange-dark: #ac4400;
 
 // neutral colors
-$gray: #A5ACAF;
-$horizon: #5C7F92;
+$gray: #a5acaf;
+$horizon: #5c7f92;
 $sanddune: #857363;
-$starkwhite: #CAC0B6;
+$starkwhite: #cac0b6;
 
+//:: darden colors
+// palette using tool: http://mcg.mbitson.com/
+$blue-base: (
+  'blue-50': #e5e6e9,
+  'blue-100': #bdc0c9,
+  'blue-200': #9196a5,
+  'blue-300': #656c81,
+  'blue-400': #444d66,
+  'blue-500': #232d4b,
+  'blue-600': #1f2844,
+  'blue-700': #1a223b,
+  'blue-800': #151c33,
+  'blue-900': #0c1123,
+);
+
+$orange-base: (
+  'orange-50': #fceee0,
+  'orange-100': #f7d5b3,
+  'orange-200': #f2b980,
+  'orange-300': #ed9c4d,
+  'orange-400': #e98726,
+  'orange-500': #e57200,
+  'orange-600': #e26a00,
+  'orange-700': #de5f00,
+  'orange-800': #da5500,
+  'orange-900': #d34200,
+);
+
+@mixin generate-darden-palette($base-color, $color-num) {
+  .bg-#{$color-num} {
+    background-color: 
+        map-get($base-color, $color-num) !important;
+  }
+  .fg-#{$color-num} {
+    color: 
+        map-get($base-color, $color-num) !important;
+  }
+}
+
+// Generate transparent colors (if needed, can add other transformations when calling the mixin)
 $colors: (
   orange: $orange,
   blue: $blue,
-  gold: $gold,
-  yellowgreen: $yellowgreen,
 );
 
 @mixin generate-color-classes($base-color, $action, $amount, $multiplier) {
@@ -100,9 +89,11 @@ $colors: (
   }
 }
 
-@each $color in (orange, blue,  gold, yellowgreen ) {
-  @each $action in (lighten, darken, saturate, desaturate, fade-out) {
-    @for $i from 0 through 4 {
+
+@each $color, $_ in $colors {
+  // can add other transformations like desaturate, lighten, etc.
+  @each $action in (fade-out) {
+    @for $i from 0 through 9 {
       @if $action != fade-out {
         @include generate-color-classes($color, $action, $i, 10%);
       } @else {
@@ -113,10 +104,19 @@ $colors: (
 }
 
 
-// color overrides
-//*******************
 
-// Override foreground colors 
+// @each $color-num, $color in $orange-base {
+//   @include generate-darden-palette($orange-base, $color-num);
+// }
+
+@each $list in ($orange-base, $blue-base) {
+  @each $color-num, $color in $list {
+    @include generate-darden-palette($list, $color-num);
+  }
+}
+
+//:: color overrides
+//:: Override foreground colors
 
 .fg-blue {
   color: $blue !important;
@@ -127,14 +127,14 @@ $colors: (
 }
 
 .fg-white {
-  color: #ffffff !important
+  color: #ffffff !important;
 }
 
 .fg-black {
-  color: #000000 !important  
+  color: #000000 !important;
 }
 
-// Override background colors
+//:: Override background colors
 
 .bg-blue {
   background-color: $blue !important;
@@ -145,11 +145,11 @@ $colors: (
 }
 
 .bg-white {
- background-color: #ffffff !important
+  background-color: #ffffff !important;
 }
 
 .bg-black {
-  background-color: #000000 !important  
+  background-color: #000000 !important;
 }
 
 $global-color: $blue;
@@ -157,17 +157,89 @@ $global-primary-background: $orange;
 $global-secondary-background: $blue;
 
 $base-heading-color: $orange;
+// :: end colors 
+
+// ::start typography
+//:: Load fonts
+@font-face {
+  font-family: 'FranklinGothicURW';
+  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Hea.woff')
+    format('woff');
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FranklinGothicURW';
+  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Dem.woff')
+    format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FranklinGothicURW';
+  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Med.woff')
+    format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FranklinGothicURW';
+  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Boo.woff')
+    format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+//:: typography overrides
+$global-font-size: 16px;
+$global-font-family: FranklinGothicURW;
+// $global-font-family: Adobe Caslon Pro;
+
+$base-body-font-weight: 300;
+.uk-card-default {
+  color: black !important;
+}
+.my-text-medium {
+  font-size: 1.2rem !important;
+}
+
+.my-text-thin {
+  font-weight: 300 !important;
+}
+
+.my-text-heavy {
+  font-weight: 900 !important;
+}
+$base-heading-font-family: 'FranklinGothicURW';
+$base-heading-font-weight: 500;
+$base-heading-text-transform: uppercase;
+
+$global-xxlarge-font-size: 2.2rem;
+$global-xxlarge-font-size: 1.8rem;
+$global-large-font-size: 1.4rem;
+$global-medium-font-size: 1.1rem;
+$global-small-font-size: 0.9rem;
+// ::end typography
+
+
+
 
 // Box Shadow overrides
 // $global-small-box-shadow: 0 1px 5px rgba(0,0,0,0.08);
 // $global-medium-box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-// $global-large-box-shadow: 0 5px 15px rgba(0,0,0,0.16); 
+// $global-large-box-shadow: 0 5px 15px rgba(0,0,0,0.16);
 
-.uk-tile-primary, .uk-card-primary :matches(p, h1, h2, h3, h4, h5, h6) {
+.uk-tile-primary,
+.uk-card-primary :matches(p, h1, h2, h3, h4, h5, h6) {
   color: $blue !important;
 }
-.uk-tile-secondary, .uk-card-secondary :matches(p, h1, h2, h3, h4, h5, h6) {
+.uk-tile-secondary,
+.uk-card-secondary :matches(p, h1, h2, h3, h4, h5, h6) {
   color: #ffffff !important;
+}
+
+p {
+  font-family: Georgia, serif;
 }
 
 .uk-button,
