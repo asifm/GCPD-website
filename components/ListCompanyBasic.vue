@@ -35,8 +35,10 @@ export default {
   },
   computed: {
     industry_desc: function() {
-      return industries.find(el => el.industry_short == this.industry_short)
-        .industry_desc;
+      return this.industry_short
+        ? industries.find(el => el.industry_short == this.industry_short)
+            .industry_desc
+        : '';
     },
     // returning empty arrays to prevent errors in dependent function call when rendering
     rolledupCompanies() {
@@ -124,8 +126,9 @@ export default {
     li(v-for="(company, i) in rolledupCompanies.slice(0, topCompaniesListLength)" :key="company[1].gvkey + i").uk-text-left.uk-animation-slide-left
       
       span.fg-blue-lighten-1.uk-text-bold.uk-text-uppercase.uk-button-text  {{ company[0] | removePeriods }} <br>
+
       div(uk-drop="pos:left-center")
-        .uk-card.uk-card-default.uk-card-body.uk-padding-small
+        .uk-card.uk-card-default.uk-card-body.uk-padding-small#pop-details
           ul.uk-card-header
             li.uk-text-small.fg-black {{ company[1].industry_short}} | {{ startyear}}<span v-if="startyear != endyear">–{{ endyear }}</span>
             li.fg-blue.uk-text-bold.uk-text-uppercase.uk-text-break {{ company[0] | removePeriods }}
@@ -151,3 +154,9 @@ export default {
       span.fg-blue-lighten-3.uk-text-small  {{ company[1].industry_short }} <br>
 
   </template>
+
+<style lang="scss" scoped>
+#pop-details {
+  z-index: 10000;
+}
+</style>
