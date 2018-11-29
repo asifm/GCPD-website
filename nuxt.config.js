@@ -14,13 +14,24 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: pkg.description },
     ],
+    script: [
+      {
+        // src:
+        // 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.24/js/uikit-icons.min.js',
+      },
+    ],
+    link: [
+      {
+        // rel: 'stylesheet',
+        // href: 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.24/css/uikit.min.css',
+      },
+    ],
   },
 
-  script: [],
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#e57200' },
 
   /*
   ** Global CSS
@@ -31,8 +42,8 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    './plugins/uikit.js',
     './plugins/globals.js',
+    './plugins/uikit.js',
     './plugins/filters.js',
   ],
 
@@ -43,7 +54,11 @@ module.exports = {
   axios: {
     // module configuration: https://github.com/nuxt-community/axios-module#options
   },
-
+  vue: {
+    config: {
+      productionTip: false,
+    },
+  },
   build: {
     extend(config, ctx) {
       config.module.rules.push({
