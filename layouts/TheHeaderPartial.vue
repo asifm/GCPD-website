@@ -11,12 +11,11 @@
     div(class="uk-width-3-4@m uk-visible@m")
       ul.tab.uk-navbar-nav.uk-float-right
         li(v-if="this.$route.path != '/'"): nuxt-link(to="/") Home
-        //- li: nuxt-link(to="/documentation") Documentation
-        //- li: nuxt-link(to="/aboutdata") About the Data
-        li: nuxt-link(to="/aboutus") About Us
+        li: nuxt-link(to="/data_highlights") Data Highlights
+        li: nuxt-link(to="/interactive") Interactive
         li: nuxt-link(to="/publications") Publications
-        li: nuxt-link(to="/download").highlight Download
-         
+        li: nuxt-link(to="/download_data") Download Data
+        li: nuxt-link(to="/about_us") About Us
 </template>
 
 <script>
