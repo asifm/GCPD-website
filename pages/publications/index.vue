@@ -38,7 +38,7 @@ export default {
 
 
 <template lang="pug">
-.uk-section
+.uk-section.uk-animation-slide-top-small
   .uk-container.uk-container-large
     h1 Research and Publications
     p The new Global Corporate Patent Data have been used in the following publications.

@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.uk-section.uk-section-muted(uk-scrollspy="cls:uk-animation-fade; delay: 100; repeat: true")
+.uk-section.uk-section-muted.uk-animation-slide-top-small
   .uk-container
     h3 Top Ten Companies
       img(src="https://res.cloudinary.com/asifm/image/upload/v1542499301/topten-companies-2001-2017_mfvubu.png")

@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template lang="pug">
-.uk-section
+.uk-section.uk-animation-slide-top-small
   .uk-container.uk-container-large
     explore-map
 </template>

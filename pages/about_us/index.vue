@@ -29,9 +29,9 @@ export default {
 </script>
 
 <template lang="pug">
-.uk-section.bg-blue-fade-out-9
+.uk-section.bg-blue-fade-out-9.uk-animation-slide-top-small
   .uk-container
-    .uk-width-3-4.uk-padding-large.uk-animation-fade.uk-card.uk-card-default.uk-card-body
+    .uk-width-3-4.uk-padding-large.uk-card.uk-card-default.uk-card-body.uk-align-center
       h1 The Research Team
       p (TODO: get final names and sequence)
       dl(v-for="(member, i) in members" :key="i").uk-width-3-5.uk-description-list
@@ -51,8 +51,6 @@ export default {
         h3.my-text-heavy.fg-blue-700 Richard A. Mayo Center for Asset Management
         p The Richard A. Mayo Center for Asset Management advances the study and practice of asset management through top-quality research, regular conferences and activities, support for the students of Darden Capital Management (DCM) and the development of educational programs. 
           a.uk-button.uk-button-text(href="https://www.darden.virginia.edu/mayo-center/") Learn more
-
-        a(href="#" uk-totop uk-scroll).uk-float-right
 
       img(src="https://res.cloudinary.com/asifm/image/upload/w_650/v1543189024/darden-saunders-front_c1zvxm.jpg").uk-align-center
       .uk-text-center.uk-margin-remove.uk-text-small.uk-lightbox-caption Darden School of Business at the University of Virginia

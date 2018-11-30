@@ -6,7 +6,8 @@ export default {};
 </script>
 
 <template lang="pug">
-  div.uk-width-1-4
+.uk-section.uk-animation-slide-top-small
+  .uk-width-1-4
     .uk-card.uk-card-default.uk-card-body.uk-box-shadow-small
       .uk-card
         h4 Download the Data
