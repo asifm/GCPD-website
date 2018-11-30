@@ -68,6 +68,7 @@
     "@types/eslint": "^4.16.4",
     "@types/eslint-plugin-prettier": "^2.2.0",
     "@types/jest": "^23.3.10",
+    "@types/markdown-it": "0.0.7",
     "@types/node-fetch": "^2.1.4",
     "@types/node-sass": "^3.10.32",
     "@types/prettier": "^1.15.2",
