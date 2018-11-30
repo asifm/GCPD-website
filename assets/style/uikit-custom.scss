@@ -1,9 +1,3 @@
-// Non-uikit. comes frm nuxt
-.nuxt-link-exact-active {
-  color: #ffffff !important;
-  font-weight: 700 !important;
-}
-
 //:: Custom variables and variable overwrites.
 
 // ::COLORS
@@ -184,7 +178,7 @@ $base-heading-color: $orange;
 
 //:: typography overrides
 $global-font-size: 16px;
-// $global-font-family: FranklinGothicURW;
+$global-font-family: FranklinGothicURW;
 // $global-font-family: Adobe Caslon Pro;
 
 $base-body-font-weight: 500;
@@ -214,12 +208,11 @@ p, li, dl {
   font-family: Georgia, serif;
 }
 
-.uk-button,
-.uk-button-default,
-.uk-navbar {
-  font-family: FranklinGothicURW !important;
-  font-weight: 300 !important;
-}
+// .uk-button,
+// .uk-button-default,
+// .uk-navbar {
+//   font-family: FranklinGothicURW !important;
+// }
 // ::end typography
 
 
