@@ -98,9 +98,6 @@ export default {
           this.industry_short,
           this.country,
         );
-
-      console.log(this.filteredData.length);
-      console.dir(this.filteredData[0]);
     },
     removeLastWord(str) {
       let lastIndex = str.lastIndexOf(' ');
@@ -110,14 +107,13 @@ export default {
 };
 </script>
 
-  
 <template lang="pug">
 .uk-tile.uk-padding-remove(v-if="alldata && alldata.length > 0")
   div.uk-text-left.uk-card-header.uk-padding-small
     //- Show end year only if it's different from start year; same start and end means single year selection
-    h5.uk-text-large.fg-yellowgreen-darken-0.uk-margin-small.uk-text-left.uk-text-bold  {{ country }}
-      span.fg-blue-lighten-1  | {{ startyear }}<span v-if="startyear != endyear">–{{ endyear }}</span>
-    h6.fg-blue-darken-1.uk-margin-remove-top.uk-text-small {{ industry_desc }}
+    h5.uk-text-large.fg-orange-700.uk-margin-small.uk-text-left.uk-text-bold  {{ country }}
+      span.fg-blue-300  {{ startyear }}<span v-if="startyear != endyear">–{{ endyear }}</span>
+    p.fg-blue-600.uk-margin-remove-top.uk-text-small {{ industry_desc }}
 
     div(v-if="aggregateSelectedData[0] > 0").fg-orange.uk-animation-fade <strong class="">{{  aggregateSelectedData[1] | thousandComma  }}</strong> companies <br> <strong class="">{{  aggregateSelectedData[0] | thousandComma  }}</strong> patents
     div(v-else) No patent found in the currently selected data.

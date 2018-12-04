@@ -1,9 +1,4 @@
-
 <script>
-// :: import components
-import FiltersMain from '@/components/FiltersMain';
-import ListMain from '@/components/ListMain';
-
 // :: imports libraries
 import * as d3 from 'd3';
 import fetch from 'node-fetch';
@@ -11,9 +6,8 @@ import fetch from 'node-fetch';
 const radScale = d3.scaleSqrt().range([1, 30]);
 
 export default {
-  components: { FiltersMain, ListMain },
   props: {
-    countryTotalsArr: {
+    countryValuesArr: {
       type: Array,
       default: () => [],
     },
@@ -34,7 +28,7 @@ export default {
         bottom: 10,
       }),
     },
-    geoJsonDataPath: {
+    pathToGeoJson: {
       type: String,
       default: '/data/world-110m.json',
     },
@@ -56,8 +50,8 @@ export default {
     this.path = d3.geoPath().projection(projection);
   },
   mounted() {
-    fetch(this.geoJsonDataPath)
-      .then(resp => resp.json())
+    fetch(this.pathToGeoJson)
+      .then(response => response.json())
       .then(geoJson => {
         this.geoFeatures = geoJson.features;
         this.paths = this.makePaths(this.geoFeatures);
@@ -82,16 +76,18 @@ div
 
 <style lang="scss" scoped>
 .path {
-  fill: #334499;
+  fill: #232d4b;
+  opacity: 0.4;
   stroke: #aaa;
-  stroke-width: 0.08736px;
+  stroke-width: 0.5px;
+  transition: opacity 0.5s;
 }
 
 .path:hover {
-  fill: #333333;
+  opacity: 1;
 }
 svg {
-  -webkit-filter: drop-shadow(-5px -5px 5px #000);
-  filter: drop-shadow(1px 5px 5px #777);
+  // -webkit-filter: drop-shadow(2px 2px 10px #777);
+  filter: drop-shadow(2px 2px 10px #777);
 }
 </style>

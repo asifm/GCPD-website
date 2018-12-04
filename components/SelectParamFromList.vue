@@ -1,4 +1,3 @@
-
 <script>
 import { FilterBus } from '@/assets/js/FilterBus';
 import { lists } from '@/assets/data/listData';
