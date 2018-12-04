@@ -38,7 +38,7 @@ const patentByCountryProm = d3
   .csv(require('@/assets/data/20181101_PatentCountByCountry.csv'))
   .then(data => {
     data.forEach(row => {
-      row.patentCount = +row.patentcount;
+      row.patentcount = +row.patentcount;
       row.longitude = +row.longitude;
       row.latitude = +row.latitude;
     });
