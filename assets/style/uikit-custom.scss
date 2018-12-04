@@ -103,51 +103,28 @@ $colors: (
 
 //:: color overrides
 //:: Override foreground colors
-
-.fg-blue {
-  color: $blue !important;
-}
-
-.fg-orange {
-  color: $orange !important;
-}
-
-.fg-white {
-  color: #ffffff !important;
-}
-
-.fg-black {
-  color: #000000 !important;
-}
+.fg-blue { color: $blue !important; }
+.fg-orange { color: $orange !important; }
+.fg-white { color: #ffffff !important; }
+.fg-black { color: #000000 !important; }
 
 //:: Override background colors
+.bg-blue { background-color: $blue !important; }
+.bg-orange { background-color: $orange !important; }
+.bg-white { background-color: #ffffff !important; }
+.bg-black { background-color: #000000 !important; }
 
-.bg-blue {
-  background-color: $blue !important;
-}
-
-.bg-orange {
-  background-color: $orange !important;
-}
-
-.bg-white {
-  background-color: #ffffff !important;
-}
-
-.bg-black {
-  background-color: #000000 !important;
-}
-
+// Set global colors
 $global-color: $blue;
 $global-primary-background: $orange;
 $global-secondary-background: $blue;
 
 $base-heading-color: $orange;
-// :: end colors 
+// :: End colors 
 
-// ::start typography
+// ::Start typography
 //:: Load fonts
-@font-face {
+  @font-face {
   font-family: 'FranklinGothicURW';
   src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Hea.woff')
     format('woff');
@@ -179,21 +156,12 @@ $base-heading-color: $orange;
 //:: typography overrides
 $global-font-size: 16px;
 $global-font-family: FranklinGothicURW;
-// $global-font-family: Adobe Caslon Pro;
-
 $base-body-font-weight: 500;
 
-.my-text-medium {
-  font-size: 1.2rem !important;
-}
+.my-text-medium { font-size: 1.2rem !important; }
+.my-text-thin { font-weight: 300 !important; }
+.my-text-heavy { font-weight: 900 !important; }
 
-.my-text-thin {
-  font-weight: 300 !important;
-}
-
-.my-text-heavy {
-  font-weight: 900 !important;
-}
 $base-heading-font-family: 'FranklinGothicURW';
 $base-heading-font-weight: 500;
 $base-heading-text-transform: uppercase;
@@ -204,15 +172,26 @@ $global-large-font-size: 1.4rem;
 $global-medium-font-size: 1.1rem;
 $global-small-font-size: 0.9rem;
 
-p, li, dl {
-  font-family: Georgia, serif;
-}
+p, dl {
+  font-family: Georgia, serif;}
 
-// .uk-button,
-// .uk-button-default,
-// .uk-navbar {
-//   font-family: FranklinGothicURW !important;
-// }
+.uk-navbar-nav > li > a {
+  font-family: FranklinGothicURW !important;
+  font-weight: 600;
+  color: $blue !important;
+  &:hover {
+    color: $orange !important;
+  }
+}
+.uk-navbar-dropdown-nav > li > a {
+  font-family: FranklinGothicURW !important;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: $blue !important;
+  &:hover {
+    color: $orange !important;
+  }
+}
 // ::end typography
 
 
