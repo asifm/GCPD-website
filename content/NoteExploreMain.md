@@ -1,3 +1,1 @@
-<img src="https://res.cloudinary.com/asifm/image/upload/w_100/v1543122772/i-globe-network_drds2f.png" class="uk-float-right"/>
-
 In recent decades, production patterns, product markets, and, especially, innovation have become increasingly global. While there are still regulatory and physical barriers that make product markets geographically segmented and prevent full relocation of production at a global scale, there are virtually no barriers stemming the flows of information and knowledge. Today’s global nature of innovation is evident from the growing share of patents assigned to non-U.S. firms by the USPTO.
