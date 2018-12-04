@@ -1,5 +1,5 @@
 <template lang="pug">
-  nav.uk-navbar-right(uk-navbar uk-sticky="show-on-up:true; animation:uk-animation-slide-top").uk-box-shadow-small.bg-white
+  nav.uk-navbar-right(uk-navbar uk-sticky="show-on-up:true; animation:uk-animation-slide-top").uk-box-shadow-small.uk-background-muted
     img(src="https://res.cloudinary.com/asifm/image/upload/w_300/v1543573588/darden_rgb-02_qrpxwe.png").uk-float-left.uk-margin-left
     .uk-navbar-right.uk-margin-right
       ul.uk-navbar-nav
