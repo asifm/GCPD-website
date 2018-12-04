@@ -52,8 +52,6 @@ export default {
     },
     countryData() {
       let d = rollupCountryYear(this.filteredData);
-      console.log(this.filteredData);
-      console.log(d);
       return d;
     },
   },
@@ -62,14 +60,10 @@ export default {
     dataProm.then(data => (this.allData = data));
     // console.log(this.countryData);
     // console.log(this.filteredData);
-    this.$nextTick(() => {
-      console.log('mounted', this.filteredData);
-      console.log('mounted', this.countryData);
-    });
+    this.$nextTick(() => {});
   },
 };
 </script>
-
 
 <template lang="pug">
 
