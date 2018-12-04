@@ -36,13 +36,12 @@ export default {
 };
 </script>
 
-
 <template lang="pug">
 .uk-section.uk-animation-slide-top-small
-  .uk-container.uk-container-large
+  .uk-container.uk-container-expand.uk-padding-large
     h1 Research and Publications
     p The new Global Corporate Patent Data have been used in the following publications.
-    .uk-grid.uk-grid(uk-grid)
+    .uk-grid.uk-grid(uk-grid).uk-grid-large
       div(class="uk-width-1-2@m" v-for="(pub, i) in publications" :key="i")
         .uk-card.uk-card-body.uk-card-default.uk-padding-small
           .uk-card-header
