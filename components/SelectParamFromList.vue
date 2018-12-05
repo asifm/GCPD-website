@@ -8,33 +8,47 @@ export default {
       type: String,
       default: '',
     },
+    selected: {
+      type: String,
+      default: '',
+    },
   },
   data() {
     return {
-      selected: '',
-      options: [],
+      selected_: this.selected,
+      items: [],
       eventName: '',
     };
   },
   mounted() {
     if (this.paramList == 'countries') {
-      this.options = lists.regionsCountries;
+      this.items = lists.regionsCountries;
       this.eventName = 'change-country';
     } else if (this.paramList == 'industries') {
-      this.options = lists.industries.map(el => el.industry_short);
-      this.eventName = 'change-industry_short';
+      this.items = lists.industries.map(el => el.industry);
+      this.eventName = 'change-industry';
     }
-    // At mount, get the default value and set it
-    FilterBus.$on(this.eventName, payload => {
-      this.selected = payload;
+    // this.selected_ = this.selected; So as prop isn't modified directly
+    this.$nextTick(() => {
+      FilterBus.$on('compute-data-created', payload => {
+        if (payload === true) FilterBus.$emit(this.eventName, this.selected_);
+      });
     });
+    // At mount, get the default value and set it
+    // FilterBus.$on(this.eventName, payload => {
+    //   this.selected = payload;
+    // });
   },
   updated() {
-    FilterBus.$emit(this.eventName, this.selected);
+    console.log(
+      'inside select. value updated. emitting selected',
+      this.selected_,
+    );
+    FilterBus.$emit(this.eventName, this.selected_);
   },
 };
 </script>
 
 <template lang="pug">
-v-select(:options="options" v-model="selected").uk-button-text
+v-select(:options="items" v-model="selected_").uk-button-text
 </template>
