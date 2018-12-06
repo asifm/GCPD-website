@@ -8,14 +8,15 @@ export default {
       type: String,
       default: '',
     },
-    selected: {
+    selected_: {
       type: String,
       default: '',
     },
   },
   data() {
     return {
-      selected_: this.selected,
+      // this.selected = this.selected; So as prop isn't modified directly
+      selected: this.selected_,
       items: [],
       eventName: '',
     };
@@ -24,31 +25,19 @@ export default {
     if (this.paramList == 'countries') {
       this.items = lists.regionsCountries;
       this.eventName = 'change-country';
+      // For convenience show United States toward the top (in addition to its alphabetical place)
+      this.items.splice(4, 0, 'United States');
     } else if (this.paramList == 'industries') {
       this.items = lists.industries.map(el => el.industry);
       this.eventName = 'change-industry';
     }
-    // this.selected_ = this.selected; So as prop isn't modified directly
-    this.$nextTick(() => {
-      FilterBus.$on('compute-data-created', payload => {
-        if (payload === true) FilterBus.$emit(this.eventName, this.selected_);
-      });
-    });
-    // At mount, get the default value and set it
-    // FilterBus.$on(this.eventName, payload => {
-    //   this.selected = payload;
-    // });
   },
   updated() {
-    console.log(
-      'inside select. value updated. emitting selected',
-      this.selected_,
-    );
-    FilterBus.$emit(this.eventName, this.selected_);
+    FilterBus.$emit(this.eventName, this.selected);
   },
 };
 </script>
 
 <template lang="pug">
-v-select(:options="items" v-model="selected_").uk-button-text
+v-select(:options="items" v-model="selected")
 </template>

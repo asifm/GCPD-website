@@ -12,7 +12,7 @@ export default {
       type: String,
       default: 'number',
     },
-    selected: {
+    selected_: {
       type: Number,
       default: null,
     },
@@ -20,32 +20,23 @@ export default {
   data() {
     return {
       // property selected_ cteated so that we don't have to modify props directly
-      selected_: this.selected,
+      // selected_: this.selected_,
       minYear: lists.dataYearRange.min,
       maxYear: lists.dataYearRange.max,
     };
   },
-  created() {
-    // get the default value and set it
-    FilterBus.$on(this.eventName, payload => {
-      this.selected_ = payload;
-    });
-  },
-  mounted() {
-    this.$nextTick(() => {
-      FilterBus.$on('compute-data-created', payload => {
-        if (payload === true) {
-          FilterBus.$emit(this.eventName, this.selected_);
-        }
-      });
-    });
-  },
   updated() {
+    // emits for computeData component
     FilterBus.$emit(this.eventName, Number(this.selected_));
+  },
+  methods: {
+    sync(event) {
+      this.$emit('update:selected_', Number(event.target.value));
+    },
   },
 };
 </script>
 
 <template lang="pug">
-  input.uk-input(:type="inputType" :min="minYear" :max="maxYear" v-model.lazy="selected_")
+  input.uk-input(:type="inputType" :min="minYear" :max="maxYear" :value="selected_" @change="sync")
 </template>
