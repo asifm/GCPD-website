@@ -2,7 +2,7 @@ module.exports = wallaby => {
   process.env.VUE_CLI_BABEL_TRANSPILE_MODULES = true;
 
   const compiler = wallaby.compilers.babel({
-    presets: [['@vue/app', { modules: 'commonjs' }]]
+    presets: [['@vue/app', { modules: 'commonjs' }]],
   });
 
   return {
@@ -12,16 +12,16 @@ module.exports = wallaby => {
 
     env: {
       type: 'node',
-      runner: 'node'
+      runner: 'node',
     },
 
     compilers: {
       '**/*.js': compiler,
-      '**/*.vue': require('wallaby-vue-compiler')(compiler)
+      '**/*.vue': require('wallaby-vue-compiler')(compiler),
     },
 
     preprocessors: {
-      '**/*.vue': file => require('vue-jest').process(file.content, file.path)
+      '**/*.vue': file => require('vue-jest').process(file.content, file.path),
     },
 
     setup: function(wallaby) {
@@ -32,6 +32,6 @@ module.exports = wallaby => {
 
     testFramework: 'jest',
 
-    debug: true
+    debug: true,
   };
 };

@@ -12,6 +12,8 @@ module.exports = {
   plugins: ['vue', 'prettier'],
   // add your custom rules here
   rules: {
+    'vue/component-name-in-template-casing': ['error', 'kebab-case'],
+    'vue/prop-name-casing': 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
   }
