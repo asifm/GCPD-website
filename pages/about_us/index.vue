@@ -6,14 +6,14 @@ export default {
         {
           name: 'Pedro Matos',
           title:
-            'John G. Macfarlane Family Chair and Professor of Business Administration, and Academic Director of the Richard A. Mayo Center for Asset Management',
+            'John G. Macfarlane Family Chair and Professor of Business Administration <br> Academic Director of the Richard A. Mayo Center for Asset Management',
           institute: 'UVA Darden School of Business',
           email: 'matosp@darden.virginia.edu',
         },
         {
           name: 'Jan Bena',
           title:
-            'Associate Professor, University of British Columbia Sauder School of Business, and Batten Research Fellow, UVA Darden School of Business',
+            'Associate Professor, University of British Columbia Sauder School of Business <br> Batten Research Fellow, UVA Darden School of Business',
           email: 'Jan.bena@sauder.ubc.ca',
         },
         {
@@ -32,12 +32,13 @@ export default {
 .uk-section.bg-blue-fade-out-9.uk-animation-slide-top-small
   .uk-container
     .uk-width-3-4.uk-padding-large.uk-card.uk-card-default.uk-card-body.uk-align-center
-      h1 The Research Team
-      p (TODO: get final names and sequence)
-      dl(v-for="(member, i) in members" :key="i").uk-width-3-5.uk-description-list
+      h1 The Project Team
+      p This new corporate patent dataset is the result of a multi-year collaboration among the following academic scholars. The Batten Institute for Entrepreneurship and Innovation at the UVA Darden School provided institutional support to this collaboration.
+      p If you have any questions, suggestions, or comments, please contact Professor Jan Bena at <a href="mailto:Jan.bena@sauder.ubc.ca">Jan.bena@sauder.ubc.ca</a>
+      dl(v-for="(member, i) in members" :key="i").uk-width-1-1.uk-description-list
         dt.my-text-heavy {{ member.name }}
-        dd {{ member.title }}
-        dd {{ member.institute}}
+        dd(v-html="member.title")
+        dd {{ member.institute }}
         dd
           a(:href="`mailto:${member.email}`") {{ member.email }}
 
