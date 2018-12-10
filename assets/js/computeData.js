@@ -22,7 +22,7 @@ export function rollupCompanies(data, toSort = true) {
           totalassets: d3.sum(v, d => d.assets),
           city: v[0].city,
           country: v[0].country,
-          industry_short: v[0].industry_short,
+          industry: v[0].industry,
           gvkey: v[0].gvkey,
         };
       },
@@ -86,7 +86,7 @@ const maxYear = lists.dataYearRange.max;
  *   data,
  *   startyear,
  *   endyear,
- *   industry_short,
+ *   industry,
  *   country,
  *   dataYearRange = lists.dataYearRange,
  * }
@@ -96,7 +96,7 @@ export function filterData(
   data,
   startyear = 2000,
   endyear = 2017,
-  industry_short = 'All Industries',
+  industry = 'All Industries',
   country = 'All Countries',
 ) {
   if (data && data.length > 0) {
@@ -106,8 +106,8 @@ export function filterData(
         return el.year >= startyear && el.year <= endyear;
       })
       .filter(el => {
-        if (industry_short === 'All Industries') return true;
-        return el.industry_short === industry_short;
+        if (industry === 'All Industries') return true;
+        return el.industry === industry;
       })
       .filter(el => {
         if (country === 'All Countries') {

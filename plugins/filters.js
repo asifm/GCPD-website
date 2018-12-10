@@ -11,3 +11,5 @@ Vue.filter('removeLastWord', str => {
   let lastIndex = str.lastIndexOf(' ');
   return str.substring(0, lastIndex);
 });
+
+Vue.filter('makeKebab', str => str.toLowerCase().replace(' ', '-'));
