@@ -1,8 +1,8 @@
 <template>
   <div>
-    <the-header-partial/>
-    <nuxt/>
-    <the-footer-partial/>
+    <the-header-partial />
+    <nuxt />
+    <the-footer-partial />
   </div>
 </template>
 
