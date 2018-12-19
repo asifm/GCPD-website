@@ -2,27 +2,19 @@
 
 import Vue from 'vue';
 
-// large ui libraries
-import Vuikit from 'vuikit';
 import Element from 'element-ui';
-import Vuetify from 'vuetify';
-// to use vuetify styles, add the following styles/fonts
-// <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet"></link>
-// <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet"></link>
+// Element's default language is Chinese. Hence needs declaring locale.
+import locale from 'element-ui/lib/locale/lang/en';
 
-// one or a few ui components
+Vue.use(Element, { locale });
+
+// ui components
 import vSelect from 'vue-select';
-import vuescroll from 'vue-scroll';
-
-// :: register globally
-Vue.use(Vuikit);
-
-// ::register only required components
-// Vue.use(Vuetify);
-// Vue.use(Element);
+// import vuescroll from 'vue-scroll';
 
 // ! not working; perhaps fixed in new nuxt versin
-Vue.use(vuescroll);
+// Vue.use(vuescroll);
 
 // In use in the interactive page
+// todo: replace by Element's select
 Vue.component('v-select', vSelect);
