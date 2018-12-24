@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+// This component is used to select a country or an industry from their respective lists.
 import { FilterBus } from '@/assets/js/FilterBus';
 import { lists } from '@/assets/data/listData';
 
@@ -15,7 +17,7 @@ export default {
   },
   data() {
     return {
-      // this.selected = this.selected; So as prop isn't modified directly
+      // So that prop isn't modified directly
       selected: this.selected_,
       items: [],
       eventName: '',
@@ -30,12 +32,15 @@ export default {
       if (this.items.filter(el => el === 'United States').length === 1) {
         this.items.splice(4, 0, 'United States');
       }
+      FilterBus.$on('circle-clicked', country => (this.selected = country));
     } else if (this.paramList == 'industries') {
       this.items = lists.industries.map(el => el.industry);
       this.eventName = 'change-industry';
     }
+    FilterBus.$emit(this.eventName, this.selected);
   },
   updated() {
+    // Event for computeData to listen for.
     FilterBus.$emit(this.eventName, this.selected);
   },
 };
