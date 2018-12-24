@@ -1,6 +1,4 @@
 
 ##### Sample Citation
 
-[todo: get details/confirm]
-
-Bena, J (2018). <em> Global Corporate Patent Data</em> [data file]. Charlottesville, VA: Batten Institute for Entrepreneurship and Innovation at the Darden School of Business, University of Virginia. doi: 10.3342/xyza.2018.cd (not actual doi)
+Bena, Jan, Miguel A. Ferreira, Pedro Matos, and Pedro Pires. "Are foreign investors locusts? The long-term effects of foreign institutional ownership." *Journal of Financial Economics* 126, no. 1 (2017): 122-146.
