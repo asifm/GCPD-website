@@ -208,16 +208,19 @@ p, dl {
 
 // :: visualization helpers
 .north-america {
-  @extend .bg-blue-100
+  background-color: rgb(214, 134, 35);
 }
+
 .asia-pacific {
-  @extend .bg-orange-100
+  background-color: #abb9e0;
 }
+
 .europe {
-  background-color: #cac7b2;
+  background-color: rgb(201, 201, 44);
 }
+
 .other {
-  background-color: white;
+  background-color: rgb(79, 197, 79);
 }
 
 // 2. Import default variables and available mixins.
