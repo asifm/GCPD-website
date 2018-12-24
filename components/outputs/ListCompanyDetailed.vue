@@ -13,10 +13,14 @@ import { FilterBus } from '@/assets/js/FilterBus';
 
 import { lists } from '@/assets/data/listData';
 
+import CardCompanyFacts from '@/components/outputs/CardCompanyFacts';
 // ::declare/set variables
 const industries = lists.industries;
 
 export default {
+  components: {
+    CardCompanyFacts,
+  },
   props: {
     listLength: { type: Number, default: 50 },
   },
@@ -92,13 +96,6 @@ export default {
       this.numCompaniesInSelectedData = this.topCompanies.length;
     });
   },
-
-  methods: {
-    removeLastWord(str) {
-      let lastIndex = str.lastIndexOf(' ');
-      return str.substring(0, lastIndex);
-    },
-  },
 };
 </script>
 
@@ -132,38 +129,20 @@ export default {
     p List size cannot exceed 200. Browser may crash.
 
   ul.uk-list.uk-padding-remove
-    li(v-for="(company, i) in topCompanies.slice(0, listLength_)" :key="company.value.gvkey" :class="company.value.region | makeKebab ").uk-text-left.uk-animation-slide-left.uk-padding-small.uk-box-shadow-small
+    li.uk-text-left.uk-animation-slide-left.uk-padding-small.uk-box-shadow-small.list-item(
+      v-for="(company, i) in topCompanies.slice(0, listLength_)" 
+      :key="i" 
+      :class="company.value.region | makeKebab "
+      )
+      div
+        span.fg-black.uk-text-bold.uk-text-uppercase  {{ company.key }} <br>
+        h3.uk-margin-remove.fg-blue-900.uk-text-large.uk-float-right
+          | {{ company.value.patentcount | thousandComma }}
+        span.uk-label.bg-white.fg-blue.uk-margin-small-right
+          | {{ i+1 }}
+        span.fg-blue
+          | {{ company.value.industry }}
       
-      span.fg-black.uk-text-bold.uk-text-uppercase.uk-button-text  {{ company.key }} <br>
-
-      div(uk-drop="pos:left-center")
-        .uk-card.uk-card-default.uk-card-body.uk-padding-small#pop-details
-          ul.uk-card-header
-            li.uk-text-small.fg-black {{ company.value.industry}} | {{ startYear}}<span v-show="startYear != endYear">–{{ endYear }}</span>
-            li.fg-blue.uk-text-bold.uk-text-uppercase.uk-text-break {{ company.key | removePeriods }}
-            li.uk-text-meta {{ company.value.city }}, {{ company.value.country }}
-
-          ul.uk-list.uk-text-right.fg-orange
-            li R&amp;D Exp. 
-              span.fg-blue $ <span class="">{{ company.value.rdex | roundUnit | thousandComma }}</span> M
-            li Capital Exp. 
-              span.fg-blue $ <span class="">{{ company.value.capex | roundUnit| thousandComma }}</span> M
-            li Sales 
-              span.fg-blue $ <span class="">{{ company.value.sales | roundUnit | thousandComma }}</span> M
-            li EBITDA 
-              span.fg-blue $ <span class="">{{ company.value.ebitda | roundUnit | thousandComma }}</span> M
-            li Assets 
-              span.fg-blue $ <span class="">{{ company.value.assets | roundUnit | thousandComma }}</span> M
-
-          div.uk-card-footer
-              a.uk-button.uk-button-small.fg-blue-400(target="_blank" :href="`https://patents.google.com/?assignee=${ removeLastWord(company.key) }&before=filing:${endYear}1231&after=filing:${startYear}0101&type=PATENT&num=50&sort=new`") Search Patents
-              a.uk-button.uk-button-small.fg-orange-600(target="_blank" :href="'https://www.google.com/search?q=%22'+ removeLastWord(company.key) +'%22+%22'+company.value.country+'%22'") Search Company
-      
-      h3.uk-margin-remove.fg-orange-900.uk-text-large.uk-float-right {{ company.value.patentcount | thousandComma }}
-    
-      span.uk-label.bg-white.fg-blue.uk-margin-small-right {{ i+1 }}
-      span.fg-blue {{ company.value.industry }} <br>
-
   </template>
 
 <style lang="scss" scoped></style>
