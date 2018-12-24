@@ -143,6 +143,19 @@ export default {
         span.fg-blue
           | {{ company.value.industry }}
       
-  </template>
+      card-company-facts.card-company(
+        :company="company",
+        :startYear="startYear",
+        :endYear="endYear"
+        uk-drop="pos:left-center; offset: 80"
+      )
+</template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.list-item {
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: white;
+  }
+}
+</style>
