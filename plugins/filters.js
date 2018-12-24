@@ -1,7 +1,7 @@
 import Vue from 'vue';
-import { format } from 'd3-format';
+import { format as d3Format } from 'd3-format';
 
-Vue.filter('thousandComma', val => format(',')(val));
+Vue.filter('thousandComma', val => d3Format(',')(val));
 
 Vue.filter('roundUnit', val => Math.round(val));
 
