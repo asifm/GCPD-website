@@ -1,7 +1,7 @@
 <template>
   <div>
     <the-header-partial />
-    <nuxt />
+    <nuxt keep-alive />
     <the-footer-partial />
   </div>
 </template>
