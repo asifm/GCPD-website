@@ -78,6 +78,7 @@
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^7.1.0",
+    "vue-clicky": "^2.0.5",
     "vue-jest": "^3.0.2",
     "vue-md-loader": "^1.1.0",
     "wallaby-vue-compiler": "^1.0.3"
