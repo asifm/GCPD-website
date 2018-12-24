@@ -47,48 +47,50 @@ $orange-base: (
 
 @mixin generate-darden-palette($base-color, $color-num) {
   .bg-#{$color-num} {
-    background-color: 
-        map-get($base-color, $color-num) !important;
+    background-color:
+      map-get($base-color, $color-num) !important;
   }
+
   .fg-#{$color-num} {
-    color: 
-        map-get($base-color, $color-num) !important;
+    color:
+      map-get($base-color, $color-num) !important;
   }
 }
 
 // Generate transparent colors (if needed, can add other transformations when calling the mixin)
-$colors: (
-  orange: $orange,
-  blue: $blue,
+$colors: (orange: $orange,
+blue: $blue,
 );
 
 @mixin generate-color-classes($base-color, $action, $amount, $multiplier) {
   .bg-#{$base-color}-#{$action}-#{$amount} {
-    background-color: call(
-      get-function($action),
+    background-color: call(get-function($action),
       map-get($colors, $base-color),
-      $amount * $multiplier 
-      // override colors from other classes
-    ) !important;
+      $amount * $multiplier // override colors from other classes
+      ) !important;
   }
+
   .fg-#{$base-color}-#{$action}-#{$amount} {
-    color: call(
-      get-function($action),
+    color: call(get-function($action),
       map-get($colors, $base-color),
       $amount * $multiplier,
       // override colors from other classes
-    ) !important;
+      ) !important;
   }
 }
 
 
-@each $color, $_ in $colors {
+@each $color,
+$_ in $colors {
+
   // can add other transformations like desaturate, lighten, etc.
   @each $action in (fade-out) {
     @for $i from 0 through 9 {
-      @if $action != fade-out {
+      @if $action !=fade-out {
         @include generate-color-classes($color, $action, $i, 10%);
-      } @else {
+      }
+
+      @else {
         @include generate-color-classes($color, $action, $i, 1/10);
       }
     }
@@ -96,23 +98,47 @@ $colors: (
 }
 
 @each $list in ($orange-base, $blue-base) {
-  @each $color-num, $color in $list {
+
+  @each $color-num,
+  $color in $list {
     @include generate-darden-palette($list, $color-num);
   }
 }
 
 //:: color overrides
 //:: Override foreground colors
-.fg-blue { color: $blue !important; }
-.fg-orange { color: $orange !important; }
-.fg-white { color: #ffffff !important; }
-.fg-black { color: #000000 !important; }
+.fg-blue {
+  color: $blue !important;
+}
+
+.fg-orange {
+  color: $orange !important;
+}
+
+.fg-white {
+  color: #ffffff !important;
+}
+
+.fg-black {
+  color: #000000 !important;
+}
 
 //:: Override background colors
-.bg-blue { background-color: $blue !important; }
-.bg-orange { background-color: $orange !important; }
-.bg-white { background-color: #ffffff !important; }
-.bg-black { background-color: #000000 !important; }
+.bg-blue {
+  background-color: $blue !important;
+}
+
+.bg-orange {
+  background-color: $orange !important;
+}
+
+.bg-white {
+  background-color: #ffffff !important;
+}
+
+.bg-black {
+  background-color: #000000 !important;
+}
 
 // Set global colors
 $global-color: $blue;
@@ -124,31 +150,31 @@ $base-heading-color: $orange;
 
 // ::Start typography
 //:: Load fonts
-  @font-face {
+
+@font-face {
   font-family: 'FranklinGothicURW';
-  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Hea.woff')
-    format('woff');
+  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Hea.woff') format('woff');
   font-weight: 900;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'FranklinGothicURW';
-  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Dem.woff')
-    format('woff');
+  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Dem.woff') format('woff');
   font-weight: 700;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'FranklinGothicURW';
-  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Med.woff')
-    format('woff');
+  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Med.woff') format('woff');
   font-weight: 500;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'FranklinGothicURW';
-  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Boo.woff')
-    format('woff');
+  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Boo.woff') format('woff');
   font-weight: 300;
   font-style: normal;
 }
@@ -158,10 +184,21 @@ $global-font-size: 16px;
 $global-font-family: FranklinGothicURW;
 $base-body-font-weight: 500;
 
-.my-text-medium { font-size: 1.2rem !important; }
-.my-text-tiny { font-size: 0.75rem !important; }
-.my-text-thin { font-weight: 300 !important; }
-.my-text-heavy { font-weight: 900 !important; }
+.my-text-medium {
+  font-size: 1.2rem !important;
+}
+
+.my-text-tiny {
+  font-size: 0.75rem !important;
+}
+
+.my-text-thin {
+  font-weight: 300 !important;
+}
+
+.my-text-heavy {
+  font-weight: 900 !important;
+}
 
 $base-heading-font-family: 'FranklinGothicURW';
 $base-heading-font-weight: 500;
@@ -173,22 +210,27 @@ $global-large-font-size: 1.4rem;
 $global-medium-font-size: 1.1rem;
 $global-small-font-size: 0.9rem;
 
-p, dl {
-  font-family: Georgia, serif;}
+p,
+dl {
+  font-family: Georgia, serif;
+}
 
-.uk-navbar-nav > li > a {
+.uk-navbar-nav>li>a {
   font-family: FranklinGothicURW !important;
   font-weight: 600;
   color: $blue !important;
+
   &:hover {
     color: $orange !important;
   }
 }
-.uk-navbar-dropdown-nav > li > a {
+
+.uk-navbar-dropdown-nav>li>a {
   font-family: FranklinGothicURW !important;
   font-weight: 300;
   text-transform: uppercase;
   color: $blue !important;
+
   &:hover {
     color: $orange !important;
   }
@@ -201,6 +243,7 @@ p, dl {
 .uk-card-primary :matches(p, h1, h2, h3, h4, h5, h6) {
   color: $blue !important;
 }
+
 .uk-tile-secondary,
 .uk-card-secondary :matches(p, h1, h2, h3, h4, h5, h6) {
   color: #ffffff !important;
