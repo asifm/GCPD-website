@@ -1,15 +1,8 @@
 <script>
-// ::import libraries and/or library functions
-
-// ::import components
 import { TweenLite } from 'gsap';
 
 // FilterBus is a globally registered vue component (event bus) whose sole purpose is to transfer data between components
 import { FilterBus } from '@/assets/js/FilterBus';
-
-// ::import functions
-
-// ::import data and/or data-promises
 
 import { lists } from '@/assets/data/listData';
 

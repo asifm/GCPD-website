@@ -1,8 +1,5 @@
 <script>
-// ::import components
-// ::import content
 import MethodSummary from '@/content/MethodSummary.md';
-
 export default {
   components: {
     MethodSummary,

@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { format as d3Format } from 'd3-format';
 
 // Needed for apexcharts year axis

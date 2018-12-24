@@ -1,5 +1,4 @@
 <script>
-// @ts-nocheck
 // This component is used to select a country or an industry from their respective lists.
 import { FilterBus } from '@/assets/js/FilterBus';
 import { lists } from '@/assets/data/listData';
