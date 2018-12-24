@@ -2,6 +2,7 @@
 // ::import libraries and/or library functions
 
 // ::import components
+import { TweenLite } from 'gsap';
 
 // FilterBus is a globally registered vue component (event bus) whose sole purpose is to transfer data between components
 import { FilterBus } from '@/assets/js/FilterBus';
@@ -31,6 +32,7 @@ export default {
       listLength_: this.listLength,
       msgListSize200: false,
       msgListSize100: false,
+      tweenedNumber: 0,
     };
   },
   computed: {
@@ -38,6 +40,9 @@ export default {
       return this.industry
         ? industries.find(el => el.industry == this.industry).industry_desc
         : '';
+    },
+    sumPatentsInSelectedDataAnimated: function() {
+      return this.tweenedNumber.toFixed(0);
     },
   },
   watch: {
@@ -55,6 +60,11 @@ export default {
       } else if (newVal <= 1) {
         this.listLength_ = 1;
       }
+    },
+    sumPatentsInSelectedData: function(newVal) {
+      TweenLite.to(this.$data, 2, {
+        tweenedNumber: newVal,
+      });
     },
   },
   beforeCreate() {
@@ -100,8 +110,8 @@ export default {
       span.fg-orange-900.uk-margin-small-left {{ country }} <br />
       span.fg-blue-600.my-text-thin {{ industry_desc }}
 
-    .uk-padding-small.uk-margin-remove.uk-padding-remove-vertical
-      div(v-show="sumPatentsInSelectedData > 0").uk-animation-fade <span class="fg-orange-700">{{  sumPatentsInSelectedData | thousandComma  }} patents</span> <span class="fg-blue-400"> {{ numCompaniesInSelectedData  | thousandComma  }} companies</span>
+    div.uk-padding-small.uk-margin-remove.uk-padding-remove-vertical
+      div(v-show="sumPatentsInSelectedData > 0").uk-animation-fade <span class="fg-orange-700">{{  sumPatentsInSelectedDataAnimated | thousandComma  }} patents</span> <span class="fg-blue-400"> {{ numCompaniesInSelectedData  | thousandComma  }} companies</span>
       div(v-show="sumPatentsInSelectedData === 0") No patents in the currently selected data.
     hr
     div.uk-margin-small-top
