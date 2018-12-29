@@ -1,9 +1,9 @@
 <template lang="pug">
 div
-  .uk-section.uk-padding-remove
-    .uk-container.uk-container-expand.uk-padding-remove
+  .uk-section-secondary.uk-padding-small.uk-padding-remove-vertical
+    .uk-container.uk-container-expand
       
-      div(uk-grid).uk-grid.uk-card-secondary.uk-padding-remove
+      div(uk-grid).uk-grid.uk-padding-remove
         .uk-tile.uk-width-1-3
           img(src="https://res.cloudinary.com/asifm/image/upload/w_250/v1544568270/batten-logo-long_tpsmit.jpg").bg-white.uk-padding.uk-position-medium
         .uk-tile.uk-padding-large.uk-width-1-3
@@ -12,10 +12,10 @@ div
             p The Institute's mission is to improve society by creating knowledge about the transformative power of entrepreneurship and innovation and by cultivating principled, entrepreneurial leaders.
             
             .uk-button-group
-              a.uk-icon-button(uk-icon="icon: mail" href="Batten@darden.virginia.edu")
+              a.uk-icon-button(uk-icon="icon: mail" href="mailto:Batten@darden.virginia.edu")
               span.uk-margin-small-right Batten@darden.virginia.edu
           
-              .a.uk-icon-button(uk-icon="icon: twitter" href="http://www.twitter.com/BattenInstitute")
+              a.uk-icon-button(uk-icon="icon: twitter" href="https://www.twitter.com/BattenInstitute")
               span @BattenInstitute
               
           .uk-button.uk-button-default.uk-button-small.uk-margin-small-top
