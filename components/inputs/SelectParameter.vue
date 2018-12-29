@@ -29,7 +29,7 @@ export default {
       // For convenience show United States toward the top (in addition to its alphabetical place)
       // But first make sure it's not already there
       if (this.items.filter(el => el === 'United States').length === 1) {
-        this.items.splice(4, 0, 'United States');
+        this.items.splice(5, 0, 'United States');
       }
       FilterBus.$on('circle-clicked', country => (this.selected = country));
     } else if (this.paramList == 'industries') {

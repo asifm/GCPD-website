@@ -202,6 +202,7 @@ export const lists = {
     'Asia Pacific',
     'Europe',
     'North America',
+    'Other',
     'Argentina',
     'Australia',
     'Austria',
