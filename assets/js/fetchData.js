@@ -33,21 +33,4 @@ const fieldNamesProm = d3
     });
   });
 
-// read other aggregated data files
-const patentByCountryProm = d3
-  .csv(require('@/assets/data/20181101_PatentCountByCountry.csv'))
-  .then(data => {
-    data.forEach(row => {
-      row.patentcount = +row.patentcount;
-      row.longitude = +row.longitude;
-      row.latitude = +row.latitude;
-    });
-    return data;
-  });
-
-// todo p3: refactor: webpack can directly read json; no need for d3
-const worldGeojsonProm = d3
-  .json('/data/world-110m.json')
-  .then(mapData => mapData);
-
-export { dataProm, fieldNamesProm, patentByCountryProm, worldGeojsonProm };
+export { dataProm, fieldNamesProm };
