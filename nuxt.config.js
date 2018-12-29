@@ -1,4 +1,6 @@
 const pkg = require('./package');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
 
 module.exports = {
   mode: 'spa',
@@ -33,7 +35,7 @@ module.exports = {
    */
   loading: {
     color: '#e57200',
-    height: '5px',
+    height: '10px',
     continuous: true,
   },
 
@@ -46,36 +48,59 @@ module.exports = {
    ** Plugins to load before mounting the App
    */
   plugins: [
+    './plugins/element.js',
+    './plugins/filters.js',
     './plugins/globals.js',
     './plugins/uikit.js',
-    './plugins/filters.js',
+    './plugins/vueClicky.js',
+    './plugins/vueSelect.js',
   ],
 
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios',
+    // '@nuxtjs/axios',
   ],
-  axios: {
-    // module configuration: https://github.com/nuxt-community/axios-module#options
-  },
+  // axios: {
+  // module configuration: https://github.com/nuxt-community/axios-module#options
+  // },
   vue: {
     config: {
       productionTip: false,
+      // Following two needed for https://github.com/vue-perf-devtool/vue-perf-devtool
+      devtools: true,
+      performance: true,
     },
   },
   build: {
+    plugins: [
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'server',
+        generateStatsFile: false,
+        openAnalyzer: true,
+        logLevel: 'info',
+      }),
+    ],
     extend(config, ctx) {
-      config.module.rules.push({
-        test: /\.csv$/,
-        use: { loader: 'file-loader' },
-      });
-      config.module.rules.push({
-        test: /\.md$/,
-        use: [
-          'vue-loader', //
-          'vue-md-loader',
-        ],
-      });
+      if (ctx.isClient) {
+        config.devtool = 'source-map';
+        console.log('config.devtool', config.devtool);
+      } else {
+        config.devtool = 'inline-source-map';
+        console.log('config.devtool', config.devtool);
+      }
+      config.module.rules.push(
+        {
+          test: /\.csv$/,
+          use: { loader: 'file-loader' },
+        },
+        {
+          test: /\.md$/,
+          use: [
+            'vue-loader', //
+            'vue-md-loader',
+          ],
+        },
+      );
       // console.log(config);
     },
   },
