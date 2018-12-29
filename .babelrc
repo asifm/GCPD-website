@@ -1,12 +1,24 @@
 {
   "presets": [
-    ["env", { "modules": false }]
+    ["@babel/preset-env", {
+      "modules": false,
+      "targets": {
+        "node": "current",
+        "browsers": "last 2 Chrome versions"
+      },
+      "debug": true,
+    }]
   ],
+  
   "env": {
     "test": {
       "presets": [
-        ["env", { "targets": { "node": "current" }}]
+        ["@babel/preset-env", {
+          "targets": {
+            "node": "current"
+          }
+        }]
       ]
     }
-  }
+  },
 }
