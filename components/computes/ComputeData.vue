@@ -78,9 +78,6 @@ export default {
       this.regionGrp.reduceSum(d => d.patentcount);
       this.yearGrp.reduceSum(d => d.patentcount);
 
-      // on creation $emit data for parent based on the props values, which are set by parent as defaults
-      this.computeAndEmitDefault();
-      // -----
 
       // ::Listening for changes:: //
       FilterBus.$on('change-country', payload => {
@@ -161,21 +158,6 @@ export default {
         [this.industry, this.country, this.startYear, this.endYear],
       );
     },
-    computeAndEmitDefault() {
-      this.yearDim.filter([this.startYear, this.endYear + 1]);
-      if (this.industry !== 'All Industries')
-        this.industryDim.filter(this.industry);
-      if (
-        (this.country == 'North America') |
-        (this.country == 'Asia Pacific') |
-        (this.country == 'Europe')
-      ) {
-        this.regionDim.filter(this.country);
-      } else if (this.country !== 'All Countries') {
-        this.countryDim.filter(this.country);
-      }
-      console.log('emitting first data');
-      this.emitData();
     },
   },
 };
