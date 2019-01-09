@@ -180,7 +180,7 @@ export default {
 
 <template lang="pug">
 div.uk-position-absolute.uk-position-top-center(v-if="calculating")
-  div.uk-padding-large(uk-spinner="ratio:2.5")
-  p.uk-text-large Computing
+  span.uk-text-large Computing
+  span.uk-padding-large(uk-spinner="ratio:2.5")
 
 </template>

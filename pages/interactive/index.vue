@@ -6,7 +6,7 @@ import introJs from 'intro.js';
 import { lists } from '@/assets/data/listData';
 import { FilterBus } from '@/assets/js/FilterBus';
 
-import ComputeData from '@/components/computes/ComputeData';
+import ComputeData from '@/components/ComputeData';
 
 import SelectParameter from '@/components/inputs/SelectParameter';
 import InputRange from '@/components/inputs/InputRange';
