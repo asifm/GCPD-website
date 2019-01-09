@@ -1,5 +1,6 @@
 <script>
 // This is a computaton component; not for presentation. It does all the heavylifting and emits events to update states of the presentation components.
+
 import Crossfilter from 'crossfilter';
 
 import { dataProm } from '@/assets/js/fetchData';
@@ -65,7 +66,6 @@ export default {
         p.sales = p.sales + v.sales;
         return p;
       }
-
       function reduceRemove(p, v) {
         p.assets = p.assets - v.assets;
         p.capex = p.capex - v.capex;
@@ -182,8 +182,8 @@ export default {
 </script>
 
 <template lang="pug">
-div
-  .uk-alert(v-if="warnYearWrong").uk-animation-shake.bg-orange-50.fg-blue
-    div
-      p The first year must be less than the last year.
+div.uk-position-absolute.uk-position-top-center(v-if="calculating")
+  div.uk-padding-large(uk-spinner="ratio:2.5")
+  p.uk-text-large Computing
+
 </template>
