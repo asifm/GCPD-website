@@ -1,36 +1,23 @@
 <script>
 // This is a computaton component; not for presentation. It does all the heavylifting and emits events to update states of the presentation components.
-// import modules
 import Crossfilter from 'crossfilter';
 
-// import data/data-promises
 import { dataProm } from '@/assets/js/fetchData';
 import { lists } from '@/assets/data/listData';
 const { min, max } = lists.dataYearRange;
-const numYears = max - min + 1;
 
 // import components; FilterBus is an event bus
 import { FilterBus } from '@/assets/js/FilterBus';
-import { numericLiteral } from 'babel-types';
 
 export default {
   data() {
     return {
-      country: this.country_,
-      industry: this.industry_,
-      startYear: this.startYear_,
-      endYear: this.endYear_,
-
-      cf: null,
-
-      // companyGrp: null,
-
-      warnYearWrong: false,
     };
   },
   created() {
     dataProm.then(data => {
-      // ---- Initialize crossfilter with data and its dimensions and groups
+      this.showMessageCalculating(3000)
+      //:: Initialize crossfilter with data and its dimensions and groups :://
       this.cf = Crossfilter(data);
       this.companyDim = this.cf.dimension(d => d.company);
       this.industryDim = this.cf.dimension(d => d.industry);
