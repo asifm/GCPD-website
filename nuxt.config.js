@@ -74,9 +74,9 @@ module.exports = {
   build: {
     plugins: [
       new BundleAnalyzerPlugin({
-        analyzerMode: 'server',
+        analyzerMode: 'static',
         generateStatsFile: false,
-        openAnalyzer: true,
+        openAnalyzer: false,
         logLevel: 'info',
       }),
     ],
