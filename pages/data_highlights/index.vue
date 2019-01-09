@@ -2,23 +2,23 @@
 
 .uk-section.uk-animation-slide-top-small
   .uk-container
-    h3 Top Five Companies by Patent Count (2001–2017)
+    h1 Top Five Companies by Patent Count (2001–2017)
     div
       img(src="https://res.cloudinary.com/asifm/image/upload/w_400/v1544462450/region_change_qdxekx.png").uk-float-right
-      p The firms in our dataset were granted close to 2 million US patents from 2001 to 2017. The patents were well distributed across countries, illustrating the global nature of innovation.
+      p The firms in our dataset were granted close to 2 million U.S. patents from 2001 to 2017. The patents were well distributed across countries, illustrating the global nature of innovation.
 
-      p Non-US firms filed more than half of the USPTO patents in this period. Surpassing US firms, Japanese companies had the highest number of patents per firm. Overall, European firms filed fewer patents than North American or Asian firms, although German firms produced significant innovation.
+      p Non-U.S. firms filed more than half of the USPTO patents in this period. Surpassing U.S. firms, Japanese companies had the highest number of patents per firm. Overall, European firms filed fewer patents than North American or Asian firms, although German firms produced significant innovation.
 
     div
-      p IBM has been consistently the top firm in recent times. Asian firms rose notably among the top ten innovators, with a strong presence in the consumer electronics sector (e.g., Samsung, Sony, Panasonic, Hon Hai). More recently, American companies have staged a comeback, particularly those in the tech sector (e.g., Intel, Alphabet, and Qualcomm). 
+      p IBM has been consistently the top firm in recent times. Asian firms rose notably among the top innovators, with a strong presence in the consumer electronics sector (e.g., Samsung, Sony, Panasonic, Hon Hai). More recently, American companies have staged a comeback, particularly those in the tech sector (e.g., Intel, Alphabet, and Qualcomm). 
 
       p The top five companies every year during this period are here, color-coded by the region they're located in.
       img(src="@/assets/img/region_colorcodes.png")
       img(src="https://res.cloudinary.com/asifm/image/upload/v1542499301/topten-companies-2001-2017_mfvubu.png")
   
-  .uk-divider-icon
+  
 
-  .uk-section(uk-scrollspy="cls:uk-animation-fade; delay: 100; repeat: true")
+  .uk-section(uk-scrollspy="cls:uk-animation-fade; delay: 100; repeat: true").uk-padding-remove
     .uk-container.uk-container-large
       .uk-grid(uk-grid).uk-padding-large.uk-grid-large.uk-grid-divider
         .uk-width-1-2
@@ -27,7 +27,7 @@
 
           video(loop controls autoplay="true" src="https://res.cloudinary.com/asifm/video/upload/w_700/v1542501578/rd-patent-scatter-1950-2016_sdtjzu.mp4")
         
-          p Until the late 1970s, it was almost exclusively US companies that filed patent applications at the USPTO. That changed around 1980 when both European and Asian companies started to seek US patent protection for their innovation. In the subsequent years, the Asian countries as a whole far surpassed Europe and challenged the prominence of North America.
+          p Until the late 1970s, it was almost exclusively U.S. companies that filed patent applications at the USPTO. That changed around 1980 when both European and Asian companies started to seek U.S. patent protection for their innovation. In the subsequent years, the Asian countries as a whole far surpassed Europe and challenged the prominence of North America.
           img(src="https://res.cloudinary.com/asifm/image/upload/w_900/v1542499298/regiongrowth-line-1950-2017_g3qcdh.png")
         
           .uk-tile.uk-tile-muted
