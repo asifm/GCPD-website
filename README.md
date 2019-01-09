@@ -1,11 +1,16 @@
+## General ToDos
+
+- In SFCs, move variables, functions, etc. inside component definition: `export default { }`
+
+
 ## Components
 
 ### Building Blocks
 
-- FilterList (country, industry)
-- InputNumber (year)
+- FilterList (country, industry) [x]
+- InputNumber (year) [x]
 
-- Map 
+- Map [x]
 - ListBasic
 - ListDetailed [x]
 - ListCustomize
@@ -33,4 +38,5 @@ Other
 
 
 ## Update Process
+
 
