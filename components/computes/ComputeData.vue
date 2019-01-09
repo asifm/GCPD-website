@@ -21,7 +21,7 @@ export default {
   },
   created() {
     dataProm.then(data => {
-      this.showMessageCalculating(3000)
+      this.showMessageCalculating(3000);
       //:: Initialize crossfilter with data and its dimensions and groups :://
       this.cf = Crossfilter(data);
       this.companyDim = this.cf.dimension(d => d.company);
@@ -83,10 +83,10 @@ export default {
       this.yearGrp.reduceSum(d => d.patentcount);
 
       // Initiate view with default values
-      this.changeGeography(this.geography)
-      this.changeIndustry(this.industry)
-      this.changeYears(this.rangeYears)
-      this.emitData()
+      this.changeGeography(this.geography);
+      this.changeIndustry(this.industry);
+      this.changeYears(this.rangeYears);
+      this.emitData();
 
       //::: Listening for changes ::://
       FilterBus.$on('change-geography', payload => {
@@ -94,21 +94,21 @@ export default {
         this.showMessageCalculating();
         // Note: Although country and region are separate fields in the data,
         // they're in the same "geography" list in the UI (to simplify the UI).
-        this.changeGeography(payload)
+        this.changeGeography(payload);
         this.emitData();
       });
 
       FilterBus.$on('change-industry', payload => {
         this.industry = payload;
         this.showMessageCalculating();
-        this.changeIndustry(payload)
+        this.changeIndustry(payload);
         this.emitData();
       });
 
       FilterBus.$on('change-rangeyears', payload => {
         this.rangeYears = payload;
         this.showMessageCalculating();
-        this.changeYears(payload)
+        this.changeYears(payload);
         this.emitData();
       });
       //-- ends listneing for changes --//
@@ -116,35 +116,35 @@ export default {
   },
   methods: {
     changeGeography(payload) {
-        switch (payload) {
-          case 'All Countries':
-            // Remove both region and country filters
-            this.regionDim.filter(null);
-            this.countryDim.filter(null);
-            break;
-          case 'North America':
-          case 'Europe':
-          case 'Asia Pacific':
-          case 'Other':
-            // Case: One of the regions. First remove current country filter
-            this.countryDim.filter(null);
-            // Then apply region filter
-            this.regionDim.filter(payload);
-            break;
-          default:
-            // Prior cases not hitting means it's a country and not a region.
-            // So remove region filter and apply country filter.
-            this.regionDim.filter(null);
-            this.countryDim.filter(payload);
-        }
+      switch (payload) {
+        case 'All Countries':
+          // Remove both region and country filters
+          this.regionDim.filter(null);
+          this.countryDim.filter(null);
+          break;
+        case 'North America':
+        case 'Europe':
+        case 'Asia Pacific':
+        case 'Other':
+          // Case: One of the regions. First remove current country filter
+          this.countryDim.filter(null);
+          // Then apply region filter
+          this.regionDim.filter(payload);
+          break;
+        default:
+          // Prior cases not hitting means it's a country and not a region.
+          // So remove region filter and apply country filter.
+          this.regionDim.filter(null);
+          this.countryDim.filter(payload);
+      }
     },
     changeIndustry(payload) {
-        // Apply new industry filter unless payload is "all industries"
-        if (payload !== 'All Industries'){
-          this.industryDim.filter(payload)
-        } else {
-          this.industryDim.filter(null);
-        }
+      // Apply new industry filter unless payload is "all industries"
+      if (payload !== 'All Industries') {
+        this.industryDim.filter(payload);
+      } else {
+        this.industryDim.filter(null);
+      }
     },
     changeYears(payload) {
       this.yearsDim.filter([payload[0], payload[1] + 1]);
@@ -159,12 +159,9 @@ export default {
     emitData() {
       // Ensure first that undefined values are not passed when emitting data.
       // Instead pass some default values
-      if (this.industry === undefined)
-        this.industry = 'All Industries'
-      if (this.geography === undefined)
-        this.geography = 'All Countries'
-      if (this.rangeYears === undefined)
-        this.rangeYears = [1950, 1970] 
+      if (this.industry === undefined) this.industry = 'All Industries';
+      if (this.geography === undefined) this.geography = 'All Countries';
+      if (this.rangeYears === undefined) this.rangeYears = [1950, 2017];
       FilterBus.$emit('new-data', {
         industry: this.industry,
         geography: this.geography,
