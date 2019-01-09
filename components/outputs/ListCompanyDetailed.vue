@@ -19,7 +19,7 @@ export default {
   },
   data() {
     return {
-      country: '',
+      geography: '',
       industry: '',
       startYear: null,
       endYear: null,
@@ -27,7 +27,6 @@ export default {
       sumPatentsInSelectedData: null,
       numCompaniesInSelectedData: null,
       listLength_: this.listLength,
-      msgListSize200: false,
       msgListSize100: false,
       tweenedNumber: 0,
     };
@@ -44,17 +43,12 @@ export default {
   },
   watch: {
     listLength_(newVal, prevVal) {
-      if (newVal >= 200) {
-        this.msgListSize100 = false;
-        this.msgListSize200 = true;
-        this.listLength_ = prevVal;
-      } else if (newVal >= 100) {
-        this.msgListSize200 = false;
+      if (newVal >= 100) {
         this.msgListSize100 = true;
-      } else if (newVal < 100) {
-        this.msgListSize200 = false;
+      } else if (newVal > 0) {
         this.msgListSize100 = false;
-      } else if (newVal <= 1) {
+      } else if (newVal <= 0) {
+        this.msgListSize100 = false;
         this.listLength_ = 1;
       }
     },
@@ -66,22 +60,19 @@ export default {
   },
   beforeCreate() {
     // listen for new data from compute-data component
-    FilterBus.$on('new-data', (arr1, arr2) => {
-      const [
-        crsfltr,
-        companyGrp,
-        countryGrp,
-        industryGrp,
-        regionGrp,
-        yearGrp,
-      ] = arr1;
-      [this.industry, this.country, this.startYear, this.endYear] = arr2;
+    FilterBus.$on('new-data', dataObj => {
+      const { industry, geography, rangeYears, cf, companyGrp } = dataObj;
+      this.industry = industry;
+      this.geography = geography;
+      this.startYear = rangeYears[0];
+      this.endYear = rangeYears[1];
+
       companyGrp.order(d => d.patentcount);
 
       const allCompanies = companyGrp.top(Infinity);
       this.topCompanies = allCompanies.filter(el => el.value.patentcount);
 
-      this.sumPatentsInSelectedData = crsfltr
+      this.sumPatentsInSelectedData = cf
         .groupAll()
         .reduceSum(d => d.patentcount)
         .value();
@@ -93,34 +84,44 @@ export default {
 </script>
 
 <template lang="pug">
-.uk-card.uk-card-body.uk-card-default.uk-padding-remove.uk-animation-slide-left(v-show="topCompanies")
+div.uk-card.uk-card-body.uk-card-default.uk-padding-remove.uk-animation-slide-left(
+  v-show="topCompanies"
+  )
   div.uk-text-left.uk-card-header.uk-padding-small.bg-white
     //- Show end year only if it's different from start year; same start and end means single year selection
     h3.my-text-heavy.uk-text-large.fg-blue-800.uk-margin-auto-vertical.uk-padding-small.uk-padding-remove-vertical  {{ startYear }}<span v-show="startYear != endYear">–{{ endYear }}</span>
-      span.fg-orange-900.uk-margin-small-left {{ country }} <br />
+      span.fg-orange-900.uk-margin-small-left {{ geography }} <br />
       span.fg-blue-600.my-text-thin {{ industry_desc }}
 
     div.uk-padding-small.uk-margin-remove.uk-padding-remove-vertical
-      div(v-show="sumPatentsInSelectedData > 0").uk-animation-fade <span class="fg-orange-700">{{  sumPatentsInSelectedDataAnimated | thousandComma  }} patents</span> <span class="fg-blue-400"> {{ numCompaniesInSelectedData  | thousandComma  }} companies</span>
-      div(v-show="sumPatentsInSelectedData === 0") No patents in the currently selected data.
+      div.uk-animation-fade(
+        v-show="sumPatentsInSelectedData > 0"
+        ) <span class="fg-orange-700">{{  sumPatentsInSelectedDataAnimated | thousandComma  }} patents</span> <span class="fg-blue-400"> {{ numCompaniesInSelectedData  | thousandComma  }} companies</span>
+      div(
+        v-show="sumPatentsInSelectedData === 0"
+        ) No patents found in the currently selected data.
     hr
-    div.uk-margin-small-top
-      .my-text-tiny.uk-button-small.uk-button.bg-white Color Codes
-      .my-text-tiny.asia-pacific.uk-button-small.uk-button Asia Pacific   
-      .my-text-tiny.uk-button.uk-button-small.europe Europe   
-      .my-text-tiny.uk-button.uk-button-small.north-america North America
-    
-    
-    div
-      .my-text-tiny.uk-button-small.uk-button.bg-white Top Companies | Showing {{ listLength_}}
-      input.uk-form-width-medium.uk-margin-small-top(type="range" v-model="listLength_" min="1" max="200")
+    div.uk-padding-small
+      button.uk-button-default.uk-button Top Companies
+      div(uk-drop="mode:hover; pos:left-center")
+        el-slider(
+          v-model="listLength_" 
+          :min="0" 
+          :max="200"
+          show-input
+          )
 
+      div.uk-margin-small-top.my-text-tiny
+        span.fg-black.uk-padding-tiny.asia-pacific Asia Pacific
+        span.fg-black.uk-padding-tiny.europe Europe
+        span.fg-black.uk-padding-tiny.north-america North America
+        span.fg-black.uk-padding-tiny.other Other
+    
+  div.uk-animation-shake.uk-padding-small.uk-padding-remove-vertical(
+    v-show="msgListSize100"
+    )
+    p Make the list smaller if the browser becomes slow.
   
-  div.uk-animation-shake(v-show="msgListSize100") 
-    p Consider a smaller list size. Browser performance may suffer.
-  div.uk-alert.uk-animation-shake(v-show="msgListSize200") 
-    p List size cannot exceed 200. Browser may crash.
-
   ul.uk-list.uk-padding-remove
     li.uk-text-left.uk-animation-slide-left.uk-padding-small.uk-box-shadow-small.list-item(
       v-for="(company, i) in topCompanies.slice(0, listLength_)" 
@@ -140,7 +141,7 @@ export default {
         :company="company",
         :startYear="startYear",
         :endYear="endYear"
-        uk-drop="pos:left-center; offset: 80"
+        uk-drop="pos: left-center; offset: 80; animation: uk-animation-fade; duration: 500"
       )
 </template>
 
