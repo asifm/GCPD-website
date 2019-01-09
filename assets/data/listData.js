@@ -77,9 +77,9 @@ export const lists = {
     },
   ],
 
-  regions: {
-    'North America': {
-      countries: [
+  regions: [
+    {
+      'North America': [
         'United States',
         'Bahamas',
         'Belize',
@@ -91,8 +91,8 @@ export const lists = {
         'Panama',
       ],
     },
-    Europe: {
-      countries: [
+    {
+      Europe: [
         'Austria',
         'Belgium',
         'Denmark',
@@ -115,8 +115,8 @@ export const lists = {
         'United Kingdom',
       ],
     },
-    'Asia Pacific': {
-      countries: [
+    {
+      'Asia Pacific': [
         'Australia',
         'China',
         'Hong Kong, SAR China',
@@ -134,8 +134,8 @@ export const lists = {
         'United Arab Emirates',
       ],
     },
-    Other: {
-      countries: [
+    {
+      Other: [
         'Argentina',
         'Brazil',
         'Chile',
@@ -144,7 +144,7 @@ export const lists = {
         'Zimbabwe',
       ],
     },
-  },
+  ],
   countries: [
     'United States',
     'Argentina',
