@@ -12,6 +12,10 @@ import { FilterBus } from '@/assets/js/FilterBus';
 export default {
   data() {
     return {
+      calculating: false,
+      geography: 'All Countries',
+      industry: 'All Industries',
+      rangeYears: [2000, 2017],
     };
   },
   created() {
