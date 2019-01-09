@@ -23,13 +23,13 @@ export default {
       this.industryDim = this.cf.dimension(d => d.industry);
       this.countryDim = this.cf.dimension(d => d.country);
       this.regionDim = this.cf.dimension(d => d.region);
-      this.yearDim = this.cf.dimension(d => d.year);
+      this.yearsDim = this.cf.dimension(d => d.year);
 
       this.companyGrp = this.companyDim.group();
       this.countryGrp = this.countryDim.group();
       this.industryGrp = this.industryDim.group();
       this.regionGrp = this.regionDim.group();
-      this.yearGrp = this.yearDim.group();
+      this.yearGrp = this.yearsDim.group();
 
       // reduceSum gets an accessor function telling which field to sum
       function reduceInitial() {
