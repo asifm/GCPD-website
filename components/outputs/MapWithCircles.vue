@@ -1,22 +1,32 @@
 <script>
-// fix: name mismatch between two sources of data
+// todo: avoid rescaling of circles on new-data ? (perhaps not necessary if region-zoom implemented)
+// todo: zoom in to region when selected
+// todo: highlight selected country's circle
 // todo: add annotation for the first three countries
 // todo: add legends for circle size
-// todo: color code circle by region
-// :: imports libraries
+// todo: on hover show top five companies of the country
 import * as d3 from 'd3';
 import fetch from 'node-fetch';
 
-const pathToCountryCentroids = '/data/20181210_country_centroids.csv';
-const pathToGeoJson = '/data/world-110m.json';
-
+import { formatNumber } from '@/assets/js/utility.js';
 import { FilterBus } from '@/assets/js/FilterBus';
 
-const radScale = d3.scaleSqrt().range([5, 50]);
+import { lists } from '@/assets/data/listData.js';
+const regions = lists.regions;
+
+const pathToCountryCentroidsData = '/data/20181210_country_centroids.csv';
+const pathToGeoJsonData = '/data/world-110m.json';
+
+const radScale = d3.scaleSqrt().range([0, 50]);
+
 const projection = d3.geoMercator();
 
 // attach path generator function to component and use it in the methods
 const path = d3.geoPath().projection(projection);
+
+const asiaCentroid = [87.331111, 43.681111];
+const europeCentroid = [23.106111, 53.5775];
+const northamericaCentroid = [-101.298376, 47.11453];
 
 export default {
   props: {
@@ -38,91 +48,180 @@ export default {
       }),
     },
   },
-
   data() {
     return {
-      countryData: [],
-      geoFeatures: [],
       paths: [],
       circles: [],
-      centroids: [],
+      currentZoom: Function,
+      asiaCentroid,
+      europeCentroid,
+      northamericaCentroid,
     };
   },
+  computed: {
+    topCircles() {
+      const circlesWithData = this.circles.filter(circle => circle.r > 0);
+      return circlesWithData.length >= 3
+        ? circlesWithData.slice(0, 3)
+        : circlesWithData;
+    },
+  },
   created() {
+    const centroidsPromise = d3.csv(pathToCountryCentroidsData);
+
     projection.translate([this.width / 2, this.height / 2 + 50]).scale(200);
 
-    fetch(pathToGeoJson)
+    fetch(pathToGeoJsonData)
       .then(response => response.json())
       .then(geoJson => {
-        this.geoFeatures = geoJson.features;
-        this.paths = this.makePaths(this.geoFeatures);
+        this.$options.geoFeatures = geoJson.features;
+        this.paths = this.makePaths(this.$options.geoFeatures);
       });
-    d3.csv(pathToCountryCentroids).then(centroids => {
-      this.centroids = centroids;
+
+    FilterBus.$on('reset-data', () => {
+      this.resetZoom('#svg', this.currentZoom);
+      // todo: add reset data event listener for all other data resets
     });
 
-    // listen for new data from compute-data component
-    FilterBus.$on('new-data', (arr1, arr2) => {
-      const [
-        crsfltr,
-        companyGrp,
-        countryGrp,
-        industryGrp,
-        regionGrp,
-        yearGrp,
-      ] = arr1;
+    //:: Listen for new data from compute-data component :://
+    FilterBus.$on('new-data', dataObj => {
+      const { countryGrp } = dataObj;
+      // todo: if country changes then highlight country
+      this.$options.countryData = countryGrp.top(Infinity);
+      // radScale.domain([0, d3.max(this.$options.countryData, el => el.value)]);
+        radScale.domain([0, this.$options.countryData[0].value]);
+        console.log('radScale', radScale.domain());
+        console.log('this', this);
+      centroidsPromise.then(centroids => {
 
-      this.countryData = countryGrp.top(Infinity);
-      radScale.domain(d3.extent(this.countryData.map(el => el.value)));
-
-      if (this.centroids.length > 0) {
-        this.circles = this.countryData.map(el => {
+        this.circles = this.$options.countryData.map(el => {
           el.r = radScale(el.value);
-          let centroid = this.centroids.find(
+          let centroid = centroids.find(
             centroid_ => centroid_.country == el.key,
           );
           if (centroid) {
             const projectedCentroid = projection([+centroid.x, +centroid.y]);
-
-            el.cx = projectedCentroid[0];
-            el.cy = projectedCentroid[1];
+            [el.cx, el.cy] = projectedCentroid;
           }
-
           return el;
         });
-      }
+      });
     });
   },
   mounted() {
-    this.$refs.circleGroup.addEventListener('click', ev => {
-      console.log('this', this);
-      console.log(ev);
-    });
+    // Store a reference to zoom action so that it can be reset or transformed later
+    this.currentZoom = d3
+      .zoom()
+      .scaleExtent([1, 8])
+      .on('zoom', () => {
+        this.applyZoom('#path-group', '#circle-group', '#text-group');
+      });
+
+    // Disable zooming with mouse wheel as it interferes with scrolling
+    d3.select('#svg')
+      .call(this.currentZoom)
+      .on('wheel.zoom', null);
   },
+
   methods: {
+    formatNumber,
     makePaths(features) {
-      return this.geoFeatures.map(el => path(el));
+      return features.map(el => path(el));
     },
-    clicked(ev) {
-      console.log('clicked', ev, this);
+    // The dots (...) group function arguments into an array
+    applyZoom(...selectorArray) {
+      selectorArray.forEach(selector => {
+        d3.select(selector)
+          .style('stroke-width', 1.5 / d3.event.transform.k + 'px')
+          .attr('transform', d3.event.transform);
+      });
+    },
+    resetZoom(selector, zoomToReset) {
+      const selection = d3.select(selector);
+      selection
+        .transition()
+        .duration(500)
+        .call(zoomToReset.transform, d3.zoomIdentity);
+    },
+    zoomOnRegion(selector, regionCoords, zoomToTransform) {
+      const selection = d3.select(selector);
+      const [x, y] = projection([regionCoords[0], regionCoords[1]]);
+      // fix: when using transition, the first transform doesn't occur.
+      selection
+        .transition()
+        .duration(250)
+        .call(zoomToTransform.translateTo, x, y);
+      selection
+        .transition()
+        .duration(250)
+        .call(zoomToTransform.scaleBy, 2);
+    },
+    onCircleClick(evt) {
+      const countrySelected = evt.target.id;
+
+      // For SelectParameter to listen for this event
+      FilterBus.$emit('circle-clicked', countrySelected);
+
+      evt.target.style.fill = 'darkred';
+    },
+    getRegion(country) {
+      // Get the region of a country; to use as class name
+      const matched = regionObj =>
+        Object.values(regionObj)[0].includes(country);
+
+      try {
+        return Object.keys(regions.find(matched))[0]
+          .toLowerCase()
+          .replace(' ', '-');
+      } catch {
+        return 'no-match';
+      }
     },
   },
 };
 </script>
 
 <template lang="pug">
-div.uk-padding-remove.uk-margin-remove
-  svg#svg.uk-margin-remove.uk-padding-remove(:width="width" :height="height")
+div
+
+  svg#svg.uk-margin-remove.uk-padding-remove(
+    :width="width" 
+    :height="height"
+    )
     g#path-group
-      path(v-for="path in paths" :d="path" class="path")
-    g#circle-group(ref="circleGroup")
-      circle(@click.capture="clicked" v-for="circle in circles" :r="circle.r" :cx="circle.cx" :cy="circle.cy" :id="circle.key" class="circle" :data-patent="circle.value")
+      path(
+        v-for="path in paths"
+        :d="path" 
+        class="path"
+        )
+    g#circle-group
+      circle(
+        @click="onCircleClick"
+        v-for="(circle, i) in circles" 
+        :r="circle.r" 
+        :cx="circle.cx" 
+        :cy="circle.cy" 
+        :id="circle.key" 
+        :data-patent="circle.value" 
+        :data-rank="i"
+        :uk-tooltip="'title:' + String(Number(i)+1) + '. ' + circle.key + ': ' + formatNumber(circle.value) + '; animation:uk-animation-fade'"
+        :class="'circle circle-' + getRegion(circle.key)" 
+        )
+    g#text-group
+      text(
+        v-for="(circle, i) in topCircles" 
+        :x="circle.cx" 
+        :y="circle.cy" 
+        dx="-5" 
+        dy="6" 
+        class="text"
+        ) {{ i + 1 }}
 </template>
 
 <style lang="scss" scoped>
 .path {
   fill: #232d4b;
-  opacity: 0.2;
+  opacity: 0.1;
   stroke: #000;
   stroke-width: 0.5px;
   transition: opacity 0.5s;
@@ -133,10 +232,9 @@ div.uk-padding-remove.uk-margin-remove
 }
 
 .circle {
-  fill: steelblue;
+  // fill: steelblue;
   opacity: 0.5;
-  transition: all 2s;
-  // transition: opacity 5s;
+  transition: all 1.5s;
   stroke: #000;
   stroke-width: 0.5px;
 }
@@ -144,8 +242,17 @@ div.uk-padding-remove.uk-margin-remove
 .circle:hover {
   opacity: 0.7;
 }
-svg {
-  // -webkit-filter: drop-shadow(2px 2px 10px #777);
+
+.text {
+  font-size: 20px;
+  transition: all 1.5s;
+}
+
+#svg {
   filter: drop-shadow(2px 2px 10px #777);
+}
+
+.uk-tooltip {
+  font-size: 18px !important;
 }
 </style>
