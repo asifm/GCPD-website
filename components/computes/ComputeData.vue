@@ -14,24 +14,6 @@ import { FilterBus } from '@/assets/js/FilterBus';
 import { numericLiteral } from 'babel-types';
 
 export default {
-  props: {
-    country_: {
-      type: String,
-      default: 'All Countries',
-    },
-    industry_: {
-      type: String,
-      default: 'All Industries',
-    },
-    startYear_: {
-      type: Number,
-      default: 2000,
-    },
-    endYear_: {
-      type: Number,
-      default: 2017,
-    },
-  },
   data() {
     return {
       country: this.country_,
