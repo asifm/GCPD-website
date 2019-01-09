@@ -157,11 +157,6 @@ export default {
       }, duration);
     },
     emitData() {
-      // Ensure first that undefined values are not passed when emitting data.
-      // Instead pass some default values
-      if (this.industry === undefined) this.industry = 'All Industries';
-      if (this.geography === undefined) this.geography = 'All Countries';
-      if (this.rangeYears === undefined) this.rangeYears = [1950, 2017];
       FilterBus.$emit('new-data', {
         industry: this.industry,
         geography: this.geography,
