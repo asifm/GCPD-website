@@ -1,9 +1,6 @@
 {
-  "typeAcquisition": {
-    // "include": ["lodash", "d3"]
-  },
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2015",
     "baseUrl": "./",
     "paths": {
       "@/*": ["./*"]
