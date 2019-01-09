@@ -25,7 +25,7 @@ export default {
   mounted() {
     if (this.paramList == 'countries') {
       this.items = lists.regionsCountries;
-      this.eventName = 'change-country';
+      this.eventName = 'change-geography';
       // For convenience show United States toward the top (in addition to its alphabetical place)
       // But first make sure it's not already there
       if (this.items.filter(el => el === 'United States').length === 1) {
@@ -36,6 +36,7 @@ export default {
       this.items = lists.industries.map(el => el.industry);
       this.eventName = 'change-industry';
     }
+    // Event for computeData to listen for.
     FilterBus.$emit(this.eventName, this.selected);
   },
   updated() {

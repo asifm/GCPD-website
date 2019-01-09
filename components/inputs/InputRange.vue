@@ -32,5 +32,11 @@ export default {
 </script>
 
 <template lang="pug">
-  el-slider(range :min="minYear" :max="maxYear" v-model="rangeYears" @input="update()")
+  el-slider(
+    range 
+    @input="update"
+    v-model="rangeYears" 
+    :min="minYear" 
+    :max="maxYear" 
+    )
 </template>
