@@ -82,86 +82,100 @@ export default {
       this.regionGrp.reduceSum(d => d.patentcount);
       this.yearGrp.reduceSum(d => d.patentcount);
 
+      // Initiate view with default values
+      this.changeGeography(this.geography)
+      this.changeIndustry(this.industry)
+      this.changeYears(this.rangeYears)
+      this.emitData()
 
-      // ::Listening for changes:: //
-      FilterBus.$on('change-country', payload => {
-        // Although country and region are separate fields in the data, they're in the same list in the UI's select control.
-        this.country = payload;
-        // first remove current filter
-        this.countryDim.filter(null);
-        switch (this.country) {
+      //::: Listening for changes ::://
+      FilterBus.$on('change-geography', payload => {
+        this.geography = payload;
+        this.showMessageCalculating();
+        // Note: Although country and region are separate fields in the data,
+        // they're in the same "geography" list in the UI (to simplify the UI).
+        this.changeGeography(payload)
+        this.emitData();
+      });
+
+      FilterBus.$on('change-industry', payload => {
+        this.industry = payload;
+        this.showMessageCalculating();
+        this.changeIndustry(payload)
+        this.emitData();
+      });
+
+      FilterBus.$on('change-rangeyears', payload => {
+        this.rangeYears = payload;
+        this.showMessageCalculating();
+        this.changeYears(payload)
+        this.emitData();
+      });
+      //-- ends listneing for changes --//
+    });
+  },
+  methods: {
+    changeGeography(payload) {
+        switch (payload) {
           case 'All Countries':
+            // Remove both region and country filters
             this.regionDim.filter(null);
             this.countryDim.filter(null);
             break;
           case 'North America':
           case 'Europe':
           case 'Asia Pacific':
-            // this.regionDim.filter(null);
+          case 'Other':
+            // Case: One of the regions. First remove current country filter
             this.countryDim.filter(null);
-            this.regionDim.filter(this.country);
+            // Then apply region filter
+            this.regionDim.filter(payload);
             break;
           default:
+            // Prior cases not hitting means it's a country and not a region.
+            // So remove region filter and apply country filter.
             this.regionDim.filter(null);
-            this.countryDim.filter(this.country);
+            this.countryDim.filter(payload);
         }
-        this.emitData();
-      });
-      FilterBus.$on('change-industry', payload => {
-        this.industry = payload;
-        this.industryDim.filter(null);
-        // Apply new filter only if it's not "all industries"
-        if (this.industry !== 'All Industries')
-          this.industryDim.filter(this.industry);
-        this.emitData();
-      });
-      // Listen for any changes made in the selection controls, process the data when a change happens, and emits the new data for the upstream component to capture
-      FilterBus.$on('change-startyear', payload => {
-        this.startYear = payload;
-        if (this.endYear < this.startYear) {
-          // this.startYear = this.endYear;
-          this.warnYearWrong = true;
-          return;
-        } else {
-          this.warnYearWrong = false;
-        }
-        // this.yearDim.filter(null);
-        // crossfilter's filterrange counts upto one less than endyear. So add 1.
-        this.yearDim.filter([this.startYear, this.endYear + 1]);
-        this.emitData();
-      });
-      FilterBus.$on('change-endyear', payload => {
-        this.endYear = payload;
-        if (this.endYear < this.startYear) {
-          // this.endYear = this.startYear;
-          this.warnYearWrong = true;
-          return;
-        } else {
-          this.warnYearWrong = false;
-        }
-        // this.yearDim.filter(null);
-        // crossfilter's filterrange counts upto but not including the endyear. So add 1.
-        this.yearDim.filter([this.startYear, this.endYear + 1]);
-        this.emitData();
-      });
-      // ends:listneing for changes//
-    });
-  },
-  methods: {
-    emitData() {
-      FilterBus.$emit(
-        'new-data',
-        [
-          this.cf,
-          this.companyGrp,
-          this.countryGrp,
-          this.industryGrp,
-          this.regionGrp,
-          this.yearGrp,
-        ],
-        [this.industry, this.country, this.startYear, this.endYear],
-      );
     },
+    changeIndustry(payload) {
+        // Apply new industry filter unless payload is "all industries"
+        if (payload !== 'All Industries'){
+          this.industryDim.filter(payload)
+        } else {
+          this.industryDim.filter(null);
+        }
+    },
+    changeYears(payload) {
+      this.yearsDim.filter([payload[0], payload[1] + 1]);
+    },
+
+    showMessageCalculating(duration = 2000) {
+      this.calculating = true;
+      setTimeout(() => {
+        this.calculating = false;
+      }, duration);
+    },
+    emitData() {
+      // Ensure first that undefined values are not passed when emitting data.
+      // Instead pass some default values
+      if (this.industry === undefined)
+        this.industry = 'All Industries'
+      if (this.geography === undefined)
+        this.geography = 'All Countries'
+      if (this.rangeYears === undefined)
+        this.rangeYears = [1950, 1970] 
+      FilterBus.$emit('new-data', {
+        industry: this.industry,
+        geography: this.geography,
+        rangeYears: this.rangeYears,
+        cf: this.cf,
+        companyGrp: this.companyGrp,
+        industryGrp: this.industryGrp,
+        countryGrp: this.countryGrp,
+        regionGrp: this.regionGrp,
+        yearGrp: this.yearGrp,
+      });
     },
   },
 };
