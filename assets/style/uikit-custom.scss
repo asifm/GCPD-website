@@ -146,10 +146,59 @@ $global-primary-background: $orange;
 $global-secondary-background: $blue;
 
 $base-heading-color: $orange;
-// :: End colors 
 
-// ::Start typography
-//:: Load fonts
+.uk-tile-primary,
+.uk-card-primary :matches(p, h1, h2, h3, h4, h5, h6) {
+  color: $blue !important;
+}
+
+.uk-tile-secondary,
+.uk-card-secondary :matches(p, h1, h2, h3, h4, h5, h6) {
+  color: #ffffff !important;
+}
+
+//:: data visualization helpers :://
+
+$asia-pacific: #bdc0c9;
+$europe: #f0f09b;
+$north-america: $orange-light;
+$other: #99c96a;
+
+.north-america {
+  background-color: $north-america;
+}
+
+.asia-pacific {
+  background-color: $asia-pacific;
+}
+
+.europe {
+  background-color: $europe;
+}
+
+.other {
+  background-color: $other;
+}
+
+.circle-north-america {
+  fill: $north-america;
+}
+
+.circle-asia-pacific {
+  fill: $asia-pacific;
+}
+
+.circle-europe {
+ fill: $europe;
+}
+
+.circle-other {
+  fill: $other;
+}
+//** End colors 
+
+//:: Start typography
+//: Load fonts
 
 @font-face {
   font-family: 'FranklinGothicURW';
@@ -179,7 +228,7 @@ $base-heading-color: $orange;
   font-style: normal;
 }
 
-//:: typography overrides
+//: typography overrides
 $global-font-size: 16px;
 $global-font-family: FranklinGothicURW;
 $base-body-font-weight: 500;
@@ -236,45 +285,19 @@ dl {
   }
 }
 
-// ::end typography
+//** end typography
 
-
-.uk-tile-primary,
-.uk-card-primary :matches(p, h1, h2, h3, h4, h5, h6) {
-  color: $blue !important;
+.uk-padding-tiny {
+  padding: 5px;
 }
 
-.uk-tile-secondary,
-.uk-card-secondary :matches(p, h1, h2, h3, h4, h5, h6) {
-  color: #ffffff !important;
-}
-
-// :: visualization helpers
-.north-america {
-  background-color: rgb(214, 134, 35);
-}
-
-.asia-pacific {
-  background-color: #abb9e0;
-}
-
-.europe {
-  background-color: rgb(201, 201, 44);
-}
-
-.other {
-  background-color: rgb(79, 197, 79);
-}
-
-// 2. Import default variables and available mixins.
+//:: Import default variables and available mixins.
 @import 'uikit/src/scss/variables-theme.scss';
 @import 'uikit/src/scss/mixins-theme.scss';
 
-
-// 4. Import UIkit.
 @import 'uikit/src/scss/uikit-theme.scss';
 
-// All variables from variables-theme; Copied here for easier reference
+//:: All variables from variables-theme; Copied here for easier reference
 
 // $global-margin: 20px !default;
 // $accordion-item-margin-top: $global-margin !default;
