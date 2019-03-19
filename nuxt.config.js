@@ -11,10 +11,19 @@ module.exports = {
   head: {
     title: 'Global Corporate Patent Data',
     meta: [
-      { charset: 'utf-8' },
+      {
+        charset: 'utf-8',
+      },
 
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1',
+      },
+      {
+        hid: 'description',
+        name: 'description',
+        content: pkg.description,
+      },
     ],
     script: [
       {
@@ -22,12 +31,7 @@ module.exports = {
         // 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.24/js/uikit-icons.min.js',
       },
     ],
-    link: [
-      {
-        rel: 'stylesheet',
-        href: 'https://unpkg.com/element-ui/lib/theme-chalk/index.css',
-      },
-    ],
+    link: [],
   },
 
   /*
@@ -48,7 +52,6 @@ module.exports = {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    './plugins/element.js',
     './plugins/filters.js',
     './plugins/globals.js',
     './plugins/uikit.js',
@@ -91,7 +94,9 @@ module.exports = {
       config.module.rules.push(
         {
           test: /\.csv$/,
-          use: { loader: 'file-loader' },
+          use: {
+            loader: 'file-loader',
+          },
         },
         {
           test: /\.md$/,

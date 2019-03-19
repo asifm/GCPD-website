@@ -14,72 +14,44 @@
     "test": "jest || exit 0",
     "dev-debug": "node --inspect node_modules/nuxt/bin/nuxt"
   },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "vue"
-    ],
-    "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/$1"
-    },
-    "automock": false,
-    "setupFiles": [
-      "./setupJest.js"
-    ],
-    "transform": {
-      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
-      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
-    }
-  },
   "dependencies": {
     "cross-env": "^5.2.0",
     "crossfilter": "^1.3.12",
-    "d3": "^5.8.1",
+    "d3": "^5.9.2",
     "d3-svg-annotation": "^2.3.1",
     "d3-tip": "^0.9.1",
-    "element-ui": "^2.5.4",
-    "glider-js": "^1.6.4",
-    "gsap": "^2.0.2",
+    "gsap": "^2.1.2",
     "intro.js": "^2.9.3",
     "lodash": "^4.17.11",
-    "nuxt": "^2.4.2",
-    "scrollmagic": "^2.0.6",
+    "nuxt": "^2.4.5",
     "uikit": "^3.0.3",
-    "vega": "^4.4.0",
-    "vega-embed": "^3.29.0",
-    "vega-lite": "^3.0.0-rc12",
+    "vega": "^5.3.0",
+    "vega-embed": "^3.30.0",
+    "vega-lite": "^3.0.0-rc15",
     "vue-scroll": "^2.1.9",
-    "vue-select": "^2.5.1",
-    "vue-template-compiler": "^2.6.2"
+    "vue-select": "^2.6.0",
+    "vue-template-compiler": "^2.6.9"
   },
   "devDependencies": {
-    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/axios": "^5.4.1",
     "@nuxtjs/markdownit": "^1.2.3",
-    "@types/d3": "^5.7.0",
+    "@types/d3": "^5.7.1",
     "@vue/test-utils": "^1.0.0-beta.29",
     "babel-eslint": "^10.0.1",
-    "babel-jest": "^24.0.0",
+    "babel-jest": "^24.5.0",
     "babel-preset-env": "^1.7.0",
-    "cypress": "^3.1.5",
-    "eslint": "^5.13.0",
-    "eslint-config-prettier": "^4.0.0",
+    "eslint": "^5.15.2",
+    "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-prettier": "^3.0.1",
-    "eslint-plugin-vue": "^5.1.0",
+    "eslint-plugin-vue": "^5.2.2",
     "file-loader": "^3.0.1",
-    "jest": "^24.0.0",
-    "jest-fetch-mock": "^2.1.0",
-    "jest-vue-preprocessor": "^1.4.0",
     "markdown-it": "^8.4.2",
     "node-fetch": "^2.3.0",
     "node-sass": "^4.11.0",
-    "nodemon": "^1.18.9",
     "prettier": "^1.16.4",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^7.1.0",
-    "vue-clicky": "^2.0.5",
-    "vue-jest": "^3.0.2",
-    "vue-md-loader": "^1.1.0",
-    "wallaby-vue-compiler": "^1.0.3"
+    "vue-md-loader": "^1.1.0"
   }
 }

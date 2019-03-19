@@ -89,11 +89,10 @@ export default {
       // todo: if country changes then highlight country
       this.$options.countryData = countryGrp.top(Infinity);
       // radScale.domain([0, d3.max(this.$options.countryData, el => el.value)]);
-        radScale.domain([0, this.$options.countryData[0].value]);
-        console.log('radScale', radScale.domain());
-        console.log('this', this);
+      radScale.domain([0, this.$options.countryData[0].value]);
+      console.log('radScale', radScale.domain());
+      console.log('this', this);
       centroidsPromise.then(centroids => {
-
         this.circles = this.$options.countryData.map(el => {
           el.r = radScale(el.value);
           let centroid = centroids.find(
