@@ -1,6 +1,5 @@
 <script>
 import _ from 'lodash';
-import { setTimeout } from 'timers';
 import { FilterBus } from '@/assets/js/FilterBus';
 import { lists } from '@/assets/data/listData';
 
@@ -11,6 +10,7 @@ export default {
       default: () => [],
     },
   },
+
   data() {
     return {
       rangeYears: this.rangeYears_,
