@@ -22,6 +22,12 @@ export default {
       eventName: '',
     };
   },
+  created() {
+    FilterBus.$on('reset-data', () => {
+      if (this.paramList == 'countries') this.selected = 'All Countries';
+      if (this.paramList == 'industries') this.selected = 'All Industries';
+    });
+  },
   mounted() {
     if (this.paramList == 'countries') {
       this.items = lists.regionsCountries;

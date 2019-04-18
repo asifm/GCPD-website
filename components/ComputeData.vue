@@ -111,6 +111,13 @@ export default {
         this.changeYears(payload);
         this.emitData();
       });
+
+      FilterBus.$on('reset-data', () => {
+        this.changeGeography('All Countries');
+        this.changeIndustry('All Industries');
+        this.changeYears([2000, 2017]);
+        this.emitData();
+      });
       //-- ends listneing for changes --//
     });
   },

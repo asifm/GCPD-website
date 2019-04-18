@@ -7,7 +7,7 @@ import { FilterBus } from '@/assets/js/FilterBus';
 import { lists } from '@/assets/data/listData';
 
 import CardCompanyFacts from '@/components/outputs/CardCompanyFacts';
-// ::declare/set variables
+
 const industries = lists.industries;
 
 export default {
@@ -26,8 +26,6 @@ export default {
       topCompanies: [],
       sumPatentsInSelectedData: null,
       numCompaniesInSelectedData: null,
-      listLength_: this.listLength,
-      msgListSize100: false,
       tweenedNumber: 0,
     };
   },
@@ -42,16 +40,6 @@ export default {
     },
   },
   watch: {
-    listLength_(newVal, prevVal) {
-      if (newVal >= 100) {
-        this.msgListSize100 = true;
-      } else if (newVal > 0) {
-        this.msgListSize100 = false;
-      } else if (newVal <= 0) {
-        this.msgListSize100 = false;
-        this.listLength_ = 1;
-      }
-    },
     sumPatentsInSelectedData: function(newVal) {
       TweenLite.to(this.$data, 2, {
         tweenedNumber: newVal,
@@ -102,14 +90,8 @@ div.uk-card.uk-card-body.uk-card-default.uk-padding-remove.uk-animation-slide-le
         ) No patents found in the currently selected data.
     hr
     div.uk-padding-small
-      button.uk-button-default.uk-button Top Companies
-      div(uk-drop="mode:hover; pos:left-center")
-        el-slider(
-          v-model="listLength_" 
-          :min="0" 
-          :max="200"
-          show-input
-          )
+      p Top {{ listLength }} Companies
+  
 
       div.uk-margin-small-top.my-text-tiny
         span.fg-black.uk-padding-tiny.asia-pacific Asia Pacific
@@ -117,15 +99,10 @@ div.uk-card.uk-card-body.uk-card-default.uk-padding-remove.uk-animation-slide-le
         span.fg-black.uk-padding-tiny.north-america North America
         span.fg-black.uk-padding-tiny.other Other
     
-  div.uk-animation-shake.uk-padding-small.uk-padding-remove-vertical(
-    v-show="msgListSize100"
-    )
-    p Make the list smaller if the browser becomes slow.
-  
   ul.uk-list.uk-padding-remove
     li.uk-text-left.uk-animation-slide-left.uk-padding-small.uk-box-shadow-small.list-item(
-      v-for="(company, i) in topCompanies.slice(0, listLength_)" 
-      :key="i" 
+      v-for="(company, i) in topCompanies.slice(0, listLength)" 
+      :key="company.value.gvkey" 
       :class="company.value.region | makeKebab "
       )
       div

@@ -31,7 +31,7 @@ export default {
       rangeYears: [lists.dataYearRange.min, lists.dataYearRange.max],
       minYear: lists.dataYearRange.min,
       maxYear: lists.dataYearRange.max,
-      listLength: 20,
+      listLength: 25,
       componentToShow: 'both',
     };
   },
@@ -121,7 +121,7 @@ div.uk-section
           div.uk-width-1-2.uk-grid(
             uk-grid
             data-step=3 
-            data-intro="Filter the data by years. Change either year or both. <br><br> If the first year matches the last year, you'll get the data for that single year. <br><br>You can also move these sliders around to change the time period."
+            data-intro="Filter the data by years. Change either year or both."
             )
             //- todo: remove these; use them as read-only labels instead for the slider
             div.uk-width-1-4
@@ -131,6 +131,7 @@ div.uk-section
                 :max="maxYear" 
                 type="number" 
                 readonly
+                disabled
                 )
               input.uk-input(
                 v-model="endYear"
@@ -138,6 +139,7 @@ div.uk-section
                 :max="maxYear" 
                 type="number" 
                 readonly
+                disabled
                 )
             div.uk-width-1-2
               input-range.el-form-item--medium(
@@ -154,20 +156,20 @@ div.uk-section
               button.uk-button.uk-button-primary.uk-button-small(
                 @click="startTour"
                 ) Tour
-              button.uk-button.uk-button-success.uk-button-small(
-                @click="addHints"
-                ) Hints
+              //- button.uk-button.uk-button-success.uk-button-small(
+              //-   @click="addHints"
+              //-   ) Hints
             div
               div.uk-button-group.uk-margin-top
-                button.uk-button.my-text-tiny.uk-button-text.uk-margin-small-right(
-                  @click="componentToShow='map'"
-                  ) Only Map
-                button.uk-button.my-text-tiny.uk-button-text.uk-margin-small-right(
-                  @click="componentToShow='graphs'"
-                  ) Only Graphs
-                button.uk-button.my-text-tiny.uk-button-text(
-                  @click="componentToShow='both'"
-                  ) Both
+                //- button.uk-button.my-text-tiny.uk-button-text.uk-margin-small-right(
+                //-   @click="componentToShow='map'"
+                //-   ) Only Map
+                //- button.uk-button.my-text-tiny.uk-button-text.uk-margin-small-right(
+                //-   @click="componentToShow='graphs'"
+                //-   ) Only Graphs
+                //- button.uk-button.my-text-tiny.uk-button-text(
+                //-   @click="componentToShow='both'"
+                //-   ) Both
         div.uk-width-1-1.uk-padding-remove.uk-margin-top.uk-box-shadow-small 
           div(v-show="componentToShow === 'map' || componentToShow === 'both'")
             div(
@@ -181,12 +183,12 @@ div.uk-section
           
       div.uk-width-1-4
         compute-data
-        list-company-detailed.uk-box-shadow-large(
+        list-company-detailed.uk-box-shadow-large.uk-animation-slide-left(
           :listLength="listLength" 
           data-position="auto" 
           data-scrollTo="#top" 
           data-step=6 
-          data-intro="List of the top companies. Move the slider to adjust the list size. <br><br>The background color indicates the region of a company's headquarters. <br><br> See detailed data about a company by hovering over its name."
+          data-intro="List of the top companies."
           )
         
 </template>
