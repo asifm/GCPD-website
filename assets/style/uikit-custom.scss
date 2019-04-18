@@ -19,30 +19,28 @@ $starkwhite: #cac0b6;
 
 //:: darden colors
 // palette using tool: http://mcg.mbitson.com/
-$blue-base: (
-  'blue-50': #e5e6e9,
-  'blue-100': #bdc0c9,
-  'blue-200': #9196a5,
-  'blue-300': #656c81,
-  'blue-400': #444d66,
-  'blue-500': #232d4b,
-  'blue-600': #1f2844,
-  'blue-700': #1a223b,
-  'blue-800': #151c33,
-  'blue-900': #0c1123,
+$blue-base: ('blue-50': #e5e6e9,
+'blue-100': #bdc0c9,
+'blue-200': #9196a5,
+'blue-300': #656c81,
+'blue-400': #444d66,
+'blue-500': #232d4b,
+'blue-600': #1f2844,
+'blue-700': #1a223b,
+'blue-800': #151c33,
+'blue-900': #0c1123,
 );
 
-$orange-base: (
-  'orange-50': #fceee0,
-  'orange-100': #f7d5b3,
-  'orange-200': #f2b980,
-  'orange-300': #ed9c4d,
-  'orange-400': #e98726,
-  'orange-500': #e57200,
-  'orange-600': #e26a00,
-  'orange-700': #de5f00,
-  'orange-800': #da5500,
-  'orange-900': #d34200,
+$orange-base: ('orange-50': #fceee0,
+'orange-100': #f7d5b3,
+'orange-200': #f2b980,
+'orange-300': #ed9c4d,
+'orange-400': #e98726,
+'orange-500': #e57200,
+'orange-600': #e26a00,
+'orange-700': #de5f00,
+'orange-800': #da5500,
+'orange-900': #d34200,
 );
 
 @mixin generate-darden-palette($base-color, $color-num) {
@@ -189,12 +187,13 @@ $other: #99c96a;
 }
 
 .circle-europe {
- fill: $europe;
+  fill: $europe;
 }
 
 .circle-other {
   fill: $other;
 }
+
 //** End colors 
 
 //:: Start typography
@@ -260,7 +259,8 @@ $global-medium-font-size: 1.1rem;
 $global-small-font-size: 0.9rem;
 
 p,
-dl {
+dl,
+ul {
   font-family: Georgia, serif;
 }
 
