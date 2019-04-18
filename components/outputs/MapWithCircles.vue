@@ -1,6 +1,6 @@
 <script>
 // todo: avoid rescaling of circles on new-data ? (perhaps not necessary if region-zoom implemented)
-// todo: zoom in to region when selected
+// todo: zoom in to region when selected; move circles to new x, y but don't zoom them. zoom only map (#paths-group)
 // todo: highlight selected country's circle
 // todo: add annotation for the first three countries
 // todo: add legends for circle size
@@ -85,16 +85,28 @@ export default {
 
     //:: Listen for new data from compute-data component :://
     FilterBus.$on('new-data', dataObj => {
-      const { countryGrp } = dataObj;
+      const { countryGrp, geography } = dataObj;
       // todo: if country changes then highlight country
       this.$options.countryData = countryGrp.top(Infinity);
-      // radScale.domain([0, d3.max(this.$options.countryData, el => el.value)]);
-      radScale.domain([0, this.$options.countryData[0].value]);
-      console.log('radScale', radScale.domain());
-      console.log('this', this);
+      const maxValue = d3.max(this.$options.countryData, el => el.value);
+      if (maxValue == 0) {
+        // Remove all circle elements
+        this.circles.length = 0;
+        return;
+      }
+      radScale.domain([0, maxValue]);
+      // todo: for other regions.
+      // fix: currentZoom includes circles; can't avoid zooming circles
+      // if (geography == 'Asia Pacific') {
+      //   this.zoomOnRegion('#path-group', asiaCentroid, this.currentZoom);
+      // } else {
+      //   this.resetZoom('#path-group', this.currentZoom);
+      // }
+
       centroidsPromise.then(centroids => {
         this.circles = this.$options.countryData.map(el => {
           el.r = radScale(el.value);
+
           let centroid = centroids.find(
             centroid_ => centroid_.country == el.key,
           );
@@ -142,19 +154,19 @@ export default {
         .duration(500)
         .call(zoomToReset.transform, d3.zoomIdentity);
     },
-    zoomOnRegion(selector, regionCoords, zoomToTransform) {
-      const selection = d3.select(selector);
-      const [x, y] = projection([regionCoords[0], regionCoords[1]]);
-      // fix: when using transition, the first transform doesn't occur.
-      selection
-        .transition()
-        .duration(250)
-        .call(zoomToTransform.translateTo, x, y);
-      selection
-        .transition()
-        .duration(250)
-        .call(zoomToTransform.scaleBy, 2);
-    },
+    // zoomOnRegion(selector, regionCoords, zoomToTransform) {
+    //   const selection = d3.select(selector);
+    //   const [x, y] = projection([regionCoords[0], regionCoords[1]]);
+    //   // fix: transitions don't work
+    //   selection
+    //     .transition()
+    //     .duration(250)
+    //     .call(zoomToTransform.translateTo, x, y);
+    //   selection
+    //     .transition()
+    //     .duration(250)
+    //     .call(zoomToTransform.scaleBy, 2);
+    // },
     onCircleClick(evt) {
       const countrySelected = evt.target.id;
 
