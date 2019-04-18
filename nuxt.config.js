@@ -14,7 +14,6 @@ module.exports = {
       {
         charset: 'utf-8',
       },
-
       {
         name: 'viewport',
         content: 'width=device-width, initial-scale=1',
@@ -55,7 +54,6 @@ module.exports = {
     './plugins/filters.js',
     './plugins/globals.js',
     './plugins/uikit.js',
-    './plugins/vueClicky.js',
     './plugins/vueSelect.js',
   ],
 
@@ -75,14 +73,14 @@ module.exports = {
     },
   },
   build: {
-    plugins: [
-      new BundleAnalyzerPlugin({
-        analyzerMode: 'static',
-        generateStatsFile: false,
-        openAnalyzer: false,
-        logLevel: 'info',
-      }),
-    ],
+    // plugins: [
+    //   new BundleAnalyzerPlugin({
+    //     analyzerMode: 'static',
+    //     generateStatsFile: false,
+    //     openAnalyzer: false,
+    //     logLevel: 'info',
+    //   }),
+    // ],
     extend(config, ctx) {
       if (ctx.isClient) {
         config.devtool = 'source-map';
