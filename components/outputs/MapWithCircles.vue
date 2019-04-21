@@ -69,7 +69,7 @@ export default {
   created() {
     const centroidsPromise = d3.csv(pathToCountryCentroidsData);
 
-    projection.translate([this.width / 2, this.height / 2 + 50]).scale(200);
+    projection.translate([this.width / 2, this.height / 2 + 50]).scale(150);
 
     fetch(pathToGeoJsonData)
       .then(response => response.json())

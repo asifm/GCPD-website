@@ -32,7 +32,6 @@ export default {
       minYear: lists.dataYearRange.min,
       maxYear: lists.dataYearRange.max,
       listLength: 25,
-      componentToShow: 'both',
     };
   },
   computed: {
@@ -100,14 +99,14 @@ export default {
 div.uk-section
   div.uk-container.uk-container-expand
     div.uk-h2(
-      data-intro="Use this tool to explore the entire dataset."
+      data-intro="Use this tool to explore the entire global corporate patent dataset."
       ) <span class="my-text-heavy fg-blue-200"> Explore </span> the World of Corporate Patents
-    div.uk-grid.uk-grid-small(uk-grid)
+    div.uk-grid(uk-grid)
       div.uk-width-3-4
-        div.uk-width-1-1.uk-grid.uk-grid-small(uk-grid)
+        div.uk-width-1-1.uk-grid(uk-grid).uk-padding-large.uk-padding-remove-vertical
           div.uk-width-1-4(
             data-step=2
-            data-intro="Select a country or an industry. <br><br> All the data and visualizations will change to reflect your selection."
+            data-intro="Select a country and/or an industry. <br><br> The data and visualizations will change to reflect your selection."
             )
             select-parameter.uk-margin-small-bottom.bg-orange-50.uk-box-shadow-medium(
               :selected_="defaultCountry"
@@ -118,68 +117,50 @@ div.uk-section
               param-list="industries" 
               )
 
-          div.uk-width-1-2.uk-grid(
-            uk-grid
+          div.uk-width-1-2(
             data-step=3 
-            data-intro="Filter the data by years. Change either year or both."
+            data-intro="Filter the data by years. Select a period by changing the beginning year, end year, or both."
             )
             //- todo: remove these; use them as read-only labels instead for the slider
-            div.uk-width-1-4
-              input.uk-input(
-                v-model="startYear"
-                :min="minYear" 
-                :max="maxYear" 
-                type="number" 
-                readonly
-                disabled
-                )
-              input.uk-input(
-                v-model="endYear"
-                :min="minYear" 
-                :max="maxYear" 
-                type="number" 
-                readonly
-                disabled
-                )
-            div.uk-width-1-2
-              input-range.el-form-item--medium(
-                :rangeYears_="rangeYears"
-                )
+            
+            p Select years. Now showing <strong>{{ startYear }}</strong> through <strong>{{ endYear }}</strong>.
+            input-range.el-form-item--medium(
+              :rangeYears_="rangeYears"
+              )
+          
           div.uk-width-1-4
-            div.uk-button-group(
+            div(
               data-step=7 
-              data-intro="At any point, you can set everything on the page to its beginning state. <br><br> You can also start this tour from here. <br><br> The smaller buttons let you customize the view to your preference."
+              data-intro="At any point, you can set everything on the page to its beginning state. <br><br> You can also start this guide from here."
               )
               button.uk-button.uk-button-secondary.uk-button-small(
                 @click="resetData"
-                ) Reset
+                ) Reset Data and Map
               button.uk-button.uk-button-primary.uk-button-small(
                 @click="startTour"
-                ) Tour
+                ) Guide
               //- button.uk-button.uk-button-success.uk-button-small(
               //-   @click="addHints"
               //-   ) Hints
-            div
-              div.uk-button-group.uk-margin-top
-                //- button.uk-button.my-text-tiny.uk-button-text.uk-margin-small-right(
-                //-   @click="componentToShow='map'"
-                //-   ) Only Map
-                //- button.uk-button.my-text-tiny.uk-button-text.uk-margin-small-right(
-                //-   @click="componentToShow='graphs'"
-                //-   ) Only Graphs
-                //- button.uk-button.my-text-tiny.uk-button-text(
-                //-   @click="componentToShow='both'"
-                //-   ) Both
-        div.uk-width-1-1.uk-padding-remove.uk-margin-top.uk-box-shadow-small 
-          div(v-show="componentToShow === 'map' || componentToShow === 'both'")
-            div(
-              data-step=4 
-              data-intro="The circles on the map show total patent counts by country. To see the data for a country, hover over its circle. <br><br> Double click to zoom and drag to pan. Get back to full view using the reset button above.<br><br> When the data changes, the circles rescale based on the then current minimum and maximum."
+            // div
+            //   div.uk-button-group.uk-margin-top
+            //     button.uk-button.my-text-tiny.uk-button-text.uk-margin-small-right(
+            //       @click="componentToShow='map'"
+            //       ) Only Map
+            //     button.uk-button.my-text-tiny.uk-button-text.uk-margin-small-right(
+            //       @click="componentToShow='graphs'"
+            //       ) Only Graphs
+            //     button.uk-button.my-text-tiny.uk-button-text(
+            //       @click="componentToShow='both'"
+            //       ) Both
+        div.uk-width-1-1.uk-margin-top(
+            data-step=4 
+            data-intro="The circles on the map show total patent counts by country. To see the data for a country, hover over its circle. <br><br> Double click to zoom and drag to pan. Get back to full view using the reset button above.<br><br> When the data changes, the circles rescale based on the then current minimum and maximum."
+            )
+            map-with-circles.uk-align-right(
+              :width="900" 
+              :height="500"
               )
-              map-with-circles(
-                :width="1200" 
-                :height="600"
-                )
           
       div.uk-width-1-4
         compute-data
@@ -188,7 +169,7 @@ div.uk-section
           data-position="auto" 
           data-scrollTo="#top" 
           data-step=6 
-          data-intro="List of the top companies."
+          data-intro="List of the most innovative companies within the selected industry, region, and time period."
           )
         
 </template>

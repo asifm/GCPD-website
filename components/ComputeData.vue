@@ -5,7 +5,6 @@ import Crossfilter from 'crossfilter';
 
 import { dataProm } from '@/assets/js/fetchData';
 import { lists } from '@/assets/data/listData';
-const { min, max } = lists.dataYearRange;
 
 // import components; FilterBus is an event bus
 import { FilterBus } from '@/assets/js/FilterBus';
@@ -16,7 +15,7 @@ export default {
       calculating: false,
       geography: 'All Countries',
       industry: 'All Industries',
-      rangeYears: [2000, 2017],
+      rangeYears: [lists.dataYearRange.min, lists.dataYearRange.max],
     };
   },
   created() {
