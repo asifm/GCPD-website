@@ -1,15 +1,16 @@
 <template lang="pug">
   nav.uk-navbar-right(uk-navbar uk-sticky="show-on-up:true; animation:uk-animation-slide-top").uk-box-shadow-small.bg-blue-50
-    img(src="https://res.cloudinary.com/asifm/image/upload/w_300/v1543573588/darden_rgb-02_qrpxwe.png").uk-float-left.uk-margin-left
+    img(src="https://res.cloudinary.com/asifm/image/upload/w_200/v1543573588/darden_rgb-02_qrpxwe.png").uk-float-left.uk-margin-left
     .uk-navbar-right.uk-margin-right
       ul.uk-navbar-nav
         li.uk-button-text.uk-animation-fade(v-show="this.$route.path != '/'"): nuxt-link(to="/") Home
         li.uk-button-text
-          nuxt-link(to="/data_highlights") Data Highlights
-          //- .uk-navbar-dropdown
-          //-   ul.uk-nav.uk-navbar-dropdown-nav
-          //-     li.uk-button-text: nuxt-link(to="#") Companies
-          //-     li.uk-button-text: nuxt-link(to="#") Industries
+          nuxt-link(to="#") Data Highlights
+          .uk-navbar-dropdown
+            ul.uk-nav.uk-navbar-dropdown-nav
+              li.uk-button-text: nuxt-link(to="/data_highlights/top_companies") Most Innovative Companies
+              li.uk-button-text: nuxt-link(to="/data_highlights/rise_of_asia") The Rise of Asia
+              li.uk-button-text: nuxt-link(to="/data_highlights/tech_leading_innovation") Tech Industry Leading in Innovation
           //-     li.uk-button-text: nuxt-link(to="#") Countries
         li.uk-button-text
           nuxt-link(to="/interactive") Interactive
