@@ -4,7 +4,7 @@ import * as d3 from 'd3';
 // todo p2: optimize source data: (1) get rid of data that don't matter, (2) NORMALIZE: have separate files for country coordinates and such data
 // Reads the main data file: has all data; each row is for one company-year
 const dataProm = d3
-  .csv(require('@/assets/data/20181106_PatentData-ShortVariableNames.csv'))
+  .csv(require('@/assets/data/20190419_PatentData.csv'))
   .then(data => {
     // Convert to correct data types and make other changes before returning the data
     data.forEach(el => {
@@ -33,4 +33,7 @@ const fieldNamesProm = d3
     });
   });
 
-export { dataProm, fieldNamesProm };
+export {
+  dataProm,
+  fieldNamesProm
+};

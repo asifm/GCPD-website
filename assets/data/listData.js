@@ -1,30 +1,26 @@
 export const lists = {
   dataYearRange: {
-    min: 1950,
+    min: 1980,
     max: 2017,
   },
-  industries: [
-    {
+  industries: [{
       industry_code: 0,
       industry_desc: 'All Industries',
       industry: 'All Industries',
     },
     {
       industry_code: 1,
-      industry_desc:
-        'Consumer NonDurables — Food, Tobacco, Textiles, Apparel, Leather, Toys',
+      industry_desc: 'Consumer NonDurables — Food, Tobacco, Textiles, Apparel, Leather, Toys',
       industry: 'Consumer Non-Durables',
     },
     {
       industry_code: 2,
-      industry_desc:
-        "Consumer Durables — Cars, TV's, Furniture, Household Appliances",
+      industry_desc: "Consumer Durables — Cars, TV's, Furniture, Household Appliances",
       industry: 'Consumer Durables',
     },
     {
       industry_code: 3,
-      industry_desc:
-        'Manufacturing — Machinery, Trucks, Planes, Off Furn, Paper, Com Printing',
+      industry_desc: 'Manufacturing — Machinery, Trucks, Planes, Off Furn, Paper, Com Printing',
       industry: 'Manufacturing',
     },
     {
@@ -39,8 +35,7 @@ export const lists = {
     },
     {
       industry_code: 6,
-      industry_desc:
-        'Business Equipment — Computers, Software, and Electronic Equipment',
+      industry_desc: 'Business Equipment — Computers, Software, and Electronic Equipment',
       industry: 'Business Equipment & Software',
     },
     {
@@ -55,8 +50,7 @@ export const lists = {
     },
     {
       industry_code: 9,
-      industry_desc:
-        'Shops — Wholesale, Retail, and Some Services (Laundries, Repair Shops)',
+      industry_desc: 'Shops — Wholesale, Retail, and Some Services (Laundries, Repair Shops)',
       industry: 'Wholesale & Retail',
     },
     {
@@ -71,14 +65,12 @@ export const lists = {
     },
     {
       industry_code: 12,
-      industry_desc:
-        'Other — Mines, Constr, BldMt, Trans, Hotels, Bus Serv, Entertainment',
+      industry_desc: 'Other — Mines, Constr, BldMt, Trans, Hotels, Bus Serv, Entertainment',
       industry: 'Other',
     },
   ],
 
-  regions: [
-    {
+  regions: [{
       'North America': [
         'United States',
         'Bahamas',
