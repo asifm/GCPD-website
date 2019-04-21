@@ -37,6 +37,7 @@ export default {
             .uk-h4.uk-card-title.fg-blue How We Compiled the Data
             div(class="uk-column-1-2@m")
               method-summary
+              button.uk-button: a(href="/download_data") Download Data
         
           .uk-card.uk-card-body.bg-blue-50
             h4 Interview
@@ -48,6 +49,11 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+.uk-button a {
+  text-decoration: none;
+  color: fg-white !important;
+}
+
 audio {
   max-width: 450px;
   object-fit: inherit;

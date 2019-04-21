@@ -13,12 +13,11 @@ export default {
     .uk-card.uk-card-default.uk-card-body.uk-box-shadow-small
       h2 Download the Data
       download-intro
-      data-citation
-      button.uk-button.uk-button-secondary Download
-      hr
-      div.uk-margin-large-top.uk-margin-small-left
-        a(rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/")
-          img(alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png")
-        p This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+
+      <iframe src="https://virginia.az1.qualtrics.com/jfe/form/SV_9B2ivuARIUgDgC9" height="1000px" width="500px"></iframe>
+ 
+      
+        
+        
       
 </template>

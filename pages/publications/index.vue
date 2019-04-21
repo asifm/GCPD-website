@@ -5,6 +5,19 @@ export default {
       publications: [
         {
           title:
+            'Testing “the Locust Hypothesis”: the Impact of Global Investors on Long-term Investment and Innovation',
+          authors: 'Pedro Matos, Jan Bena, Miguel A Ferreira, Pedro Pires',
+          date: 'November 2018',
+          publication: 'UVA Darden Research Briefing',
+          intro:
+            'As the world economy has become increasingly globalized and complex, it’s not obvious what effects foreign investors—say, Chinese investors in an American company or American investors in a British company—have on the companies whose stock they hold. Is it possible that these foreign investors provide pools of capital that firms can access in order to produce stronger companies or do they behave more like a swarm of locusts, resulting in nearsighted corporate policymaking?',
+          imgSrc:
+            'https://res.cloudinary.com/asifm/image/upload/h_150/v1541443135/locust-briefing-cover_lwu3n2.png',
+          downloadLink: '/documents/UVA-Darden-Research-Briefing.pdf',
+          readMoreLink: '',
+        },
+        {
+          title:
             'Are Foreign Investors Locusts? The Long-term Effects of Foreign Institutional Ownership',
           authors: 'Jan Bena, Miguel A Ferreira, Pedro Matos, Pedro Pires',
           date: 'October 2017',
@@ -17,19 +30,6 @@ export default {
           readMoreLink:
             'https://www.sciencedirect.com/science/article/pii/S0304405X17301526',
         },
-        {
-          title:
-            'Testing “the Locust Hypothesis”: the Impact of Global Investors on Long-term Investment and Innovation',
-          authors: 'Pedro Matos, Jan Bena, Miguel A Ferreira, Pedro Pires',
-          date: 'November 2018',
-          publication: 'UVA Darden Research Briefing',
-          intro:
-            'As the world economy has become increasingly globalized and complex, it’s not obvious what effects foreign investors—say, Chinese investors in an American company or American investors in a British company—have on the companies whose stock they hold. Is it possible that these foreign investors provide pools of capital that firms can access in order to produce stronger companies or do they behave more like a swarm of locusts, resulting in nearsighted corporate policymaking?',
-          imgSrc:
-            'https://res.cloudinary.com/asifm/image/upload/h_150/v1541443135/locust-briefing-cover_lwu3n2.png',
-          downloadLink: '/documents/UVA-Darden-Research-Briefing.pdf',
-          readMoreLink: '',
-        },
       ],
     };
   },
@@ -40,7 +40,7 @@ export default {
 .uk-section.uk-animation-slide-top-small
   .uk-container.uk-container-expand.uk-padding-large
     h1 Research and Publications
-    p The new Global Corporate Patent Data have been used in the following publications.
+    p The Global Corporate Patent Dataset have been used in the following publications.
     .uk-grid.uk-grid(uk-grid).uk-grid-large
       div(class="uk-width-1-2@m" v-for="(pub, i) in publications" :key="i")
         .uk-card.uk-card-body.uk-card-default.uk-padding-small
