@@ -53,16 +53,8 @@ module.exports = {
     './plugins/filters.js',
     './plugins/globals.js',
     './plugins/uikit.js',
-    './plugins/vueSelect.js',
   ],
 
-  modules: [
-    // Doc: https://github.com/nuxt-community/axios-module#usage
-    // '@nuxtjs/axios',
-  ],
-  // axios: {
-  // module configuration: https://github.com/nuxt-community/axios-module#options
-  // },
   vue: {
     config: {
       productionTip: false,
