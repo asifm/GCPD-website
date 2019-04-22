@@ -1,5 +1,5 @@
 <script>
-// todo: change layout of controls: one below another instead of side by side
+// todo: change layout of controls?: one below another instead of side by side
 // todo: create cleaner layout; use flex?
 import introJs from 'intro.js';
 
@@ -53,8 +53,7 @@ export default {
     },
   },
   mounted() {
-    // todo: uncomment startTour when ready
-    // this.startTour();
+    this.startGuide();
     FilterBus.$on('new-data', dataObj => {
       const { rangeYears } = dataObj;
       this.rangeYears = rangeYears;
@@ -72,13 +71,9 @@ export default {
       // todo: Use $on to reset all data in other components
       FilterBus.$emit('reset-data');
     },
-    startTour() {
+    startGuide() {
       // todo: use json to define steps (https://github.com/usablica/intro.js/blob/master/example/programmatic/index.html)
       introJs().start();
-    },
-    addHints() {
-      // todo: add buttons for hints
-      introJs().addHints();
     },
   },
   head() {
@@ -131,28 +126,17 @@ div.uk-section
           div.uk-width-1-4
             div(
               data-step=7 
-              data-intro="At any point, you can set everything on the page to its beginning state. <br><br> You can also start this guide from here."
-              )
-              button.uk-button.uk-button-secondary.uk-button-small(
-                @click="resetData"
-                ) Reset Data and Map
-              button.uk-button.uk-button-primary.uk-button-small(
-                @click="startTour"
+              data-intro="You can again start this guide from here. <br><br>At any point, you can set everything on the page to its beginning state using the reset button."
+              ).uk-text-center
+              button.uk-button.uk-button-small.uk-button-text(
+                @click="startGuide"
                 ) Guide
-              //- button.uk-button.uk-button-success.uk-button-small(
-              //-   @click="addHints"
-              //-   ) Hints
-            // div
-            //   div.uk-button-group.uk-margin-top
-            //     button.uk-button.my-text-tiny.uk-button-text.uk-margin-small-right(
-            //       @click="componentToShow='map'"
-            //       ) Only Map
-            //     button.uk-button.my-text-tiny.uk-button-text.uk-margin-small-right(
-            //       @click="componentToShow='graphs'"
-            //       ) Only Graphs
-            //     button.uk-button.my-text-tiny.uk-button-text(
-            //       @click="componentToShow='both'"
-            //       ) Both
+              br
+              button.uk-button.uk-button-small.uk-button-text(
+                @click="resetData"
+                ) Reset Data &amp; Map
+              
+            
         div.uk-width-1-1.uk-margin-top(
             data-step=4 
             data-intro="The circles on the map show total patent counts by country. To see the data for a country, hover over its circle. <br><br> Double click to zoom and drag to pan. Get back to full view using the reset button above.<br><br> When the data changes, the circles rescale based on the then current minimum and maximum."

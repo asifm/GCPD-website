@@ -4,12 +4,11 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 
 module.exports = {
   mode: 'spa',
-
   /*
    ** Headers of the page
    */
   head: {
-    title: 'Global Corporate Patent Data',
+    title: 'Global Corporate Patent Dataset',
     meta: [
       {
         charset: 'utf-8',
