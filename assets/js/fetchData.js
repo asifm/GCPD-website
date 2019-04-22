@@ -25,6 +25,7 @@ const dataProm = d3
     return data;
   });
 
+// Not used
 const fieldNamesProm = d3
   .csv(require('@/assets/data/FieldNamesMapped.csv'))
   .then(data => {
@@ -33,7 +34,4 @@ const fieldNamesProm = d3
     });
   });
 
-export {
-  dataProm,
-  fieldNamesProm
-};
+export { dataProm, fieldNamesProm };

@@ -98,16 +98,16 @@ div.uk-section
       ) <span class="my-text-heavy fg-blue-200"> Explore </span> the World of Corporate Patents
     div.uk-grid(uk-grid)
       div.uk-width-3-4
-        div.uk-width-1-1.uk-grid(uk-grid).uk-padding-large.uk-padding-remove-vertical
+        div.uk-width-1-1.uk-grid(uk-grid).uk-padding.uk-padding-remove-vertical
           div.uk-width-1-4(
             data-step=2
             data-intro="Select a country and/or an industry. <br><br> The data and visualizations will change to reflect your selection."
             )
-            select-parameter.uk-margin-small-bottom.bg-orange-50.uk-box-shadow-medium(
+            select-parameter(
               :selected_="defaultCountry"
               param-list="countries" 
               )
-            select-parameter.uk-margin-small-bottom.bg-orange-50.uk-box-shadow-medium(
+            select-parameter(
               :selected_="defaultIndustry"
               param-list="industries" 
               )
