@@ -205,6 +205,15 @@ div
         :d="path" 
         class="path"
         )
+    g#text-group
+      text(
+        v-for="(circle, i) in topCircles" 
+        :x="circle.cx" 
+        :y="circle.cy" 
+        dx="-5" 
+        dy="6" 
+        class="text"
+        ) {{ i + 1 }}
     g#circle-group
       circle(
         @click="onCircleClick"
@@ -218,15 +227,6 @@ div
         :uk-tooltip="'title:' + String(Number(i)+1) + '. ' + circle.key + ': ' + formatNumber(circle.value) + '; animation:uk-animation-fade'"
         :class="'circle circle-' + getRegion(circle.key)" 
         )
-    g#text-group
-      text(
-        v-for="(circle, i) in topCircles" 
-        :x="circle.cx" 
-        :y="circle.cy" 
-        dx="-5" 
-        dy="6" 
-        class="text"
-        ) {{ i + 1 }}
 </template>
 
 <style lang="scss" scoped>
