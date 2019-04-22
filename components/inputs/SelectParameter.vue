@@ -1,9 +1,14 @@
 <script>
+// @import vSelect from 'vue-select`;
+import VueSelect from 'vue-select';
 // This component is used to select a country or an industry from their respective lists.
 import { FilterBus } from '@/assets/js/FilterBus';
 import { lists } from '@/assets/data/listData';
 
 export default {
+  components: {
+    VueSelect,
+  },
   props: {
     paramList: {
       type: String,
@@ -53,5 +58,9 @@ export default {
 </script>
 
 <template lang="pug">
-v-select(:options="items" v-model="selected")
+vue-select(:options="items" v-model="selected" :clearable="false" maxHeight="300px")
 </template>
+
+<style>
+@import 'vue-select/dist/vue-select.css';
+</style>
