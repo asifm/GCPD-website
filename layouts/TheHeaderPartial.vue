@@ -6,7 +6,7 @@
       ul.uk-navbar-nav
         li.uk-button-text.uk-animation-fade(v-show="this.$route.path != '/'"): nuxt-link(to="/") Home
         li.uk-button-text
-          nuxt-link(to="#") Data Highlights
+          nuxt-link(to="#" id="data-highlights-topmenu") Data Highlights
           .uk-navbar-dropdown
             ul.uk-nav.uk-navbar-dropdown-nav
               li.uk-button-text: nuxt-link(to="/data_highlights/top_companies") Most Innovative Companies
@@ -27,3 +27,9 @@
         li.uk-button-text.my-text-medium: nuxt-link(to="/about_us") About Us
 
 </template>
+
+<style lang="scss" scoped>
+#data-highlights-topmenu {
+  cursor: default;
+}
+</style>
