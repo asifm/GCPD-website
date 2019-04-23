@@ -2,6 +2,7 @@
 // todo: change layout of controls?: one below another instead of side by side
 // todo: create cleaner layout; use flex?
 import introJs from 'intro.js';
+import { TweenLite } from 'gsap';
 
 import { lists } from '@/assets/data/listData';
 import { FilterBus } from '@/assets/js/FilterBus';
@@ -32,6 +33,8 @@ export default {
       minYear: lists.dataYearRange.min,
       maxYear: lists.dataYearRange.max,
       listLength: 25,
+      sumPatentsInSelectedData: null,
+      tweenedNumber: 0,
     };
   },
   computed: {
@@ -51,12 +54,27 @@ export default {
         this.rangeYears[1] = newValue;
       },
     },
+    sumPatentsInSelectedDataAnimated: function() {
+      return this.tweenedNumber.toFixed(0);
+    },
+  },
+  watch: {
+    sumPatentsInSelectedData: function(newVal) {
+      TweenLite.to(this.$data, 2, {
+        tweenedNumber: newVal,
+      });
+    },
   },
   mounted() {
     this.startGuide();
     FilterBus.$on('new-data', dataObj => {
-      const { rangeYears } = dataObj;
+      const { rangeYears, cf } = dataObj;
       this.rangeYears = rangeYears;
+
+      this.sumPatentsInSelectedData = cf
+        .groupAll()
+        .reduceSum(d => d.patentcount)
+        .value();
     });
   },
   methods: {
@@ -91,14 +109,15 @@ export default {
 </script>
 
 <template lang="pug">
-div.uk-section
+div.uk-section.uk-padding-remove-vertical.uk-margin-medium
   div.uk-container.uk-container-expand
-    div.uk-h2(
+    div.uk-h1#heading(
       data-intro="Use this tool to explore the entire global corporate patent dataset."
       ) <span class="my-text-heavy fg-blue-200"> Explore </span> the World of Corporate Patents
+      
     div.uk-grid(uk-grid)
       div.uk-width-3-4
-        div.uk-width-1-1.uk-grid(uk-grid).uk-padding.uk-padding-remove-vertical
+        div.uk-width-1-1.uk-grid(uk-grid)
           div.uk-width-1-4(
             data-step=2
             data-intro="Select a country and/or an industry. <br><br> The data and visualizations will change to reflect your selection."
@@ -128,24 +147,27 @@ div.uk-section
               data-step=7 
               data-intro="You can again start this guide from here. <br><br>At any point, you can set everything on the page to its beginning state using the reset button."
               ).uk-text-center
-              button.uk-button.uk-button-small.uk-button-text(
+              button.uk-button.uk-button-small.uk-button-text.fg-orange-fade-out-2(
                 @click="startGuide"
                 ) Guide
               br
-              button.uk-button.uk-button-small.uk-button-text(
+              button.uk-button.uk-button-small.uk-button-text.fg-blue-fade-out-2(
                 @click="resetData"
                 ) Reset Data &amp; Map
               
             
-        div.uk-width-1-1.uk-margin-top(
+        div.uk-width-1-1.uk-margin-top.uk-margin-medium-left(
             data-step=4 
             data-intro="The circles on the map show total patent counts by country. To see the data for a country, hover over its circle. <br><br> Double click to zoom and drag to pan. Get back to full view using the reset button above.<br><br> When the data changes, the circles rescale based on the then current minimum and maximum."
             )
-            map-with-circles.uk-align-right(
-              :width="900" 
-              :height="500"
-              )
-          
+          div.my-text-thin.uk-animation-fade.fg-blue-400.uk-position-fixed#totalcount(
+            v-show="sumPatentsInSelectedData > 0"
+            ) {{  sumPatentsInSelectedDataAnimated | thousandComma  }} patents
+
+          map-with-circles.uk-align-center(
+            :width="900" 
+            :height="500"
+            )
       div.uk-width-1-4
         compute-data
         list-company-detailed.uk-box-shadow-large.uk-animation-slide-left(
@@ -157,3 +179,11 @@ div.uk-section
           )
         
 </template>
+<style lang="scss" scoped>
+#totalcount {
+  font-size: 2rem;
+}
+#heading {
+  font-size: 2.3rem;
+}
+</style>

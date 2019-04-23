@@ -1,6 +1,4 @@
 <script>
-import { TweenLite } from 'gsap';
-
 // FilterBus is a globally registered vue component (event bus) whose sole purpose is to transfer data between components
 import { FilterBus } from '@/assets/js/FilterBus';
 
@@ -24,9 +22,7 @@ export default {
       startYear: null,
       endYear: null,
       topCompanies: [],
-      sumPatentsInSelectedData: null,
       numCompaniesInSelectedData: null,
-      tweenedNumber: 0,
     };
   },
   computed: {
@@ -35,17 +31,8 @@ export default {
         ? industries.find(el => el.industry == this.industry).industry_desc
         : '';
     },
-    sumPatentsInSelectedDataAnimated: function() {
-      return this.tweenedNumber.toFixed(0);
-    },
   },
-  watch: {
-    sumPatentsInSelectedData: function(newVal) {
-      TweenLite.to(this.$data, 2, {
-        tweenedNumber: newVal,
-      });
-    },
-  },
+
   beforeCreate() {
     // listen for new data from compute-data component
     FilterBus.$on('new-data', dataObj => {
@@ -60,11 +47,6 @@ export default {
       const allCompanies = companyGrp.top(Infinity);
       this.topCompanies = allCompanies.filter(el => el.value.patentcount);
 
-      this.sumPatentsInSelectedData = cf
-        .groupAll()
-        .reduceSum(d => d.patentcount)
-        .value();
-
       this.numCompaniesInSelectedData = this.topCompanies.length;
     });
   },
@@ -72,27 +54,20 @@ export default {
 </script>
 
 <template lang="pug">
-div.uk-card.uk-card-body.uk-card-default.uk-padding-remove.uk-animation-slide-left(
+div(
   v-show="topCompanies"
   )
-  div.uk-text-left.uk-card-header.uk-padding-small.bg-white
+  div.uk-card-header.uk-padding-small.bg-white.uk-animation-fade
     //- Show end year only if it's different from start year; same start and end means single year selection
-    h3.my-text-heavy.uk-text-large.fg-blue-800.uk-margin-auto-vertical.uk-padding-small.uk-padding-remove-vertical  {{ startYear }}<span v-show="startYear != endYear">–{{ endYear }}</span>
-      span.fg-orange-900.uk-margin-small-left {{ geography }} <br />
-      span.fg-blue-600.my-text-thin {{ industry_desc }}
-
-    div.uk-padding-small.uk-margin-remove.uk-padding-remove-vertical
-      div.uk-animation-fade(
-        v-show="sumPatentsInSelectedData > 0"
-        ) <span class="fg-orange-700">{{  sumPatentsInSelectedDataAnimated | thousandComma  }} patents</span> <span class="fg-blue-400"> {{ numCompaniesInSelectedData  | thousandComma  }} companies</span>
-      div(
-        v-show="sumPatentsInSelectedData === 0"
-        ) No data for current selection.
-    hr
-    div.uk-padding-small
-      p Top {{ listLength }} Companies
-
-      div.uk-margin-small-top.my-text-tiny
+    p.uk-h3.uk-margin-small-top  {{ startYear }}<span v-show="startYear != endYear">–{{ endYear }}</span>
+      span.fg-blue-900  {{ geography }} <br />
+      span.my-text-thin.fg-orange-400  {{ industry_desc }} 
+      span.my-text-thin.fg-blue-300(
+        v-show="numCompaniesInSelectedData > 0"
+        ) {{ numCompaniesInSelectedData  | thousandComma  }} companies
+    div
+      p Leading Companies
+      div.my-text-tiny
         span.fg-black.uk-padding-tiny.asia-pacific Asia Pacific
         span.fg-black.uk-padding-tiny.europe Europe
         span.fg-black.uk-padding-tiny.north-america North America
