@@ -58,9 +58,9 @@ export default {
 </script>
 
 <template lang="pug">
-vue-select(:options="items" v-model="selected" :clearable="false" maxHeight="300px")
+  vue-select(:options="items" v-model="selected" :clearable="false" maxHeight="300px").uk-text-small
 </template>
 
-<style>
+<style lang="scss">
 @import 'vue-select/dist/vue-select.css';
 </style>
