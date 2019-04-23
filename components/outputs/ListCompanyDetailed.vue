@@ -87,11 +87,10 @@ div.uk-card.uk-card-body.uk-card-default.uk-padding-remove.uk-animation-slide-le
         ) <span class="fg-orange-700">{{  sumPatentsInSelectedDataAnimated | thousandComma  }} patents</span> <span class="fg-blue-400"> {{ numCompaniesInSelectedData  | thousandComma  }} companies</span>
       div(
         v-show="sumPatentsInSelectedData === 0"
-        ) No patents found in the currently selected data.
+        ) No data for current selection.
     hr
     div.uk-padding-small
       p Top {{ listLength }} Companies
-  
 
       div.uk-margin-small-top.my-text-tiny
         span.fg-black.uk-padding-tiny.asia-pacific Asia Pacific
