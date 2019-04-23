@@ -37,19 +37,45 @@ export default {
 
       // reduceSum gets an accessor function telling which field to sum
       function reduceInitial() {
-        return {
-          gvkey: '',
-          city: '',
-          country: '',
-          region: '',
-          industry: '',
-          assets: 0,
-          capex: 0,
-          ebitda: 0,
-          patentcount: 0,
-          rdex: 0,
-          sales: 0,
-        };
+        // construct an object with initial values
+
+        // values will be mean; except patentcount, which will be sum
+        let obj = [
+          'patentcount',
+          'assets',
+          'capex',
+          'rdex',
+          'sales',
+          'ebitda',
+        ].reduce((acc, v) => {
+          acc[v] = 0;
+          return acc;
+        }, {});
+
+        // intermediate values to compute mean
+        obj.counts = ['assets', 'capex', 'rdex', 'sales', 'ebitda'].reduce(
+          (acc, v) => {
+            acc[v] = 0;
+            return acc;
+          },
+          {},
+        );
+
+        obj.totals = ['assets', 'capex', 'rdex', 'sales', 'ebitda'].reduce(
+          (acc, v) => {
+            acc[v] = 0;
+            return acc;
+          },
+          {},
+        );
+
+        obj.gvkey = '';
+        obj.city = '';
+        obj.country = '';
+        obj.region = '';
+        obj.industry = '';
+
+        return obj;
       }
       function reduceAdd(p, v) {
         p.gvkey = v.gvkey;
@@ -57,21 +83,38 @@ export default {
         p.country = v.country;
         p.region = v.region;
         p.industry = v.industry;
-        p.assets = p.assets + v.assets;
-        p.capex = p.capex + v.capex;
-        p.ebitda = p.ebitda + v.ebitda;
-        p.patentcount = p.patentcount + v.patentcount;
-        p.rdex = p.rdex + v.rdex;
-        p.sales = p.sales + v.sales;
+        p.patentcount += v.patentcount;
+
+        ['assets', 'capex', 'rdex', 'sales', 'ebitda'].forEach(dim => {
+          [p.totals[dim], p.counts[dim]] = reduceAvgAdd(p, v, dim);
+          p[dim] = p.totals[dim] / p.counts[dim];
+        });
+
         return p;
       }
+      function reduceAvgAdd(p, v, dim) {
+        // Checks if values is missing;
+        if (v[dim]) {
+          p.counts[dim] += 1;
+          p.totals[dim] += v[dim];
+        }
+        return [p.totals[dim], p.counts[dim]];
+      }
+      function reduceAvgRemove(p, v, dim) {
+        // Checks if values is missing;
+        if (v[dim]) {
+          p.counts[dim] -= 1;
+          p.totals[dim] -= v[dim];
+        }
+        return [p.totals[dim], p.counts[dim]];
+      }
+
       function reduceRemove(p, v) {
-        p.assets = p.assets - v.assets;
-        p.capex = p.capex - v.capex;
-        p.ebitda = p.ebitda - v.ebitda;
-        p.patentcount = p.patentcount - v.patentcount;
-        p.rdex = p.rdex - v.rdex;
-        p.sales = p.sales - v.sales;
+        p.patentcount -= v.patentcount;
+        ['assets', 'capex', 'rdex', 'sales', 'ebitda'].forEach(dim => {
+          [p.totals[dim], p.counts[dim]] = reduceAvgRemove(p, v, dim);
+          p[dim] = p.totals[dim] / p.counts[dim];
+        });
         return p;
       }
       this.companyGrp.reduce(reduceAdd, reduceRemove, reduceInitial);

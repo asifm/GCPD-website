@@ -30,11 +30,13 @@ export default {
   div.bg-white.uk-padding-small.uk-animation-fade
     ul.uk-card-header
       li.uk-text-small.fg-black 
-        | {{ company.value.industry}} | {{ startYear}}<span v-show="startYear != endYear">–{{ endYear }}</span>
+        | {{ company.value.industry}}
       li.fg-blue.uk-text-bold.uk-text-uppercase.uk-text-break 
         | {{ company.key | removePeriods }}
       li.uk-text-meta 
         | {{ company.value.city }}, {{ company.value.country }}
+      li &nbsp;
+      li.uk-text-small Yearly average during {{ startYear}}<span v-show="startYear != endYear">–{{ endYear }}</span>
     ul.uk-list.uk-text-right.fg-orange
       li Assets 
         span.fg-blue
@@ -53,13 +55,15 @@ export default {
           | $ <span class="">{{ formatNumber(company.value.ebitda, 1e6) }}</span>
 
     div.uk-card-footer
-      a.uk-button.uk-button-small.fg-blue-400(
-        target="_blank" 
-        :href="`https://patents.google.com/?assignee=${ removeLastWord(company.key) }&before=filing:${endYear}1231&after=filing:${startYear}0101&type=PATENT&num=50&sort=new`")
-        | Search Patents
-      a.uk-button.uk-button-small.fg-orange-600(
-        target="_blank" 
-        :href="'https://www.google.com/search?q=%22'+ removeLastWord(company.key) +'%22+%22'+company.value.country+'%22'")
-        | Search Company
+      p.uk-text-meta
+        a.fg-blue-400(
+          target="_blank" 
+          :href="`https://patents.google.com/?assignee=${ removeLastWord(company.key) }&before=filing:${endYear}1231&after=filing:${startYear}0101&type=PATENT&num=50&sort=new`")
+          | Search Patents
+        span  | 
+        a.fg-orange-600(
+          target="_blank" 
+          :href="'https://www.google.com/search?q=%22'+ removeLastWord(company.key) +'%22+%22'+company.value.country+'%22'")
+          | Search Company
 
 </template>
