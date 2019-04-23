@@ -231,19 +231,18 @@ div
 
 <style lang="scss" scoped>
 .path {
-  fill: #232d4b;
-  opacity: 0.1;
+  fill: #5e7ace;
+  opacity: 0.075;
   stroke: #000;
-  stroke-width: 0.5px;
-  transition: opacity 0.5s;
+  stroke-width: 1px;
+  transition: opacity 0.3s;
 }
 
 .path:hover {
-  opacity: 0.4;
+  opacity: 0.2;
 }
 
 .circle {
-  // fill: steelblue;
   opacity: 0.5;
   transition: all 1.5s;
   stroke: #000;
@@ -256,7 +255,7 @@ div
 
 .text {
   font-size: 20px;
-  transition: all 1.5s;
+  transition: all 1s;
 }
 
 #svg {
