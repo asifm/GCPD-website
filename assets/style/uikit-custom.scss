@@ -248,6 +248,7 @@ $base-body-font-size: 14px;
 
 .my-text-heavy {
   font-weight: 900 !important;
+  letter-spacing: 0.02em;
 }
 
 $base-heading-font-family: 'FranklinGothicURW';
@@ -259,6 +260,11 @@ $global-xxlarge-font-size: 1.8rem;
 $global-large-font-size: 1.4rem;
 $global-medium-font-size: 1.1rem;
 $global-small-font-size: 0.9rem;
+
+.uk-h1,
+.uk-h2 {
+  letter-spacing: 0.02em;
+}
 
 p,
 dl,
