@@ -5,6 +5,6 @@ The dataset contains the yearly counts of patents assigned by the United States 
 
 - This work is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/) <a href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png"/></a>
 - Instead of sharing the data file directly, please point others to this webpage to download the latest version of the data from here.
-- If you'd like to have access to the data at a more granular level, please contact us at <gcpd@darden.virginia.edu>. We'll make such data available at our discretion, taking the intended use into consideration.
-- This is a beta release. There is no guarantee, implied or otherwise, about the accuracy of the data. If you find errors, please let us know at <gcpd@darden.virginia.edu>.
+- If you'd like to have access to the data at a more granular level, please contact us at <GCPD@darden.virginia.edu>. We'll make such data available at our discretion, taking the intended use into consideration.
+- This is a beta release. There is no guarantee, implied or otherwise, about the accuracy of the data. If you find errors, please let us know at <GCPD@darden.virginia.edu>.
 - Please fill out the short form below and then click on "Download". The information you provide helps us evaluate the use of the dataset.

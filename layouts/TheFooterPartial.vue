@@ -1,9 +1,9 @@
 <template lang="pug">
 div
-  .uk-section.uk-padding-small.bg-blue-50.uk-box-shadow-small.uk-text-center.fg-black
+  .uk-section.uk-padding-small.bg-orange-fade-out-9.uk-text-center.fg-black
     p For comments or questions about this dataset, please email us at 
-      a(href="mailto:gcpd@darden.virginia.edu")
-        span gcpd@darden.virginia.edu
+      a(href="mailto:GCPD@darden.virginia.edu")
+        span GCPD@darden.virginia.edu
   .uk-section-secondary.uk-padding-small.uk-padding-remove-vertical
     .uk-container.uk-container-expand
       div(uk-grid).uk-grid.uk-padding-remove

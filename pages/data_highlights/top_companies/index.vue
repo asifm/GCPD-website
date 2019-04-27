@@ -2,7 +2,7 @@
 
 .uk-section.uk-animation-slide-top-small
   .uk-container
-    h1 Top Five Companies by Patent Count (2001–2017)
+    .uk-h1 Top Five Companies by Patent Count (2001–2017)
     div
       img(src="https://res.cloudinary.com/asifm/image/upload/w_400/v1544462450/region_change_qdxekx.png").uk-float-right
       p In our dataset, the firms, all publicly listed, were granted close to 2 million U.S. patents from 2001 to 2017. The patents were well distributed across countries, illustrating the global nature of innovation.
