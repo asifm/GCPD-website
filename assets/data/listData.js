@@ -3,74 +3,82 @@ export const lists = {
     min: 1980,
     max: 2017,
   },
-  industries: [{
-      industry_code: 0,
+  industries: [
+    {
+      industry_code: '0',
       industry_desc: 'All Industries',
       industry: 'All Industries',
     },
     {
-      industry_code: 1,
-      industry_desc: 'Consumer NonDurables — Food, Tobacco, Textiles, Apparel, Leather, Toys',
+      industry_code: '1',
+      industry_desc:
+        'Consumer NonDurables — Food, Tobacco, Textiles, Apparel, Leather, Toys',
       industry: 'Consumer Non-Durables',
     },
     {
-      industry_code: 2,
-      industry_desc: "Consumer Durables — Cars, TV's, Furniture, Household Appliances",
+      industry_code: '2',
+      industry_desc:
+        "Consumer Durables — Cars, TV's, Furniture, Household Appliances",
       industry: 'Consumer Durables',
     },
     {
-      industry_code: 3,
-      industry_desc: 'Manufacturing — Machinery, Trucks, Planes, Off Furn, Paper, Com Printing',
+      industry_code: '3',
+      industry_desc:
+        'Manufacturing — Machinery, Trucks, Planes, Off Furn, Paper, Com Printing',
       industry: 'Manufacturing',
     },
     {
-      industry_code: 4,
+      industry_code: '4',
       industry_desc: 'Energy — Oil, Gas, and Coal Extraction and Products',
       industry: 'Energy',
     },
     {
-      industry_code: 5,
+      industry_code: '5',
       industry_desc: 'Chemicals and Allied Products',
       industry: 'Chemicals',
     },
     {
-      industry_code: 6,
-      industry_desc: 'Business Equipment — Computers, Software, and Electronic Equipment',
+      industry_code: '6',
+      industry_desc:
+        'Business Equipment — Computers, Software, and Electronic Equipment',
       industry: 'Business Equipment & Software',
     },
     {
-      industry_code: 7,
+      industry_code: '7',
       industry_desc: 'Telecom — Telephone and Television Transmission',
       industry: 'Telecommunication',
     },
     {
-      industry_code: 8,
+      industry_code: '8',
       industry_desc: 'Utilities',
       industry: 'Utilities',
     },
     {
-      industry_code: 9,
-      industry_desc: 'Shops — Wholesale, Retail, and Some Services (Laundries, Repair Shops)',
+      industry_code: '9',
+      industry_desc:
+        'Shops — Wholesale, Retail, and Some Services (Laundries, Repair Shops)',
       industry: 'Wholesale & Retail',
     },
     {
-      industry_code: 10,
+      industry_code: '10',
       industry_desc: 'Healthcare, Medical Equipment, and Drugs',
       industry: 'Healthcare',
     },
     {
-      industry_code: 11,
+      industry_code: '11',
       industry_desc: 'Finance',
       industry: 'Finance',
     },
     {
-      industry_code: 12,
-      industry_desc: 'Other — Mines, Constr, BldMt, Trans, Hotels, Bus Serv, Entertainment',
+      industry_code: '12',
+      industry_desc:
+        'Other — Mines, Constr, BldMt, Trans, Hotels, Bus Serv, Entertainment',
       industry: 'Other',
     },
   ],
 
-  regions: [{
+  regions: [
+    {
       'North America': [
         'United States',
         'Bahamas',

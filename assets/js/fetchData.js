@@ -1,10 +1,24 @@
 // Exports promises, not the actual data; Need to be resolved by importing modules
 import * as d3 from 'd3';
+import { lists } from '@/assets/data/listData';
 
-// todo p2: optimize source data: (1) get rid of data that don't matter, (2) NORMALIZE: have separate files for country coordinates and such data
-// Reads the main data file: has all data; each row is for one company-year
+// const industriesAllObj = lists.industries.reduce((acc, v) => {
+//   // 0 is for "all industries"; should not be included in the industry list
+//   if (v.industry_code != 0)
+//     acc[v.industry_code] = v.industry;
+//   return acc;
+// }, {})
+
+const industriesObj = lists.industries.reduce((acc, v) => {
+  // 0 is for "all industries"; should not be included in the industry list
+  // if (v.industry_code != 0)
+  acc[v.industry_code] = v.industry;
+  return acc;
+}, {});
+
 const dataProm = d3
-  .csv(require('@/assets/data/20190422_gcpd.csv'))
+  // .csv(require('@/assets/data/20190425_complete.csv'))
+  .csv(require('@/assets/data/20190425_complete.csv'))
   .then(data => {
     // Convert to correct data types and make other changes before returning the data
     data.forEach(el => {
@@ -20,8 +34,18 @@ const dataProm = d3
       el.ebitda = +el.ebitda;
       el.year = +el.year;
       el.patentcount = +el.patentcount;
+      el.industry = industriesObj[el.industry_code];
     });
 
+    return data;
+  });
+
+const yearIndustryDataProm = d3
+  .csv(require('@/assets/data/20190425_year_industry.csv'))
+  .then(data => {
+    data.forEach(el => {
+      el.industry = industriesObj[el.industry_code];
+    });
     return data;
   });
 
@@ -34,4 +58,4 @@ const fieldNamesProm = d3
     });
   });
 
-export { dataProm, fieldNamesProm };
+export { dataProm, industriesObj, yearIndustryDataProm, fieldNamesProm };
