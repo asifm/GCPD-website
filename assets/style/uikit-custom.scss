@@ -1,10 +1,68 @@
+// from Darden stylesheet
+.uk-h1,.uk-h2,.uk-h3,.uk-h4,.uk-h5,.uk-h6{
+  font-family: FranklinGothicURW,sans-serif;
+  letter-spacing: .1em;
+  margin: 50px 0 25px;
+  text-transform: uppercase
+}
+
+h1, .uk-h1 {
+  font-size: 3rem
+}
+
+h2, .uk-h2 {
+  font-size: 2.2rem;
+}
+
+h3, .uk-h3 {
+  color: #e57200;
+  font-size: 1.8rem
+}
+
+h4, .uk-h4 {
+  font-size: 1.4rem;
+
+}
+h5, h6, .uk-h5,.uk-h6 {
+  color: #e57200;
+  font-size: 1.1rem;
+}
+
+// Darden Button;
+.dd-button {
+  background: #e57200;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: FranklinGothicURW,sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: .02em;
+  line-height: 1;
+  overflow: hidden;
+  padding: 15px 20px;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap
+}
+
+.uk-button:active,.uk-button:hover {
+  background: #ea8e31;
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,.2);
+  color: #fff;
+}
+
+
 //:: Custom variables and variable overwrites.
 
 // ::COLORS
 
 // light and dark using https://material.io/tools/
 $blue: #232d4b;
-$blue-light: #4d5677;
+$blue-light: #8f9ecb;
 $blue-dark: #000123;
 
 $orange: #e57200;
@@ -143,7 +201,7 @@ $global-color: $blue;
 $global-primary-background: $orange;
 $global-secondary-background: $blue;
 
-$base-heading-color: $orange;
+$base-heading-color: $blue;
 
 .uk-tile-primary,
 .uk-card-primary :matches(p, h1, h2, h3, h4, h5, h6) {
@@ -157,25 +215,31 @@ $base-heading-color: $orange;
 
 //:: data visualization helpers :://
 
-$asia-pacific: rgb(115, 160, 245);
+$asia-pacific: $blue-light;
 $europe: #f6e481;
 $north-america: $orange-light;
 $other: #99c96a;
 
+.region-label {
+  font-weight: 300 !important;
+  color: black !important;
+  margin: 5px;
+}
+
 .north-america {
-  background-color: $north-america;
+  background-color: $north-america !important;
 }
 
 .asia-pacific {
-  background-color: $asia-pacific;
+  background-color: $asia-pacific !important;
 }
 
 .europe {
-  background-color: $europe;
+  background-color: $europe !important;
 }
 
 .other {
-  background-color: $other;
+  background-color: $other !important;
 }
 
 .circle-north-america {
@@ -194,24 +258,40 @@ $other: #99c96a;
   fill: $other;
 }
 
+
+$button-primary-color: #ffffff;
+$button-secondary-color: #ffffff;
+.uk-button {
+  border-radius: 5px;
+  letter-spacing: 0.05em;
+}
+$global-link-color: $blue !default;
+$base-link-text-decoration: underline darkorange solid;
+
+p em {
+  color: $blue;
+}
+
+
+
 //** End colors 
 
 //:: Start typography
 //: Load fonts
 
-@font-face {
-  font-family: 'FranklinGothicURW';
-  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Hea.woff') format('woff');
-  font-weight: 900;
-  font-style: normal;
-}
+// @font-face {
+  //   font-family: 'FranklinGothicURW';
+  //   src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Hea.woff') format('woff');
+  //   font-weight: 900;
+  //   font-style: normal;
+// }
 
-@font-face {
-  font-family: 'FranklinGothicURW';
-  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Dem.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-}
+// @font-face {
+//   font-family: 'FranklinGothicURW';
+//   src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Dem.woff') format('woff');
+//   font-weight: 700;
+//   font-style: normal;
+// }
 
 @font-face {
   font-family: 'FranklinGothicURW';
@@ -231,7 +311,11 @@ $other: #99c96a;
 $global-font-size: 16px;
 $global-font-family: FranklinGothicURW;
 $base-body-font-weight: 500;
-$base-body-font-size: 14px;
+// $base-body-font-size: 14px;
+
+.uk-button a {
+  text-decoration: none;
+}
 
 .my-text-medium {
   font-size: 1.2rem !important;
@@ -251,29 +335,26 @@ $base-body-font-size: 14px;
 }
 
 $base-heading-font-family: 'FranklinGothicURW';
-$base-heading-font-weight: 500;
+$base-heading-font-weight: 300;
 $base-heading-text-transform: uppercase;
 
-$global-xxlarge-font-size: 2.2rem;
+$global-xxlarge-font-size: 2.4rem;
 $global-xxlarge-font-size: 1.8rem;
 $global-large-font-size: 1.4rem;
 $global-medium-font-size: 1.1rem;
 $global-small-font-size: 0.9rem;
 
-.uk-h1,
-.uk-h2 {
-  letter-spacing: 0.02em;
-}
 
 p,
 dl,
 ul {
   font-family: Georgia, serif;
+  font-size: 1rem;
 }
 
 .uk-navbar-nav>li>a {
   font-family: FranklinGothicURW !important;
-  font-weight: 600;
+  font-weight: 500;
   color: $blue !important;
 
   &:hover {
