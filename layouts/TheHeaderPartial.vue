@@ -1,7 +1,7 @@
 <template lang="pug">
   // fix: box-shadow doesn't stay on the home page
   nav.uk-navbar-right(uk-navbar uk-sticky="show-on-up:true; animation:uk-animation-slide-top" style="background-color: #efefef").uk-box-shadow-small
-    img(src="https://res.cloudinary.com/asifm/image/upload/w_300/v1543573588/darden_rgb-02_qrpxwe.png").uk-float-left.uk-margin-left
+    img(src="https://res.cloudinary.com/asifm/image/upload/w_275/v1543573588/darden_rgb-02_qrpxwe.png").uk-float-left.uk-margin-left
     .uk-navbar-right.uk-margin-right
       ul.uk-navbar-nav
         li.uk-button-text.uk-animation-fade(v-show="this.$route.path != '/'"): nuxt-link(to="/") Home

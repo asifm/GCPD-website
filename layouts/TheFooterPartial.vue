@@ -34,5 +34,5 @@ div
             
     
   .uk-section.uk-padding-small.uk-text-center.bg-blue-700.fg-white
-    p COPYRIGHT © 2018 THE RECTOR AND VISITORS OF THE UNIVERSITY OF VIRGINIA. ALL RIGHTS RESERVED.
+    p COPYRIGHT © 2019 THE RECTOR AND VISITORS OF THE UNIVERSITY OF VIRGINIA. ALL RIGHTS RESERVED.
 </template>
