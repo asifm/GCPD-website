@@ -28,15 +28,16 @@ export default {
     };
   },
   created() {
-    FilterBus.$on('reset-data', () => {
-      if (this.paramList == 'countries') this.selected = 'All Countries';
-      if (this.paramList == 'industries') this.selected = 'All Industries';
-    });
+    // FilterBus.$on('reset-data', () => {
+    //   if (this.paramList == 'countries') this.selected = 'All Countries';
+    //   if (this.paramList == 'industries') this.selected = 'All Industries';
+    // });
   },
   mounted() {
     if (this.paramList == 'countries') {
       this.items = lists.regionsCountries;
       this.eventName = 'change-geography';
+
       // For convenience show United States toward the top (in addition to its alphabetical place)
       // But first make sure it's not already there
       if (this.items.filter(el => el === 'United States').length === 1) {
@@ -58,9 +59,13 @@ export default {
 </script>
 
 <template lang="pug">
-  vue-select(:options="items" v-model="selected" :clearable="false" maxHeight="300px").uk-text-small
+    vue-select#param-select.uk-text-small(:options="items" v-model="selected" :clearable="false" maxHeight="300px")
 </template>
 
 <style lang="scss">
 @import 'vue-select/dist/vue-select.css';
+
+#param-select .vs__selected {
+  font-family: Georgia, serif;
+}
 </style>

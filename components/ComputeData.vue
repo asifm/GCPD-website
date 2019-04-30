@@ -13,14 +13,17 @@ export default {
   data() {
     return {
       calculating: false,
+      // geography: '',
+      // industry: '',
+      // rangeYears: [],
       geography: 'All Countries',
       industry: 'All Industries',
-      rangeYears: [lists.dataYearRange.min, lists.dataYearRange.max],
+      rangeYears: [2010, 2017],
     };
   },
   created() {
     dataProm.then(data => {
-      this.showMessageCalculating(3000);
+      this.showMessageCalculating(1500);
       //:: Initialize crossfilter with data and its dimensions and groups :://
       this.cf = Crossfilter(data);
       this.companyDim = this.cf.dimension(d => d.company);
@@ -132,6 +135,7 @@ export default {
 
       //::: Listening for changes ::://
       FilterBus.$on('change-geography', payload => {
+        console.log('got change geography');
         this.geography = payload;
         this.showMessageCalculating();
         // Note: Although country and region are separate fields in the data,
@@ -141,6 +145,7 @@ export default {
       });
 
       FilterBus.$on('change-industry', payload => {
+        console.log('got change industry');
         this.industry = payload;
         this.showMessageCalculating();
         this.changeIndustry(payload);
@@ -148,6 +153,7 @@ export default {
       });
 
       FilterBus.$on('change-rangeyears', payload => {
+        console.log('got change years');
         this.rangeYears = payload;
         this.showMessageCalculating();
         this.changeYears(payload);
@@ -157,7 +163,7 @@ export default {
       FilterBus.$on('reset-data', () => {
         this.changeGeography('All Countries');
         this.changeIndustry('All Industries');
-        this.changeYears([2000, 2017]);
+        this.changeYears([2010, 2017]);
         this.emitData();
       });
       //-- ends listneing for changes --//

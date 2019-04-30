@@ -16,6 +16,11 @@ import ListCompanyDetailed from '@/components/outputs/ListCompanyDetailed';
 import MapWithCircles from '@/components/outputs/MapWithCircles';
 
 // todo p1: Remove from data the unimportant countries
+let keyCounter = 0;
+// default parameters
+const defaultCountry = 'All Countries';
+const defaultIndustry = 'All Industries';
+const defaultRangeYears = [2010, 2017];
 
 export default {
   components: {
@@ -27,33 +32,20 @@ export default {
   },
   data() {
     return {
-      defaultCountry: 'All Countries',
-      defaultIndustry: 'All Industries',
-      rangeYears: [lists.dataYearRange.min, lists.dataYearRange.max],
-      minYear: lists.dataYearRange.min,
-      maxYear: lists.dataYearRange.max,
+      defaultCountry,
+      defaultIndustry,
+      defaultRangeYears,
+      yearsComponentKey: `years-${keyCounter}`,
+      industryComponentKey: `industry-${keyCounter}`,
+      countryComponentKey: `country-${keyCounter}`,
+      // computeComponentKey: 'compute' + 0,
+      listComponentKey: `list-${keyCounter}`,
       listLength: 25,
       sumPatentsInSelectedData: null,
       tweenedNumber: 0,
     };
   },
   computed: {
-    startYear: {
-      get() {
-        return this.rangeYears[0];
-      },
-      set(newValue) {
-        this.rangeYears[0] = newValue;
-      },
-    },
-    endYear: {
-      get() {
-        return this.rangeYears[1];
-      },
-      set(newValue) {
-        this.rangeYears[1] = newValue;
-      },
-    },
     sumPatentsInSelectedDataAnimated: function() {
       return this.tweenedNumber.toFixed(0);
     },
@@ -68,8 +60,7 @@ export default {
   mounted() {
     this.startGuide();
     FilterBus.$on('new-data', dataObj => {
-      const { rangeYears, cf } = dataObj;
-      this.rangeYears = rangeYears;
+      const { cf } = dataObj;
 
       this.sumPatentsInSelectedData = cf
         .groupAll()
@@ -86,7 +77,12 @@ export default {
     // },
 
     resetData() {
-      // todo: Use $on to reset all data in other components
+      keyCounter += 1;
+      this.yearsComponentKey = `years-${keyCounter}`;
+      this.countryComponentKey = `country-${keyCounter}`;
+      this.industryComponentKey = `industry-${keyCounter}`;
+      // this.computeComponentKey = `compute-${keyCounter}`;
+      this.listComponentKey = `list-${keyCounter}`;
       FilterBus.$emit('reset-data');
     },
     startGuide() {
@@ -111,25 +107,29 @@ export default {
 <template lang="pug">
 div.uk-section.uk-padding-remove-vertical.uk-margin-medium
   div.uk-container.uk-container-expand
-    div.uk-h1#heading(
+    div.uk-h2#heading(
       data-intro="Use this tool to explore the entire global corporate patent dataset."
-      ) <span class="my-text-heavy fg-blue-200"> Explore </span> the World of Corporate Patents
+      ) <span class="my-text-heavy fg-orange-300"> Explore </span> the World of Corporate Patents
       
     div.uk-grid(uk-grid)
       div.uk-width-3-4
-        div.uk-width-1-1.uk-grid(uk-grid)
+        div.uk-width-1-1.uk-grid.uk-flex-bottom(uk-grid)
           div.uk-width-1-4(
             data-step=2
             data-intro="Select a country and/or an industry. <br><br> The data and visualizations will change to reflect your selection."
             )
-            select-parameter(
-              :selected_="defaultCountry"
-              param-list="countries" 
-              )
-            select-parameter(
-              :selected_="defaultIndustry"
-              param-list="industries" 
-              )
+            div.uk-padding-small.uk-box-shadow-small.bg-orange-fade-out-9.uk-box-shadow-hover-medium
+              select-parameter(
+                :key="countryComponentKey"
+                :selected_="defaultCountry"
+                param-list="countries" 
+                )
+              br
+              select-parameter(
+                :key="industryComponentKey"
+                :selected_="defaultIndustry"
+                param-list="industries" 
+                )
 
           div.uk-width-1-2(
             data-step=3 
@@ -137,24 +137,23 @@ div.uk-section.uk-padding-remove-vertical.uk-margin-medium
             )
             //- todo: remove these; use them as read-only labels instead for the slider
             
-            p Select years. Now showing <strong>{{ startYear }}</strong> through <strong>{{ endYear }}</strong>.
-            input-range.el-form-item--medium(
-              :rangeYears_="rangeYears"
+            input-range(
+              :key="yearsComponentKey"
+              :rangeYears_="defaultRangeYears"
               )
           
           div.uk-width-1-4
             div(
               data-step=7 
               data-intro="You can again start this guide from here. <br><br>At any point, you can set everything on the page to its beginning state using the reset button."
-              ).uk-text-center
-              button.uk-button.uk-button-small.uk-button-text.fg-orange-fade-out-2(
+              )
+              button.uk-button.uk-button-small.uk-margin-small(
                 @click="startGuide"
                 ) Guide
               br
-              button.uk-button.uk-button-small.uk-button-text.fg-blue-fade-out-2(
+              button.uk-button.uk-button-small(
                 @click="resetData"
                 ) Reset Data &amp; Map
-              
             
         div.uk-width-1-1.uk-margin-top.uk-margin-medium-left(
             data-step=4 
@@ -169,8 +168,10 @@ div.uk-section.uk-padding-remove-vertical.uk-margin-medium
             :height="500"
             )
       div.uk-width-1-4
+        //- compute-data(:key="computeComponentKey")
         compute-data
         list-company-detailed.uk-box-shadow-large.uk-animation-slide-left(
+          :key="listComponentKey"
           :listLength="listLength" 
           data-position="auto" 
           data-scrollTo="#top" 

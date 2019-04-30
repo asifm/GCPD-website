@@ -13,7 +13,7 @@ export default {
     CardCompanyFacts,
   },
   props: {
-    listLength: { type: Number, default: 50 },
+    listLength: { type: Number, default: 25 },
   },
   data() {
     return {
@@ -59,20 +59,20 @@ div(
   )
   div.uk-card-header.uk-padding-small.bg-white.uk-animation-fade
     //- Show end year only if it's different from start year; same start and end means single year selection
-    p.uk-h3.uk-margin-small-top  {{ startYear }}<span v-show="startYear != endYear">–{{ endYear }}</span>
-      span.fg-blue-900  {{ geography }} <br />
-      span.my-text-thin.fg-orange-400  {{ industry_desc }} 
-      span.my-text-thin.fg-blue-300(
-        v-show="numCompaniesInSelectedData > 0"
-        ) {{ numCompaniesInSelectedData  | thousandComma  }} companies
+    //- h3.uk-h3.fg-orange-900.uk-margin-small-top  {{ startYear }}<span v-show="startYear != endYear">–{{ endYear }}</span>
+    h3.uk-h3.uk-text-right.fg-blue-900  {{ geography }} <br />
+      span.fg-orange-300  {{ industry_desc }}
+
+    h5.uk-h5.my-text-heavy.fg-blue-900.uk-margin-remove(
+      v-show="numCompaniesInSelectedData > 0"
+      ) {{ numCompaniesInSelectedData  | thousandComma  }} companies
+
     div
-      p Leading Companies
-      div.my-text-tiny
-        span.fg-black.uk-padding-tiny.asia-pacific Asia Pacific
-        span.fg-black.uk-padding-tiny.europe Europe
-        span.fg-black.uk-padding-tiny.north-america North America
-        span.fg-black.uk-padding-tiny.other Other
-    
+      span.my-text-tiny.uk-label.region-label.asia-pacific Asia Pacific
+      span.my-text-tiny.uk-label.region-label.europe Europe
+      span.my-text-tiny.uk-label.region-label.north-america North America
+      span.my-text-tiny.uk-label.region-label.other Other
+  
   ul.uk-list.uk-padding-remove
     li.uk-text-left.uk-animation-slide-left.uk-padding-small.uk-box-shadow-small.list-item(
       v-for="(company, i) in topCompanies.slice(0, listLength)" 
@@ -80,7 +80,7 @@ div(
       :class="company.value.region | makeKebab "
       )
       div
-        span.fg-black.uk-text-bold.uk-text-uppercase  {{ company.key }} <br>
+        span.fg-black.uk-text-bold.uk-text-uppercase  {{ company.key }} <br />
         h3.uk-margin-remove.fg-blue-900.uk-text-large.uk-float-right
           | {{ company.value.patentcount | thousandComma }}
         span.uk-label.bg-white.fg-blue.uk-margin-small-right
@@ -98,7 +98,7 @@ div(
 
 <style lang="scss" scoped>
 .list-item {
-  transition: background-color 0.3s;
+  transition: background-color 0.15s;
   &:hover {
     background-color: white;
   }

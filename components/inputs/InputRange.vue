@@ -1,5 +1,5 @@
 <script>
-import _ from 'lodash';
+import Vue from 'vue';
 import { FilterBus } from '@/assets/js/FilterBus';
 import { lists } from '@/assets/data/listData';
 
@@ -25,37 +25,62 @@ export default {
       maxYear: lists.dataYearRange.max,
     };
   },
-  watch: {
-    rangeYears_(newValue) {
-      this.rangeYears = newValue;
+  computed: {
+    startYear: {
+      get() {
+        return this.rangeYears[0];
+      },
+      set(newValue) {
+        Vue.set(this.rangeYears, 0, +newValue);
+      },
+    },
+    endYear: {
+      get() {
+        return this.rangeYears[1];
+      },
+      set(newValue) {
+        Vue.set(this.rangeYears, 1, +newValue);
+      },
     },
   },
-  created() {
-    FilterBus.$on('reset-data', () => {
-      this.rangeYears = [2000, 2017];
-    });
-  },
-  methods: {
-    update: _.debounce(function() {
-      FilterBus.$emit('change-rangeyears', this.rangeYears);
-    }, 500),
+  watch: {
+    rangeYears(newValue) {
+      FilterBus.$emit('change-rangeyears', newValue);
+    },
   },
 };
 </script>
 
 <template lang="pug">
-  vue-slider(
-    @change="update"
-    v-model="rangeYears" 
-    :min="minYear" 
-    :max="maxYear" 
-    :min-range=1
-    :max-range="maxYear - minYear"
-    )
+  div.uk-padding-small.uk-box-shadow-small.bg-orange-fade-out-9.uk-box-shadow-hover-medium
+    //- p.uk-text-small Showing 
+    //-   input#year-input.uk-input(type="number" v-model="startYear")
+    //-   span  through 
+    //-   input#year-input.uk-input(type="number" v-model="endYear")
+    vue-slider(
+      v-model="rangeYears" 
+      :lazy="true"
+      :min="minYear" 
+      :max="maxYear"
+      :contained="true"
+      :enableCross="false"
+      tooltip="always"
+      )
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 ul {
   font-family: FranklinGothicURW;
+}
+#year-input {
+  width: 70px;
+}
+.vue-slider-dot-tooltip-inner,
+.vue-slider-dot-tooltip-inner-top {
+  background-color: #232d4b;
+  border-color: #232d4b;
+}
+.vue-slider-process {
+  background-color: #8f9ecb;
 }
 </style>

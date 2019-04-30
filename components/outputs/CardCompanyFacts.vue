@@ -27,7 +27,7 @@ export default {
 </script>
 
 <template lang="pug">
-  div.bg-white.uk-padding-small.uk-animation-fade
+  div.bg-white.uk-padding-small.uk-animation-fade.uk-padding-small.uk-padding-remove-left
     ul.uk-card-header
       li.uk-text-small.fg-black 
         | {{ company.value.industry}}
@@ -55,7 +55,7 @@ export default {
           | $ <span class="">{{ formatNumber(company.value.ebitda, 1e6) }}</span>
 
     div.uk-card-footer
-      p.uk-text-meta
+      p.uk-text-meta.my-text-tiny
         a.fg-blue-400(
           target="_blank" 
           :href="`https://patents.google.com/?assignee=${ removeLastWord(company.key) }&before=filing:${endYear}1231&after=filing:${startYear}0101&type=PATENT&num=50&sort=new`")
