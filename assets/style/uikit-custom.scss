@@ -223,7 +223,6 @@ $other: #99c96a;
 .region-label {
   font-weight: 300 !important;
   color: black !important;
-  margin: 5px;
 }
 
 .north-america {
@@ -262,11 +261,11 @@ $other: #99c96a;
 $button-primary-color: #ffffff;
 $button-secondary-color: #ffffff;
 .uk-button {
-  border-radius: 5px;
+  border-radius: 3px;
   letter-spacing: 0.05em;
 }
 $global-link-color: $blue !default;
-$base-link-text-decoration: underline darkorange solid;
+$base-link-text-decoration: underline $orange-dark solid;
 
 p em {
   color: $blue;
@@ -279,12 +278,12 @@ p em {
 //:: Start typography
 //: Load fonts
 
-// @font-face {
-  //   font-family: 'FranklinGothicURW';
-  //   src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Hea.woff') format('woff');
-  //   font-weight: 900;
-  //   font-style: normal;
-// }
+@font-face {
+    font-family: 'FranklinGothicURW';
+    src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Hea.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
 
 // @font-face {
 //   font-family: 'FranklinGothicURW';
@@ -308,7 +307,7 @@ p em {
 }
 
 //: typography overrides
-$global-font-size: 16px;
+$global-font-size: 14px;
 $global-font-family: FranklinGothicURW;
 $base-body-font-weight: 500;
 // $base-body-font-size: 14px;
