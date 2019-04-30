@@ -1,15 +1,14 @@
 <script>
-import FullStackedCol from '@/components/outputs/FullStackedCol';
+import HighChart1 from '@/components/outputs/HighChart1';
 export default {
   components: {
-    FullStackedCol,
+    HighChart1,
   },
 };
 </script>
 
-
 <template lang="pug">
 .uk-section.uk-animation-slide-top-small
   .uk-container
-    full-stacked-col
+    high-chart1
 </template>
