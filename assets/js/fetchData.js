@@ -17,8 +17,8 @@ const industriesObj = lists.industries.reduce((acc, v) => {
 }, {});
 
 const dataProm = d3
-  // .csv(require('@/assets/data/20190425_complete.csv'))
-  .csv(require('@/assets/data/20190425_complete.csv'))
+  // .csv(require('@/assets/data/20190430_complete.csv'))
+  .csv(require('@/assets/data/20190430_complete.csv'))
   .then(data => {
     // Convert to correct data types and make other changes before returning the data
     data.forEach(el => {
@@ -41,7 +41,7 @@ const dataProm = d3
   });
 
 const yearIndustryDataProm = d3
-  .csv(require('@/assets/data/20190425_year_industry.csv'))
+  .csv(require('@/assets/data/20190430_year_industry.csv'))
   .then(data => {
     data.forEach(el => {
       el.industry = industriesObj[el.industry_code];

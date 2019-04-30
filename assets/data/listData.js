@@ -89,6 +89,7 @@ export const lists = {
         'Mexico',
         'Netherlands Antilles',
         'Panama',
+        'Antigua and Barbuda'
       ],
     },
     {
@@ -113,6 +114,7 @@ export const lists = {
         'Sweden',
         'Switzerland',
         'United Kingdom',
+        'Greece'
       ],
     },
     {
@@ -139,6 +141,7 @@ export const lists = {
         'Argentina',
         'Brazil',
         'Chile',
+        'Colombia',
         'Israel',
         'South Africa',
         'Zimbabwe',
@@ -146,6 +149,9 @@ export const lists = {
     },
   ],
   countries: [
+  'Greece',
+  'Colombia',
+  'Antigua and Barbuda',
     'United States',
     'Argentina',
     'Australia',
@@ -203,6 +209,7 @@ export const lists = {
     'Europe',
     'North America',
     'Other',
+    'Antigua and Barbuda',
     'Argentina',
     'Australia',
     'Austria',
@@ -215,11 +222,13 @@ export const lists = {
     'Cayman Islands',
     'Chile',
     'China',
+    'Colombia',
     'Denmark',
     'Finland',
     'France',
     'Germany',
     'Gibraltar',
+    'Greece',
     'Hong Kong, SAR China',
     'Hungary',
     'Iceland',
