@@ -18,16 +18,18 @@ export default {
     .uk-grid(uk-grid)
       .uk-width-1-2
         .uk-card.uk-card-body
-          .uk-h1.fg-orange-700#title <span class="my-text-thin">UVA Darden</span><br><span class="fg-blue">Global Corporate Patent Dataset</span>
+          .uk-h2.uk-margin-remove UVA Darden
+          .uk-h1#title.uk-margin-remove.fg-orange-700 Global Corporate Patent Dataset
+          //- h1.uk-h1 <span class="fg-blue">UVA Darden</span><br><span class="fg-orange my-text-heavy" id="#title">Global Corporate Patent Dataset</span>
           div.my-text-medium
             div(class="uk-column-1-2@m")
               img(src="https://res.cloudinary.com/asifm/image/upload/w_80/v1543120861/i-bulb-dollar_y7bhwn.png").uk-float-right
               p.fg-blue-fade-out-2.uk-dropcap.uk-text-large.uk-column-span Corporate innovation plays a crucial role in pushing the frontier of technology — and technology's progress helps advance economic prosperity. By tracking corporate innovation, we can learn much about where and how new ideas, knowledge, products, and techniques are emerging.
-              p The dataset that we have made available on this website provides a window into the world of corporate patents—an important indicator of corporate research and development activities and the consequent innovation—across industries and countries.
+              p.uk-margin-remove-top The dataset that we have made available on this website provides a window into the world of corporate patents—an important indicator of corporate research and development activities and the consequent innovation—across industries and countries.
               p The public release of this dataset reflects our belief that it would open up new research possibilities and enable the discovery of insights in different areas of finance and economics. We also expect this data to help advance public discussions, outside of academia, on corporate innovation, productivity, and performance.
               //- p This project was made possible with the financial support from the <em>Batten Institute for Entrepreneurship and Innovation</em> and the <em>Richard A. Mayo Center for Asset Management</em> at the UVA Darden School of Business.
               nuxt-link(to="/interactive")
-                img.uk-margin-medium-top(src="https://res.cloudinary.com/asifm/image/upload/w_500/v1543798822/worldmap_static_j4peu3.png" @click="loading = !loading")
+                img.uk-margin-medium-top.uk-animation-slide-top(src="https://res.cloudinary.com/asifm/image/upload/w_500/v1543798822/worldmap_static_j4peu3.png" @click="loading = !loading")
               p.uk-text-small [Click on the map to see a larger, interactive version. It may take a few seconds to load all data.]
               div(v-if="loading" uk-spinner="ratio:5").uk-position-center.uk-position-absolute
       
