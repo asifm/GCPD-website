@@ -2,17 +2,9 @@
 import * as d3 from 'd3';
 import { lists } from '@/assets/data/listData';
 
-// const industriesAllObj = lists.industries.reduce((acc, v) => {
-//   // 0 is for "all industries"; should not be included in the industry list
-//   if (v.industry_code != 0)
-//     acc[v.industry_code] = v.industry;
-//   return acc;
-// }, {})
-
 const industriesObj = lists.industries.reduce((acc, v) => {
   // 0 is for "all industries"; should not be included in the industry list
-  // if (v.industry_code != 0)
-  acc[v.industry_code] = v.industry;
+  if (v.industry_code != 0) acc[v.industry_code] = v.industry;
   return acc;
 }, {});
 
@@ -49,13 +41,27 @@ const yearIndustryDataProm = d3
     return data;
   });
 
-// Not used
-const fieldNamesProm = d3
-  .csv(require('@/assets/data/FieldNamesMapped.csv'))
-  .then(data => {
-    data.forEach(row => {
-      return data;
-    });
-  });
+const company1980to89DataProm = d3.csv(
+  require('@/assets/data/20190430_company_1980_1989.csv'),
+);
 
-export { dataProm, industriesObj, yearIndustryDataProm, fieldNamesProm };
+const regionIndustryDataProm = d3.csv(
+  require('@/assets/data/20190430_region_industry.csv'),
+);
+
+// Not used
+// const fieldNamesProm = d3
+//   .csv(require('@/assets/data/FieldNamesMapped.csv'))
+//   .then(data => {
+//     data.forEach(row => {
+//       return data;
+//     });
+//   });
+
+export {
+  dataProm,
+  industriesObj,
+  yearIndustryDataProm,
+  company1980to89DataProm,
+  regionIndustryDataProm,
+};
