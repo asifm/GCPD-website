@@ -1,21 +1,21 @@
 <template lang="pug">
 div
-  .uk-section.uk-padding-small.bg-orange-fade-out-9.uk-text-center.fg-black
+  .uk-section.uk-padding-small.bg-blue-fade-out-9.uk-text-center
     p For comments or questions about this dataset, please email us at 
       a(href="mailto:GCPD@darden.virginia.edu")
         span GCPD@darden.virginia.edu
-  .uk-section-secondary.uk-padding-small.uk-padding-remove-vertical
+  .uk-section-secondary.uk-padding-small.uk-padding-remove-vertical.bg-blue-400.fg-white
     .uk-container.uk-container-expand
       div(uk-grid).uk-grid.uk-padding-remove
-        .uk-width-1-3
-          img(src="https://res.cloudinary.com/asifm/image/upload/w_250/v1544568270/batten-logo-long_tpsmit.jpg").bg-white.uk-padding.uk-position-medium
+        div(class="uk-width-1-5@s uk-visible@s")
+          img#battenlogo(src="https://res.cloudinary.com/asifm/image/upload/w_500/v1544568270/batten-logo-long_tpsmit.jpg").bg-white.uk-padding-small.uk-position-medium
     
-        .uk-tile.uk-padding.uk-width-1-3
+        div(class="uk-tile uk-padding uk-width-2-5@s")
           div
             p This website, including the data tools and visualizations in it, has been developed by <span class="uk-text-bold"> The Batten Institute for Entrepreneurship and Innovation </span>at the University of Virginia Darden School. This is part of the long-term support the Institute has been providing in various forms to this project. 
             p The Institute's mission is to improve society by creating knowledge about the transformative power of entrepreneurship and innovation and by cultivating principled, entrepreneurial leaders.
             
-            div
+            div.my-text-thin.uk-text-small
               a(uk-icon="icon: mail" href="mailto:Batten@darden.virginia.edu")
               span.uk-margin-small-right Batten@darden.virginia.edu
           
@@ -25,7 +25,7 @@ div
           .uk-button.uk-button-default.uk-button-small.uk-margin-small-top
             a(href="https://www.darden.virginia.edu/batten-institute/about/").uk-link-reset Learn more
             
-        .uk-tile.uk-padding.uk-width-1-3
+        div(class="uk-tile uk-padding uk-width-2-5@s")
           div
             p <span class="uk-text-bold">The University of Virginia Darden School of Business</span> delivers the world’s best business education experience to prepare entrepreneurial, global and responsible leaders through its MBA, Ph.D. and Executive Education programs. Darden’s top-ranked faculty is renowned for teaching excellence and advances practical business knowledge through research. 
             p Darden was established in 1955 at the University of Virginia, a top public university founded by Thomas Jefferson in 1819 in Charlottesville, Virginia.
@@ -36,3 +36,9 @@ div
   .uk-section.uk-padding-small.uk-text-center.bg-blue-700.fg-white
     p COPYRIGHT © 2019 THE RECTOR AND VISITORS OF THE UNIVERSITY OF VIRGINIA. ALL RIGHTS RESERVED.
 </template>
+
+<style lang="scss" scoped>
+#battenlogo {
+  width: 250px;
+}
+</style>
