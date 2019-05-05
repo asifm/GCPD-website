@@ -89,7 +89,7 @@ export const lists = {
         'Mexico',
         'Netherlands Antilles',
         'Panama',
-        'Antigua and Barbuda'
+        'Antigua and Barbuda',
       ],
     },
     {
@@ -114,7 +114,7 @@ export const lists = {
         'Sweden',
         'Switzerland',
         'United Kingdom',
-        'Greece'
+        'Greece',
       ],
     },
     {
@@ -149,9 +149,9 @@ export const lists = {
     },
   ],
   countries: [
-  'Greece',
-  'Colombia',
-  'Antigua and Barbuda',
+    'Greece',
+    'Colombia',
+    'Antigua and Barbuda',
     'United States',
     'Argentina',
     'Australia',
