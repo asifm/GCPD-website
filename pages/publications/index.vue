@@ -51,7 +51,7 @@ export default {
               span.fg-orange-700 {{ pub.date }}
             p.uk-text-small.uk-margin-remove-top {{ pub.authors }}
 
-            img.uk-box-shadow-large(:src="pub.imgSrc").uk-float-left.uk-margin-right.uk-margin-bottom
+            img.uk-box-shadow-small(:src="pub.imgSrc").uk-float-left.uk-margin-right.uk-margin-bottom
             p.uk-text-small.fg-blue {{ pub.intro }}
           .uk-card-footer
             button.uk-button.uk-button-primary(v-if="pub.downloadLink")
