@@ -1,8 +1,8 @@
 <script>
-import HighChart1 from '@/components/outputs/HighChart1';
+import ChartStacked from '@/components/outputs/ChartStacked';
 export default {
   components: {
-    HighChart1,
+    ChartStacked,
   },
 };
 </script>
@@ -10,5 +10,5 @@ export default {
 <template lang="pug">
 .uk-section.uk-animation-slide-top-small
   .uk-container
-    high-chart1
+    chart-stacked
 </template>
