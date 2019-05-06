@@ -1,21 +1,25 @@
 <script>
-import {
-  permute as d3Permute,
-  pairs as d3Pairs,
-  cross as d3Cross,
-  format as d3Format,
-} from 'd3';
+import { cross as d3Cross, format as d3Format } from 'd3';
 import ChartStacked from '@/components/outputs/ChartStacked';
-import ChartHeatmap from '@/components/outputs/ChartHeatMap';
+import ChartHeatmap from '@/components/outputs/ChartHeatmap';
+import ChartCirclepack from '@/components/outputs/ChartCirclepack';
 
 import { lists } from '@/assets/data/listData.js';
 import {
   industriesObj,
   regionIndustryDataProm,
+  yearRegionDataProm,
+  company1980to89DataProm,
+  company2007to16DataProm,
 } from '@/assets/js/fetchData.js';
-import { returnStatement } from 'babel-types';
 
 const regionList = ['Asia Pacific', 'Europe', 'North America'];
+const regionObj = {
+  'Asia Pacific': '#8e9fca',
+  Europe: '#99c869',
+  'North America': '#ffa23e',
+  // Other: '#f5e480',
+};
 const industryList = Object.values(industriesObj);
 const regionIndustryCross = d3Cross(regionList, industryList);
 
@@ -23,9 +27,25 @@ export default {
   components: {
     ChartStacked,
     ChartHeatmap,
+    ChartCirclepack,
   },
   data() {
     return {
+      regionCompanyPack1980to89Opts: {
+        series: [],
+        chart: {
+          height: '25%',
+        },
+        title: {
+          text: 'Top 50 Companies of 1980–1989',
+        },
+      },
+      regionCompanyPack2007to16Opts: {
+        series: [],
+        title: {
+          text: 'Top 50 Companies of 2007–2016',
+        },
+      },
       regionIndustryHeatmapOpts: {
         series: [],
         xAxis: {
@@ -33,6 +53,9 @@ export default {
         },
         yAxis: {
           categories: regionList,
+        },
+        title: {
+          text: 'Region-Industry Matrix (1980–2016)',
         },
         tooltip: {
           style: {
@@ -49,6 +72,47 @@ export default {
               '</b> Patents'
             );
           },
+        },
+      },
+      yearRegionColumnOpts: {
+        plotOptions: {
+          series: {
+            stacking: 'percent',
+          },
+        },
+        series: [],
+        chart: {
+          type: 'column',
+        },
+        yAxis: {
+          labels: {
+            format: '{value}%',
+          },
+          title: {
+            text: '% of Total Patents',
+          },
+        },
+        title: {
+          text: 'Regional Distribution of Patents by Year (1980–2016)',
+        },
+      },
+      yearRegionStreamOpts: {
+        series: [],
+        chart: {
+          type: 'streamgraph',
+        },
+        yAxis: {
+          labels: {
+            formatter() {
+              return d3Format('~s')(this.value).replace('-', '');
+            },
+          },
+          title: {
+            text: 'Number of Patents',
+          },
+        },
+        title: {
+          text: 'Number of Patents by Region and Year (1980–2016)',
         },
       },
     };
@@ -77,29 +141,79 @@ export default {
       });
     });
 
-    //     const vm = this;
-    //     yearIndustryDataProm.then(data_ => {
-    //       Object.keys(industriesObj).forEach(el => {
-    //         const filteredData = data_
-    //           .filter(el1 => el1.industry_code == el)
-    //           .map(el1 => +el1.count_patents);
-    //         vm.industryYearStreamgraphOpts.series.push({
-    //           data: filteredData,
-    //           name: industriesObj[el],
-    //         });
-    //       });
-    //       // vm.industryYearStreamgraphOpts.xAxis.categories =
-    //       // vm.industryYearStreamgraphOpts.chart.type = 'line';
-    //     });
+    company2007to16DataProm.then(data_ => {
+      Object.keys(regionObj).forEach(region => {
+        const seriesData = data_
+          .filter(row => row.region === region)
+          .map(row => ({
+            name: row.company,
+            value: +row.total_count_patents,
+          }));
+        vm.regionCompanyPack2007to16Opts.series.push({
+          name: region,
+          data: seriesData,
+          color: regionObj[region],
+        });
+      });
+    });
+    company1980to89DataProm.then(data_ => {
+      Object.keys(regionObj).forEach(region => {
+        const seriesData = data_
+          .filter(row => row.region === region)
+          .map(row => ({
+            name: row.company,
+            value: +row.total_count_patents,
+          }));
+        vm.regionCompanyPack1980to89Opts.series.push({
+          name: region,
+          data: seriesData,
+          color: regionObj[region],
+        });
+      });
+    });
+    yearRegionDataProm.then(data_ => {
+      regionList.forEach(region => {
+        const filteredData = data_
+          .filter(row => row.region == region)
+          .map(row => +row.count_patents);
+        const seriesItem = {
+          data: filteredData,
+          name: region,
+          color: regionObj[region],
+        };
+        vm.yearRegionColumnOpts.series.push(seriesItem);
+        vm.yearRegionStreamOpts.series.push(seriesItem);
+      });
+    });
   },
 };
 </script>
 
 <template lang="pug">
-.uk-section.uk-animation-slide-top-small
-  .uk-container.uk-container-expand
-    .uk-grid(uk-grid).uk-grid-match
+.uk-section.uk-animation-slide-top-small.uk-section-muted
+  .uk-container
+    h1.uk-h1 The Rise of Asia
+    .uk-grid(uk-grid).uk-card-default.uk-padding
       .uk-width-1-3
+        p.uk-margin-large-top Until the late 1970s, it was almost exclusively U.S. companies that filed patent applications with the USPTO. That changed around 1980 when both European and Asian companies started to seek U.S. patent protection for their innovation. In the subsequent years, the Asian countries as a whole far surpassed Europe and challenged the prominence of North America.
+        p.uk-text-large Hover over the charts to get more details.
+      .uk-width-2-3
+        chart-stacked(:custom-options="yearRegionColumnOpts")
+    .uk-grid(uk-grid).uk-card-default.uk-padding
+      .uk-width-1-3
+        p.uk-margin-large-top The past few decades saw an explosion of patent grants in the US, The streamgraph here shows the changes in regional distribution within the context of that rapid overall growth.
+      .uk-width-2-3
+        chart-stacked(:custom-options="yearRegionStreamOpts")
+    .uk-grid(uk-grid).uk-card-default.uk-padding
+      .uk-width-1-3
+        p.uk-margin-large-top It's notable, but perhaps not surprising, that the Asia Pacific region outshines North America in manufacturing — and is not far behind in business equipment and software, the industry that generated most patents during 1980–2016.
       .uk-width-2-3
         chart-heatmap(:custom-options="regionIndustryHeatmapOpts")
+    .uk-grid(uk-grid).uk-card-default.uk-padding
+      .uk-width-1-3
+        p.uk-margin-large-top Here's another look at how regional distribution changed dramatically between the first ten years (1980–2016) and the last ten years (2007–2016) of our dataset's coverage
+        p The smaller circles represent the top 50 companies, by aggregate count of patents, during those two periods. Hover over the circles for details.
+      .uk-width-2-3
+        chart-circlepack(:custom-options="regionCompanyPack1980to89Opts")
+        chart-circlepack(:custom-options="regionCompanyPack2007to16Opts")
 </template>
