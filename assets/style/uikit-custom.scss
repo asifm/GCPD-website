@@ -1,33 +1,35 @@
 // from Darden stylesheet
-.uk-h1,.uk-h2,.uk-h3,.uk-h4,.uk-h5,.uk-h6{
-  font-family: FranklinGothicURW,sans-serif;
-  letter-spacing: .1em;
-  margin: 50px 0 25px;
-  text-transform: uppercase
-}
+@media (min-wdith: 960px) {
+  h1, h2, h3, h4, h5, h6,
+  .uk-h1,.uk-h2,.uk-h3,.uk-h4,.uk-h5,.uk-h6 {
+    font-family: FranklinGothicURW,sans-serif;
+    letter-spacing: .1em;
+    margin: 50px 0 25px;
+    text-transform: uppercase
+  }
 
-h1, .uk-h1 {
-  font-size: 3rem
-}
+  h1, .uk-h1 {
+    font-size: 3rem;
+  }
 
-h2, .uk-h2 {
-  font-size: 2.2rem;
-}
+  h2, .uk-h2 {
+    font-size: 2.2rem;
+  }
 
-h3, .uk-h3 {
-  color: #e57200;
-  font-size: 1.8rem
-}
+  h3, .uk-h3 {
+    color: #e57200;
+    font-size: 1.8rem;
+  }
 
-h4, .uk-h4 {
-  font-size: 1.4rem;
+  h4, .uk-h4 {
+    font-size: 1.4rem;
 
+  }
+  h5, h6, .uk-h5,.uk-h6 {
+    color: #e57200;
+    font-size: 1.1rem;
+  }
 }
-h5, h6, .uk-h5,.uk-h6 {
-  color: #e57200;
-  font-size: 1.1rem;
-}
-
 // Darden Button;
 .dd-button {
   background: #e57200;
@@ -215,10 +217,10 @@ $base-heading-color: $blue;
 
 //:: data visualization helpers :://
 
-$asia-pacific: $blue-light;
-$europe: #f6e481;
-$north-america: $orange-light;
-$other: #99c96a;
+$asia-pacific: rgba(#8f9ecb, 0.3);
+$europe: rgba(#99c96a,0.6);
+$north-america: rgba($orange-light,0.4);
+$other: rgba(#f6e481, 0.6);
 
 .region-label {
   font-weight: 300 !important;
