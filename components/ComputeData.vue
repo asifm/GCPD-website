@@ -135,7 +135,6 @@ export default {
 
       //::: Listening for changes ::://
       FilterBus.$on('change-geography', payload => {
-        console.log('got change geography');
         this.geography = payload;
         this.showMessageCalculating();
         // Note: Although country and region are separate fields in the data,
@@ -145,7 +144,6 @@ export default {
       });
 
       FilterBus.$on('change-industry', payload => {
-        console.log('got change industry');
         this.industry = payload;
         this.showMessageCalculating();
         this.changeIndustry(payload);
@@ -153,7 +151,6 @@ export default {
       });
 
       FilterBus.$on('change-rangeyears', payload => {
-        console.log('got change years');
         this.rangeYears = payload;
         this.showMessageCalculating();
         this.changeYears(payload);
