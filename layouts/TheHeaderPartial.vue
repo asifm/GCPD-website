@@ -13,9 +13,9 @@ export default {};
           nuxt-link(to="#" id="data-highlights-topmenu") Data Highlights
           .uk-navbar-dropdown
             ul.uk-nav.uk-navbar-dropdown-nav
-              li.uk-button-text: nuxt-link(to="/data-highlights/top_companies") Most Innovative Companies
-              li.uk-button-text: nuxt-link(to="/data-highlights/rise_of_asia") The Rise of Asia
-              li.uk-button-text: nuxt-link(to="/data-highlights/tech_leading_innovation") Tech Industry Leading in Innovation
+              li.uk-button-text: nuxt-link(to="/data-highlights/top-companies") Most Innovative Companies
+              li.uk-button-text: nuxt-link(to="/data-highlights/rise-of-asia") The Rise of Asia
+              li.uk-button-text: nuxt-link(to="/data-highlights/tech-leading-innovation") Tech Industry Leading in Innovation
         li.uk-button-text: nuxt-link(to="/interactive") Interactive
         li.uk-button-text: nuxt-link(to="/publications") Publications
         li.uk-button-text: nuxt-link(to="/download-data") Download Data
@@ -32,9 +32,9 @@ export default {};
           li.uk-parent
             nuxt-link.uk-text-muted(to="#" id="data-highlights-topmenu") Data Highlights
             ul.uk-nav-sub
-              li: nuxt-link(to="/data-highlights/top_companies") Most Innovative Companies
-              li: nuxt-link(to="/data-highlights/rise_of_asia") The Rise of Asia
-              li: nuxt-link(to="/data-highlights/tech_leading_innovation") Tech Industry Leading in Innovation
+              li: nuxt-link(to="/data-highlights/top-companies") Most Innovative Companies
+              li: nuxt-link(to="/data-highlights/rise-of-asia") The Rise of Asia
+              li: nuxt-link(to="/data-highlights/tech-leading-innovation") Tech Industry Leading in Innovation
           li: nuxt-link(to="/interactive") Interactive
           li: nuxt-link(to="/publications") Publications
           li: nuxt-link(to="/download-data") Download Data
