@@ -1,4 +1,5 @@
 <script>
+import { fillRange } from '@/assets/js/utility';
 import { Chart } from 'highcharts-vue';
 
 import Highcharts from 'highcharts';
@@ -34,7 +35,7 @@ export default {
         },
         series: [],
         xAxis: {
-          categories: Array.from(Array(37).keys()).map(el => el + 1980),
+          categories: fillRange(1980, 2016),
           labels: {
             step: 3,
           },
