@@ -36,7 +36,7 @@ export default {
       li.uk-text-meta 
         | {{ company.value.city }}, {{ company.value.country }}
       li &nbsp;
-      li.uk-text-small Yearly average during {{ startYear}}<span v-show="startYear != endYear">–{{ endYear }}</span>
+      li.uk-text-small Annual average during currently selected years.
     ul.uk-list.uk-text-right.fg-orange
       li Assets 
         span.fg-blue
