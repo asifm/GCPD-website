@@ -12,7 +12,7 @@ import ComputeData from '@/components/ComputeData';
 import SelectParameter from '@/components/inputs/SelectParameter';
 import InputRange from '@/components/inputs/InputRange';
 
-import ListCompanyDetailed from '@/components/outputs/ListCompanyDetailed';
+import ListTopCompanies from '@/components/outputs/ListTopCompanies';
 import MapWithCircles from '@/components/outputs/MapWithCircles';
 
 // todo p1: Remove from data the unimportant countries
@@ -26,7 +26,7 @@ export default {
   components: {
     SelectParameter,
     InputRange,
-    ListCompanyDetailed,
+    ListTopCompanies,
     MapWithCircles,
     ComputeData,
   },
@@ -135,7 +135,6 @@ div.uk-section.uk-padding-remove-vertical.uk-margin-medium
             data-step=3 
             data-intro="Filter the data by years. Select a period by changing the beginning year, end year, or both."
             )
-            //- todo: remove these; use them as read-only labels instead for the slider
             
             input-range(
               :key="yearsComponentKey"
@@ -170,7 +169,7 @@ div.uk-section.uk-padding-remove-vertical.uk-margin-medium
       div.uk-width-1-4
         //- compute-data(:key="computeComponentKey")
         compute-data
-        list-company-detailed.uk-box-shadow-large.uk-animation-slide-left(
+        list-top-companies.uk-box-shadow-large.uk-animation-slide-left(
           :key="listComponentKey"
           :listLength="listLength" 
           data-position="auto" 
