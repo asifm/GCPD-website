@@ -1,9 +1,6 @@
 <script>
 import MethodSummary from '@/content/MethodSummary.md';
 export default {
-  components: {
-    MethodSummary,
-  },
   data() {
     return {
       loading: false,
@@ -36,26 +33,27 @@ export default {
               p.uk-text-small [Click on the map to see a larger, interactive version. It may take a few seconds to load all data.]
               div(v-if="loading" uk-spinner="ratio:5").uk-position-center.uk-position-absolute
       
-      div
-        div.uk-margin-top
-          .uk-card.uk-card-body.bg-orange-50.uk-margin
-            .uk-h2.fg-blue How We Compiled the Data
-            div(class="uk-column-1-2@l")
-              method-summary
-              button.uk-button.uk-button-primary.uk-link-reset: a(href="/download-data") Download Data
-        
-          .uk-card.uk-card-body.bg-blue-fade-out-9
-            .uk-h3 Interview
-            p <strong>Pedro Matos</strong>, professor at the University of Virginia Darden School of Business, and <strong>Jan Bena</strong>, professor at the University of British Columbia Sauder School of Business, sat down with the Batten Institute's <strong>Erika Herz</strong> to talk about this dataset.
-            p They described important aspects of the data and explained how this resource can benefit scholars who seek to understand corporate innovation outcomes.
-            audio(controls).uk-margin-remove
-              source(src="https://mcdn.podbean.com/mf/play/fn5pmd/CORPORATE_RESEARCH_DEVELOPMENT_OUTCOMES_PT_2.mp3")
+      div.uk-margin-auto-top
+        .uk-card.uk-card-body.bg-orange-50.uk-margin
+          .uk-h2.fg-blue About the Dataset
+          div(class="uk-column-1-2@l")
+            p The Global Corporate Patent Dataset connects 3 million patents awarded by the United States Patent and Trademark Office (USPTO) to more than 9 thousand publicly listed firms internationally between 1980 and 2017. The firms patenting at the USPTO come from 50 different countries around the world. 
+            p A detailed description of the dataset, including its key features and how it was constructed, can be found in <a href="/documents/DataConstructionDetails_v01.pdf"> this document</a>. 
+            p Please visit the other sections of this website to explore the breadth of the dataset's coverage — across countries and industries over time. 
+            button.uk-button.uk-button-primary.uk-link-reset: a(href="/download-data") Download Data
+      
+        .uk-card.uk-card-body.bg-blue-fade-out-9
+          .uk-h3 Interview
+          p <strong>Pedro Matos</strong>, professor at the University of Virginia Darden School of Business, and <strong>Jan Bena</strong>, professor at the University of British Columbia Sauder School of Business, sat down with the Batten Institute's <strong>Erika Herz</strong> to talk about this dataset.
+          p They described important aspects of the data and explained how this resource can benefit scholars who seek to understand corporate innovation outcomes.
+          audio(controls).uk-margin-remove
+            source(src="https://mcdn.podbean.com/mf/play/fn5pmd/CORPORATE_RESEARCH_DEVELOPMENT_OUTCOMES_PT_2.mp3")
 
 </template>
 
 <style lang="scss" scoped>
 audio {
-  max-width: 450px;
+  max-width: 300px;
   object-fit: inherit;
 }
 @media (max-width: 600px) {
