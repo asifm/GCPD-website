@@ -52,7 +52,7 @@ export default {
         .uk-h1.fg-orange Batten Institute for Entrepreneurship and Innovation
         p The Batten Institute for Entrepreneurship and Innovation at the UVA Darden School of Business provided institutional support to this collaboration. The Institute's research initiative advances knowledge that addresses real-world challenges and shapes Darden's curriculum, and its educational offerings are ranked top 10 in the world. The Batten Institute was established by the vision and philanthropy of UVA alumnus Frank Batten Sr. 
         
-        a.uk-button.uk-link-reset.uk-button-default(href="http://www.darden.virginia.edu/batten-institute/") Learn more
+        a.uk-button.uk-link-reset.uk-button-default(href="http://www.darden.virginia.edu/batten-institute/" target="_blank") Learn more
       
         div.uk-margin-medium-top.uk-align-right
           img(src="https://res.cloudinary.com/asifm/image/upload/w_450/v1543189024/darden-saunders-front_c1zvxm.jpg")
