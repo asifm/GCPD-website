@@ -1,6 +1,6 @@
 import { format as d3Format } from 'd3-format';
 
-// Needed for apexcharts year axis
+// Needed for charts  year axis
 export function fillRange(start, end) {
   return (
     Array(end - start + 1)
@@ -9,7 +9,7 @@ export function fillRange(start, end) {
       .map((_, index) => start + index)
   );
 }
-// format numbers conditionally; mainly for apexcharts
+// format numbers conditionally; mainly for charts
 export function formatNumber(
   val,
   valMultiplier = 1,

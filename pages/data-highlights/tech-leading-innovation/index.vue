@@ -1,5 +1,7 @@
 <script>
 import { format as d3Format } from 'd3';
+import { formatNumber } from '@/assets/js/utility';
+
 import ChartStacked from '@/components/outputs/ChartStacked';
 import ChartBubble from '@/components/outputs/ChartBubble';
 
@@ -23,9 +25,10 @@ export default {
         series: [],
         chart: {
           type: 'bubble',
+          marginBottom: 150,
         },
         legend: {
-          enabled: false,
+          enabled: true,
         },
         yAxis: {
           title: {
@@ -35,7 +38,7 @@ export default {
         xAxis: {
           labels: {
             formatter() {
-              return d3Format('$~s')(this.value * 1000000).replace('G', 'B');
+              return `$${formatNumber(this.value, 1e6, 2)}`;
             },
           },
           title: {
@@ -51,14 +54,13 @@ export default {
           formatter() {
             return `<b>${
               this.point.company
-            }</b><br>Total Spent on R&D: ${d3Format('$~s')(
-              this.point.x * 1000000,
-            ).replace('G', 'B')}<br>Number of Patents: ${
-              this.point.y
-            }<br>Total Sales: ${d3Format('$~s')(this.point.z * 1000000).replace(
-              'G',
-              'B',
-            )} `;
+            }</b><br>Total Spent on R&D: $${formatNumber(
+              this.point.x,
+              1e6,
+              2,
+            )}<br>Number of Patents: ${formatNumber(
+              this.point.y,
+            )}<br>Total Sales: $${formatNumber(this.point.z, 1e6, 2)}`;
           },
         },
       },
@@ -66,9 +68,10 @@ export default {
         series: [],
         chart: {
           type: 'bubble',
+          marginBottom: 150,
         },
         legend: {
-          enabled: false,
+          enabled: true,
         },
         yAxis: {
           title: {
@@ -78,7 +81,7 @@ export default {
         xAxis: {
           labels: {
             formatter() {
-              return d3Format('$~s')(this.value * 1000000).replace('G', 'B');
+              return `$${formatNumber(this.value, 1e6, 2)}`;
             },
           },
           title: {
@@ -94,14 +97,13 @@ export default {
           formatter() {
             return `<b>${
               this.point.company
-            }</b><br>Total Spent on R&D: ${d3Format('$~s')(
-              this.point.x * 1000000,
-            ).replace('G', 'B')}<br>Number of Patents: ${
-              this.point.y
-            }<br>Total Sales: ${d3Format('$~s')(this.point.z * 1000000).replace(
-              'G',
-              'B',
-            )} `;
+            }</b><br>Total Spent on R&D: $${formatNumber(
+              this.point.x,
+              1e6,
+              2,
+            )}<br>Number of Patents: ${formatNumber(
+              this.point.y,
+            )}<br>Total Sales: $${formatNumber(this.point.z, 1e6, 2)}`;
           },
         },
       },
@@ -186,7 +188,6 @@ export default {
             company: row.company,
             industry: row.industry,
           }));
-
         vm.company2007to16BubbleOpts.series.push({
           data: industryData,
           name: industriesObj[industry_code],

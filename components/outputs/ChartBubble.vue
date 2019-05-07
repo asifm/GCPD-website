@@ -2,9 +2,11 @@
 import { Chart } from 'highcharts-vue';
 
 import Highcharts from 'highcharts';
+import annotationsInit from 'highcharts/modules/annotations';
 import exportingInit from 'highcharts/modules/exporting';
 import moreInit from 'highcharts/highcharts-more';
 
+annotationsInit(Highcharts);
 exportingInit(Highcharts);
 moreInit(Highcharts);
 
@@ -32,6 +34,7 @@ export default {
           endOnTick: false,
         },
         series: [],
+        annotations: [],
       },
     };
   },
