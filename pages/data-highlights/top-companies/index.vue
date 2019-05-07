@@ -79,20 +79,31 @@ export default {
     div.uk-padding-small.uk-margin-top
       h3 Top Ten Companies <span class="fg-orange-900">by Yearly Count of Patents Assigned</span>
       .uk-grid(uk-grid)
-        div(class="uk-width-1-4@s")
+        div(class="uk-width-1-5@s")
           vue-select(:options="regionList" v-model="region" :clearable="false" max-height="300px")
           br 
           vue-select(:options="industryList" v-model="industry" :clearable="false")
-        div(class="uk-width-1-4@s")
+        div(class="uk-width-1-5@s")
           button.uk-button.uk-button-small(@click="showFinancials = !showFinancials") 
             span(v-if="!showFinancials") Show Financial Summary
             span(v-else) Hide Financial Summary
           br
           br
           button.uk-button.uk-button-small(@click="updateYearsToShow") 
-            span(v-if="!showLastFiveYears") Show Years 2007–2011
+            span(v-if="showLastFiveYears") Show Years 2007–2011
             span(v-else) Show Years 2012–2016
-        div(class="uk-width-1-2@s")
+        div(class="uk-width-2-5@s")
+          div
+            p What the colors mean
+            span.my-text-tiny.uk-label.region-label.asia-pacific Asia Pacific
+            span.my-text-tiny.uk-label.region-label.europe Europe
+            span.my-text-tiny.uk-label.region-label.north-america North America
+            span.my-text-tiny.uk-label.region-label.other Other
+        div(class="uk-width-1-5@s").uk-list.uk-card-default.uk-card-body.uk-padding-small
+          .uk-h5 See more data highlights
+          ul
+            li: nuxt-link(to="/data-highlights/rise-of-asia") The Rise of Asia 
+            li: nuxt-link(to="/data-highlights/tech-leading-innovation") Technology Industry Leading in Innovation 
     div.bg-white.uk-padding-small.uk-padding-remove-left
       .uk-grid.uk-grid-small(uk-grid class="uk-child-width-1-3@s uk-child-width-expand@m")
         .uk-panel(v-for="yearArr in dataByYear.slice(0, 5)")
