@@ -10,7 +10,7 @@ export default {};
       ul.uk-navbar-nav
         li.uk-button-text.uk-animation-fade(v-show="this.$route.path != '/'"): nuxt-link(to="/") Home
         li.uk-button-text.uk-parent.uk-nav-parent-icon
-          nuxt-link(to="#" id="data-highlights-topmenu") Data Highlights
+          nuxt-link(to="/data-highlights/top-companies" id="data-highlights-topmenu") Data Highlights
           .uk-navbar-dropdown
             ul.uk-nav.uk-navbar-dropdown-nav
               li.uk-button-text: nuxt-link(to="/data-highlights/top-companies") Most Innovative Companies
@@ -30,7 +30,7 @@ export default {};
         ul.uk-nav
           li: nuxt-link(to="/") Home
           li.uk-parent
-            nuxt-link.uk-text-muted(to="#" id="data-highlights-topmenu") Data Highlights
+            nuxt-link(to="/data-highlights/top-companies") Data Highlights
             ul.uk-nav-sub
               li: nuxt-link(to="/data-highlights/top-companies") Most Innovative Companies
               li: nuxt-link(to="/data-highlights/rise-of-asia") The Rise of Asia
@@ -42,9 +42,9 @@ export default {};
 </template>
 
 <style lang="scss" scoped>
-#data-highlights-topmenu {
-  cursor: default;
-}
+// #data-highlights-topmenu {
+//   cursor: default;
+// }
 
 .logo {
   display: block;
