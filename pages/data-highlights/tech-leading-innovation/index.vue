@@ -215,24 +215,24 @@ export default {
   .uk-container 
     .uk-h1 Technology Industry Leading in Innovation
     .uk-grid(uk-grid).uk-card-default.uk-padding
-      .uk-width-1-3
+      div(class="uk-width-1-3@s")
         p.uk-margin-large-top Consistent with broader trends in business and society, innovation now more often takes place in technology-focused companies — those with a significant technological component in their business operations and products — than in any other industry.
-        p We use Fama &amp; French 12-Industry Classification in our analysis, where the business equipment and software industry is an approximation of what one would today call high technology.
-          a(href="/data-highlights/note-industry-classification")  Note on industry classification.
+        p In our data exploration, we use <i>Fama &amp; French 12-Industry Classification</i>, where the business equipment and software industry is a close approximation of what one would today call high technology.
+          nuxt-link(to="/data-highlights/note-industry-classification")  Note on industry classification.
         br
         p.uk-text-large Hover over the charts for more details.
-      .uk-width-2-3
+      div(class="uk-width-2-3@s")
         chart-stacked(:custom-options="yearIndustryColumnOpts")
     .uk-grid(uk-grid).uk-card-default.uk-padding
-      .uk-width-1-3
+      div(class="uk-width-1-3@s")
         p.uk-margin-large-top The chart above does not capture the fast growth in annual patent grants during this period. When put in that context, as is done in the streamgraph here, the surge of patents in the technology industry is even more striking. 
-      .uk-width-2-3
+      div(class="uk-width-2-3@s")
          chart-stacked(:custom-options="yearIndustryStreamOpts") 
     .uk-grid(uk-grid).uk-card-default.uk-padding
-      .uk-width-1-3
+      div(class="uk-width-1-3@s")
         p.uk-margin-large-top The two bubble charts show the top 30 companies, by total count of patents over ten years, of two very different periods: 1980–1989 and 2007–2016. The periods represent the first ten and last ten years of our dataset's coverage. 
         p Today's top companies generate an order of magnitude more patents than those of 1980s. We cannot directly compare R&amp;D expenditure between these two periods without taking the changing value of US$ into account. It, however, appears that the growth in patents over time is faster than the growth in R&amp;D expenditure.
-      .uk-width-2-3
+      div(class="uk-width-2-3@s")
          chart-bubble(:custom-options="company1980to89BubbleOpts") 
          chart-bubble(:custom-options="company2007to16BubbleOpts") 
 
