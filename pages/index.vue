@@ -33,14 +33,14 @@ export default {
               p.uk-text-small [Click on the map to see a larger, interactive version. It may take a few seconds to load all data.]
               div(v-if="loading" uk-spinner="ratio:5").uk-position-center.uk-position-absolute
       
-      div.uk-margin-auto-top
+      div.uk-margin-large-top.uk-padding-large
         .uk-card.uk-card-body.bg-orange-50.uk-margin
           .uk-h2.fg-blue About the Dataset
           div(class="uk-column-1-2@l")
             p The Global Corporate Patent Dataset connects 3 million patents awarded by the United States Patent and Trademark Office (USPTO) to more than 9 thousand publicly listed firms internationally between 1980 and 2017. The firms patenting at the USPTO come from 50 different countries around the world. 
             p A detailed description of the dataset, including its key features and how it was constructed, can be found in <a href="/documents/DataConstructionDetails_v01.pdf"> this document</a>. 
             p Please visit the other sections of this website to explore the breadth of the dataset's coverage — across countries and industries over time. 
-            button.uk-button.uk-button-primary.uk-link-reset: a(href="/download-data") Download Data
+            button.uk-button.uk-button-primary.uk-link-reset: nuxt-link(to="/download-data") Download Data
       
         .uk-card.uk-card-body.bg-blue-fade-out-9
           .uk-h3 Interview
@@ -66,6 +66,9 @@ audio {
   }
   .uk-container {
     padding: 0%;
+  }
+  .uk-margin-large-top {
+    margin: 0%;
   }
 }
 
