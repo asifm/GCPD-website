@@ -69,7 +69,7 @@ export default {
       )
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 ul {
   font-family: FranklinGothicURW;
 }
