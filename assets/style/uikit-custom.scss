@@ -1,3 +1,29 @@
+
+@font-face {
+  font-family: 'FranklinGothicURW';
+  font-display: fallback;
+  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Hea.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+font-family: 'FranklinGothicURW';
+font-display: fallback;
+src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Med.woff') format('woff');
+font-weight: 500;
+font-style: normal;
+}
+
+@font-face {
+font-family: 'FranklinGothicURW';
+  font-display: fallback;
+src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Boo.woff') format('woff');
+font-weight: 300;
+font-style: normal;
+}
+
+
 // from Darden stylesheet
 @media (min-wdith: 960px) {
   h1, h2, h3, h4, h5, h6,
@@ -8,15 +34,15 @@
     text-transform: uppercase
   }
 
-  h1, .uk-h1 {
+  h1,.uk-h1 {
     font-size: 3rem;
   }
 
-  h2, .uk-h2 {
-    font-size: 2.2rem;
+  h2,.uk-h2 {
+    font-size: 2.2rem !important;
   }
 
-  h3, .uk-h3 {
+  h3,.uk-h3 {
     color: #e57200;
     font-size: 1.8rem;
   }
@@ -268,45 +294,15 @@ $button-secondary-color: #ffffff;
 }
 $global-link-color: $blue !default;
 $base-link-text-decoration: underline $orange-dark solid;
-
-em {
+li em,
+p em,
+span em {
   color: $blue;
 }
-
-
-
 //** End colors 
 
 //:: Start typography
 //: Load fonts
-
-@font-face {
-    font-family: 'FranklinGothicURW';
-    src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Hea.woff') format('woff');
-    font-weight: 900;
-    font-style: normal;
-}
-
-// @font-face {
-//   font-family: 'FranklinGothicURW';
-//   src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Dem.woff') format('woff');
-//   font-weight: 700;
-//   font-style: normal;
-// }
-
-@font-face {
-  font-family: 'FranklinGothicURW';
-  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Med.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'FranklinGothicURW';
-  src: url('/style/fonts/FranklinGothicURW/FranklinGothicURW-Boo.woff') format('woff');
-  font-weight: 300;
-  font-style: normal;
-}
 
 //: typography overrides
 $global-font-size: 14px;
@@ -316,6 +312,7 @@ $base-body-font-weight: 500;
 
 .uk-button a {
   text-decoration: none;
+  color: white;
 }
 
 .my-text-medium {
@@ -383,7 +380,6 @@ ul {
 //:: Import default variables and available mixins.
 @import 'uikit/src/scss/variables-theme.scss';
 @import 'uikit/src/scss/mixins-theme.scss';
-
 @import 'uikit/src/scss/uikit-theme.scss';
 
 //:: All variables from variables-theme; Copied here for easier reference
