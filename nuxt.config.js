@@ -8,6 +8,9 @@ module.exports = {
    ** Headers of the page
    */
   head: {
+    htmlAttrs: {
+      lang: 'en',
+    },
     title: 'Global Corporate Patent Dataset',
     meta: [
       {
@@ -29,7 +32,26 @@ module.exports = {
         // 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.24/js/uikit-icons.min.js',
       },
     ],
-    link: [],
+    link: [
+      {
+        rel: 'preload',
+        href: '/style/fonts/FranklinGothicURW/FranklinGothicURW-Hea.woff',
+        as: 'font',
+        crossorigin: true,
+      },
+      {
+        rel: 'preload',
+        href: '/style/fonts/FranklinGothicURW/FranklinGothicURW-Med.woff',
+        as: 'font',
+        crossorigin: true,
+      },
+      {
+        rel: 'preload',
+        href: '/style/fonts/FranklinGothicURW/FranklinGothicURW-Boo.woff',
+        as: 'font',
+        crossorigin: 'anonymous',
+      },
+    ],
   },
 
   /*
@@ -54,13 +76,20 @@ module.exports = {
     './plugins/globals.js',
     './plugins/uikit.js',
   ],
-
+  modules: [
+    [
+      '@nuxtjs/google-analytics',
+      {
+        id: 'UA-139855135-1',
+      },
+    ],
+  ],
   vue: {
     config: {
       productionTip: false,
       // Following two needed for https://github.com/vue-perf-devtool/vue-perf-devtool
-      devtools: true,
-      performance: true,
+      devtools: false,
+      performance: false,
     },
   },
   build: {
