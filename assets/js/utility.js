@@ -14,6 +14,7 @@ export function formatNumber(
   val,
   valMultiplier = 1,
   numDigitsAfterDecimal = 2,
+  prefix = '',
 ) {
   val = +val * valMultiplier;
   let formattedVal;
@@ -26,13 +27,13 @@ export function formatNumber(
       formattedVal =
         d3Format(',')((val / 1e6).toFixed(numDigitsAfterDecimal)) + ' M';
       break;
-    case val >= 1e4:
+    case val >= 1e3:
       formattedVal =
         d3Format(',')((val / 1e3).toFixed(numDigitsAfterDecimal)) + ' K';
       break;
-    case val < 1e4:
+    case val < 1e3:
       formattedVal = d3Format(',')(val);
       break;
   }
-  return formattedVal;
+  return prefix + formattedVal;
 }
