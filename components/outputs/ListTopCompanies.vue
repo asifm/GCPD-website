@@ -27,8 +27,8 @@ export default {
   },
   computed: {
     industry_desc: function() {
-      return this.industry
-        ? industries.find(el => el.industry == this.industry).industry_desc
+      return this.industry !== undefined && this.industry.length > 1
+        ? industries.find(el => el.industry === this.industry).industry_desc
         : '';
     },
   },
