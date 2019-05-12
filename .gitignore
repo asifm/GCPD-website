@@ -1,5 +1,5 @@
 # Ignoring files used for quick experiments and tests
-pages/test.vue
+test.vue
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
@@ -87,5 +87,5 @@ dist
 .history
 
 .vscode
-
 .firebase
+desktop.ini
