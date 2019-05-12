@@ -5,6 +5,8 @@ import Highcharts from 'highcharts';
 import exportingInit from 'highcharts/modules/exporting';
 import moreInit from 'highcharts/highcharts-more';
 
+import { formatNumber } from '@/assets/js/utility.js';
+
 exportingInit(Highcharts);
 moreInit(Highcharts);
 
@@ -33,9 +35,9 @@ export default {
           enabled: true,
           format: '{point.name}',
           filter: {
-            property: 'y',
+            property: '{point.value}',
             operator: '>',
-            value: 250,
+            value: 60000,
           },
           style: {
             color: 'black',
@@ -50,7 +52,13 @@ export default {
         series: [],
         tooltip: {
           useHTML: true,
-          pointFormat: '<b>{point.name}:</b> {point.y}</sub>',
+          formatter() {
+            return `<b>${this.point.name}:</b> ${formatNumber(
+              this.point.y,
+              1,
+              0,
+            )}`;
+          },
         },
       },
     };
