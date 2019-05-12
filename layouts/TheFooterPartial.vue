@@ -16,21 +16,20 @@ footer
             p The institute's mission is to improve society by creating knowledge about the transformative power of entrepreneurship and innovation and by cultivating principled, entrepreneurial leaders.
             
             div.my-text-thin.uk-text-small
-              a(uk-icon="icon: mail" href="mailto:Batten@darden.virginia.edu")
-                span.uk-margin-small-right Batten@darden.virginia.edu
-          
-              a(uk-icon="icon: twitter" href="https://www.twitter.com/BattenInstitute" target="_blank")
-                span @BattenInstitute
+              .uk-icon-button(uk-icon="icon: mail")
+              a(href="mailto:Batten@darden.virginia.edu").uk-margin-small-right Batten@darden.virginia.edu
+              .uk-icon-button(uk-icon="icon: twitter")
+              a(href="https://www.twitter.com/BattenInstitute" target="_blank" rel="noreferrer") @BattenInstitute
               
           .uk-button.uk-button-default.uk-button-small.uk-margin-small-top
-            a(href="https://www.darden.virginia.edu/batten-institute/about/" target="_blank").uk-link-reset Learn more
+            a(href="https://www.darden.virginia.edu/batten-institute/about/" target="_blank" rel="noreferrer").uk-link-reset More about Batten Institute
             
         div(class="uk-tile uk-padding uk-width-2-5@s")
           div
             p <span class="uk-text-bold">The University of Virginia Darden School of Business</span> delivers the world’s best business education experience to prepare entrepreneurial, global and responsible leaders through its MBA, Ph.D. and Executive Education programs. Darden’s top-ranked faculty is renowned for teaching excellence and advances practical business knowledge through research. 
             p Darden was established in 1955 at the University of Virginia, a top public university founded by Thomas Jefferson in 1819 in Charlottesville, Virginia.
               .uk-button.uk-button-default.uk-button-small
-                a(href="http://www.darden.virginia.edu/" target="_blank").uk-link-reset Learn more
+                a(href="http://www.darden.virginia.edu/" target="_blank" rel="noreferrer").uk-link-reset More about Darden School
             
     
   .uk-section.uk-padding-small.uk-text-center.bg-blue-700.fg-white

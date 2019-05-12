@@ -58,11 +58,13 @@ export default {
       p.uk-text-meta.my-text-tiny
         a.fg-blue-400(
           target="_blank" 
+          rel="noreferrer" 
           :href="`https://patents.google.com/?assignee=${ removeLastWord(company.key) }&before=filing:${endYear}1231&after=filing:${startYear}0101&type=PATENT&num=50&sort=new`")
           | Search Patents
         span  | 
         a.fg-orange-600(
-          target="_blank" 
+          target="_blank"
+          rel="noreferrer" 
           :href="'https://www.google.com/search?q=%22'+ removeLastWord(company.key) +'%22+%22'+company.value.country+'%22'")
           | Search Company
 
