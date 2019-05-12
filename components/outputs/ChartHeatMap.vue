@@ -5,7 +5,7 @@ import { Chart } from 'highcharts-vue';
 import Highcharts from 'highcharts';
 import heatmapInit from 'highcharts/modules/heatmap';
 heatmapInit(Highcharts);
-
+import { formatNumber } from '@/assets/js/utility.js';
 export default {
   components: {
     ChartHighchart: Chart,
@@ -22,6 +22,9 @@ export default {
             borderColor: '#04258e',
             dataLabels: {
               enabled: true,
+              formatter() {
+                return formatNumber(this.point.value, 1, 0);
+              },
             },
           },
         },
