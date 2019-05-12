@@ -34,7 +34,7 @@ export default {
       regionCompanyPack1980to89Opts: {
         series: [],
         chart: {
-          height: '25%',
+          height: '50%',
         },
         title: {
           text: 'Top 50 Companies of 1980–1989',
@@ -42,6 +42,9 @@ export default {
       },
       regionCompanyPack2007to16Opts: {
         series: [],
+        chart: {
+          height: '80%',
+        },
         title: {
           text: 'Top 50 Companies of 2007–2016',
         },
@@ -191,7 +194,7 @@ export default {
 
 <template lang="pug">
 .uk-section.uk-animation-slide-top-small.uk-section-muted
-  .uk-container
+  main.uk-container
     h1.uk-h1 The Rise of Asia
     .uk-grid(uk-grid).uk-card-default.uk-padding
       div(class="uk-width-1-3@s")
@@ -204,18 +207,19 @@ export default {
         p.uk-margin-large-top The past few decades saw an explosion of patent grants in the US. The streamgraph here shows the changes in regional distribution within the context of that rapid overall growth.
       div(class="uk-width-2-3@s")
         chart-stacked(:custom-options="yearRegionStreamOpts")
-    .uk-grid(uk-grid).uk-card-default.uk-padding
-      div(class="uk-width-1-3@s")
+    .uk-grid.uk-card-default.uk-padding
+      div(class="uk-width-1-1@s")
         p.uk-margin-large-top It's notable, but perhaps not surprising, that the Asia Pacific region outshines North America in manufacturing — and is not far behind in business equipment and software, the industry that generated most patents during 1980–2016.
-      div(class="uk-width-2-3@s")
         chart-heatmap(:custom-options="regionIndustryHeatmapOpts")
     .uk-grid(uk-grid).uk-card-default.uk-padding
-      div(class="uk-width-1-3@s")
-        p.uk-margin-large-top Here's another look at how regional distribution changed dramatically between the first ten years (1980–2016) and the last ten years (2007–2016) of our dataset's coverage
+      div(class="uk-width-1-1@s")
+        p.uk-margin-large-top Here's another look at how regional distribution changed dramatically between the first ten years (1980–2016) and the last ten years (2007–2016) of our dataset's coverage.
         p The smaller circles represent the top 50 companies, by aggregate count of patents, during those two periods. Hover over the circles for details.
-      div(class="uk-width-2-3@s")
-        chart-circlepack(:custom-options="regionCompanyPack1980to89Opts")
-        chart-circlepack(:custom-options="regionCompanyPack2007to16Opts")
+      div(class="uk-width-1-1@s" uk-grid).uk-grid
+        div(class="uk-width-1-2@s")
+          chart-circlepack(:custom-options="regionCompanyPack1980to89Opts")
+        div(class="uk-width-1-2@s")
+          chart-circlepack(:custom-options="regionCompanyPack2007to16Opts")
 </template>
 
 <style lang="scss" scoped>

@@ -57,10 +57,10 @@ export default {
       return str.substring(0, lastIndex);
     },
     updateYearsToShow() {
+      this.showLastFiveYears = !this.showLastFiveYears;
       this.years = this.showLastFiveYears
         ? fillRange(2012, 2016)
         : fillRange(2007, 2011);
-      this.showLastFiveYears = !this.showLastFiveYears;
     },
   },
 };
@@ -72,12 +72,14 @@ export default {
   .uk-container
     h1 Leading Innovators
     div(class="uk-column-1-2@s")
-      p In our dataset, the firms, all publicly listed, were granted about 1.37 million U.S. patents between 2007 to 2016 (the last ten full years for which we have data). The patents were well distributed across countries, illustrating the global nature of innovation.
-      p Non-U.S. firms filed more than half of the USPTO patents in this period. Surpassing U.S. firms, Japanese companies had the highest number of patents per firm. Overall, European firms filed fewer patents than North American or Asian firms, although German firms produced significant innovation.
-      p IBM has consistently been the top firm in recent times. Asian firms rose notably among the top innovators, with a strong presence in the consumer electronics sector (e.g., Samsung, Sony, and Panasonic). More recently, American companies have staged a comeback, particularly those in the technology sector (e.g., Intel, Alphabet, and Qualcomm). 
+      p Patent assignment indicates ownership of a patent, that is, the rights to all benefits accruing from that patent. It does not necessarily mean the invention originated within the assignee company. However, patent ownership does indicate a company's interest in developing innovative products and processes. Hence, irrespective of a company's role in an invention, we here assume the company's ownership of the related patent signals a strong intent to pursue innovation.
+      p Between 2007 and 2016 (the last ten full years for which we have data), about 1.37 million USPTO patents were granted and subsequently assigned to publicly listed companies. The patents were well distributed across countries, illustrating the global nature of innovation.
+      p Non-U.S. firms owned rights to more than half of these patents. Surpassing U.S. firms, Japanese companies had the highest number of patents per firm. Overall, European firms filed fewer patents than North American or Asian firms.
+      p IBM has consistently been the top firm in recent times. Asian firms rose notably among the top innovators, with a strong presence in the consumer electronics sector (e.g., Samsung, Sony, and Panasonic). More recently, U.S. companies have staged a comeback, particularly those in the technology sector (e.g., Intel, Alphabet, and Qualcomm). 
 
     div.uk-padding-small.uk-margin-top
-      h3 Top Ten Companies <span class="fg-orange-900">by Yearly Count of Patents Assigned</span>
+      h3 Top Ten Companies <span class="fg-orange-900">by Yearly Counts of Patents Assigned</span>
+      p The years indicate when the patents were granted by the USPTO.
       .uk-grid(uk-grid)
         div(class="uk-width-1-5@s")
           vue-select(:options="regionList" v-model="region" :clearable="false" max-height="300px")
@@ -107,7 +109,7 @@ export default {
     div.bg-white.uk-padding-small.uk-padding-remove-left
       .uk-grid.uk-grid-small(uk-grid class="uk-child-width-1-3@s uk-child-width-expand@m")
         .uk-panel(v-for="yearArr in dataByYear.slice(0, 5)")
-          .uk-label.uk-text-large(v-if="yearArr[0] !== undefined") {{ yearArr[0].year }}
+          .uk-label.bg-orange-900.uk-text-large(v-if="yearArr[0] !== undefined") {{ yearArr[0].year }}
           .uk-card.uk-animation-fade.uk-card-default.uk-margin-small-bottom(v-for="companyObj in yearArr")
             ul.uk-list.uk-padding-small.uk-margin-remove(:class="companyObj.region | makeKebab")
               li.uk-text-small

@@ -1,5 +1,5 @@
 <template lang="pug">
-div
+footer
   .uk-section.uk-padding-small.bg-blue-fade-out-9.uk-text-center
     p For comments or questions about this dataset, please email us at 
       a(href="mailto:GCPD@darden.virginia.edu")
@@ -8,19 +8,19 @@ div
     .uk-container.uk-container-expand
       div(uk-grid).uk-grid.uk-padding-remove
         div(class="uk-width-1-5@s uk-visible@s")
-          img#battenlogo(src="https://res.cloudinary.com/asifm/image/upload/w_500/v1544568270/batten-logo-long_tpsmit.jpg").bg-white.uk-padding-small.uk-position-medium
+          img#battenlogo(alt="Batten Institute for Entrepreneurship & Innovation" src="https://res.cloudinary.com/asifm/image/upload/w_500/v1544568270/batten-logo-long_tpsmit.jpg").bg-white.uk-padding-small.uk-position-medium
     
         div(class="uk-tile uk-padding uk-width-2-5@s")
           div
-            p This website, including the data tools and visualizations in it, has been developed by <span class="uk-text-bold"> The Batten Institute for Entrepreneurship and Innovation </span>at the University of Virginia Darden School. This is part of the long-term support the Institute has been providing in various forms to this project. 
-            p The Institute's mission is to improve society by creating knowledge about the transformative power of entrepreneurship and innovation and by cultivating principled, entrepreneurial leaders.
+            p This website, including the data tools and visualizations in it, has been developed by <span class="uk-text-bold"> the Batten Institute for Entrepreneurship and Innovation </span>at the University of Virginia Darden School of Business. This is part of the long-term support the institute has been providing in various forms to the Global Corporate Patent Dataset project. 
+            p The institute's mission is to improve society by creating knowledge about the transformative power of entrepreneurship and innovation and by cultivating principled, entrepreneurial leaders.
             
             div.my-text-thin.uk-text-small
               a(uk-icon="icon: mail" href="mailto:Batten@darden.virginia.edu")
-              span.uk-margin-small-right Batten@darden.virginia.edu
+                span.uk-margin-small-right Batten@darden.virginia.edu
           
               a(uk-icon="icon: twitter" href="https://www.twitter.com/BattenInstitute" target="_blank")
-              span @BattenInstitute
+                span @BattenInstitute
               
           .uk-button.uk-button-default.uk-button-small.uk-margin-small-top
             a(href="https://www.darden.virginia.edu/batten-institute/about/" target="_blank").uk-link-reset Learn more

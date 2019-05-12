@@ -213,7 +213,7 @@ export default {
 
 <template lang="pug">
 .uk-section.uk-animation-slide-top-small.uk-section-muted
-  .uk-container 
+  main.uk-container 
     .uk-h1 Technology Industry Leading in Innovation
     .uk-grid(uk-grid).uk-card-default.uk-padding
       div(class="uk-width-1-3@s")
