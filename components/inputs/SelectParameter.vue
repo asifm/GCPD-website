@@ -27,12 +27,6 @@ export default {
       eventName: '',
     };
   },
-  created() {
-    // FilterBus.$on('reset-data', () => {
-    //   if (this.paramList == 'countries') this.selected = 'All Countries';
-    //   if (this.paramList == 'industries') this.selected = 'All Industries';
-    // });
-  },
   mounted() {
     if (this.paramList == 'countries') {
       this.items = lists.regionsCountries;
@@ -59,13 +53,13 @@ export default {
 </script>
 
 <template lang="pug">
-    vue-select#param-select.uk-text-small(:options="items" v-model="selected" :clearable="false" maxHeight="300px")
+    vue-select.param-select.uk-text-small(:options="items" v-model="selected" :clearable="false" maxHeight="300px")
 </template>
 
 <style lang="scss">
 @import 'vue-select/dist/vue-select.css';
 
-#param-select .vs__selected {
+.param-select .vs__selected {
   font-family: Georgia, serif;
 }
 </style>
