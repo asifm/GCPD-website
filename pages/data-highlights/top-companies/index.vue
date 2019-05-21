@@ -70,7 +70,7 @@ export default {
 
 .uk-section.uk-animation-slide-top-small
   .uk-container
-    h1 Leading Innovators
+    h1.uk-heading-small Leading Innovators
     div(class="uk-column-1-2@s")
       p Patent assignment indicates ownership of a patent, that is, the rights to all benefits accruing from that patent. It does not necessarily mean the invention originated within the assignee company. However, patent ownership does indicate a company's interest in developing innovative products and processes. Hence, irrespective of a company's role in an invention, we here assume the company's ownership of the related patent signals a strong intent to pursue innovation.
       p Between 2007 and 2016 (the last ten full years for which we have data), about 1.37 million USPTO patents were granted and subsequently assigned to publicly listed companies. The patents were well distributed across countries, illustrating the global nature of innovation.

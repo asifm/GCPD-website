@@ -21,7 +21,7 @@ export default {
       div
         .uk-card.uk-card-body
           h2.uk-h2.uk-margin-remove UVA Darden
-          h1.uk-h1#title.uk-margin-remove.fg-orange-700 Global Corporate Patent Dataset
+          h1.uk-heading-small.uk-margin-remove.fg-orange-700 Global Corporate Patent Dataset
           div
             div(class="uk-column-1-2@m")
               img(aria-hidden="true" class="uk-visible@s" src="https://res.cloudinary.com/asifm/image/upload/w_80/v1543120861/i-bulb-dollar_y7bhwn.png").uk-float-right
@@ -70,10 +70,5 @@ audio {
   .uk-margin-large-top {
     margin: 0%;
   }
-}
-
-#title {
-  font-size: 3em;
-  text-transform: uppercase;
 }
 </style>

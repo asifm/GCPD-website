@@ -195,7 +195,7 @@ export default {
 <template lang="pug">
 .uk-section.uk-animation-slide-top-small.uk-section-muted
   main.uk-container
-    h1.uk-h1 The Rise of Asia
+    h1.uk-heading-small The Rise of Asia
     .uk-grid(uk-grid).uk-card-default.uk-padding
       div(class="uk-width-1-3@s")
         p.uk-margin-large-top Until the late 1970s, it was almost exclusively U.S. companies that filed patent applications with the USPTO. That changed around 1980 when both European and Asian companies started to seek U.S. patent protection for their innovation. In the subsequent years, the Asian countries as a whole far surpassed Europe and challenged the prominence of North America.
@@ -213,9 +213,10 @@ export default {
         chart-heatmap(:custom-options="regionIndustryHeatmapOpts")
     .uk-grid(uk-grid).uk-card-default.uk-padding
       div(class="uk-width-1-1@s")
+        p(class="uk-hidden@s") [Please view the charts on a larger screen. They cannot be rendered on small screens.]
         p.uk-margin-large-top Here's another look at how regional distribution changed dramatically between the first ten years (1980–2016) and the last ten years (2007–2016) of our dataset's coverage.
         p The smaller circles represent the top 50 companies, by aggregate count of patents, during those two periods. Hover over the circles for details.
-      div(class="uk-width-1-1@s" uk-grid).uk-grid
+      div(class="uk-width-1-1@s uk-visible@s" uk-grid).uk-grid
         div(class="uk-width-1-2@s")
           chart-circlepack(:custom-options="regionCompanyPack1980to89Opts")
         div(class="uk-width-1-2@s")

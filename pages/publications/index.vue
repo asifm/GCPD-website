@@ -38,8 +38,8 @@ export default {
 
 <template lang="pug">
 .uk-section.uk-animation-slide-top-small
-  .uk-container.uk-container-expand.uk-padding-large
-    .uk-h1 Research and Publications
+  .uk-container.uk-container-expand
+    h1.uk-heading-small Research and Publications
     p The Global Corporate Patent Dataset have been used in the following publications.
     .uk-grid.uk-grid(uk-grid).uk-grid-large
       div(class="uk-width-1-2@m" v-for="(pub, i) in publications" :key="i")

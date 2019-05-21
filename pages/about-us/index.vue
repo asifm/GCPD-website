@@ -39,7 +39,7 @@ export default {
   main(uk-grid class="uk-grid uk-child-width-1-2@s")
     div
       .uk-card.uk-card-default.uk-card-body.uk-padding-large
-        .uk-h1.fg-blue The Project Team
+        h1.uk-heading-small.fg-blue The Project Team
         p <span class="uk-text-bold">The UVA Darden Global Corporate Patent Dataset</span> is the result of a multiyear collaboration among the following academic scholars. 
         p If you have any questions, suggestions or comments, please contact us at <a href="mailto:GCPD@darden.virginia.edu">GCPD@darden.virginia.edu</a>.
         dl(v-for="(member, i) in members" :key="i").uk-width-1-1.uk-description-list
@@ -49,7 +49,7 @@ export default {
     
     div 
       .uk-card.uk-card-body.uk-card-default.uk-padding-large#batten
-        .uk-h1.fg-orange-900 Batten Institute for Entrepreneurship and Innovation
+        h1.fg-orange-900 Batten Institute for Entrepreneurship and Innovation
         p The Batten Institute for Entrepreneurship and Innovation at the UVA Darden School of Business provided institutional support to this collaboration. The Institute's research initiative advances knowledge that addresses real-world challenges and shapes Darden's curriculum, and its educational offerings are ranked top 10 in the world. The Batten Institute was established by the vision and philanthropy of UVA alumnus Frank Batten Sr. 
         
         a.uk-button.uk-link-reset.uk-button-default(href="http://www.darden.virginia.edu/batten-institute/" target="_blank") Learn more
