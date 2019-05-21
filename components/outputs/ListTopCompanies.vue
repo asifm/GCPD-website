@@ -27,7 +27,7 @@ export default {
   },
   computed: {
     industry_desc: function() {
-      return this.industry !== undefined && this.industry.length > 1
+      return this.industry !== undefined && this.industry !== ''
         ? industries.find(el => el.industry === this.industry).industry_desc
         : '';
     },
@@ -85,7 +85,7 @@ div(
           | {{ company.value.patentcount | thousandComma }}
         span.uk-label.bg-white.fg-blue.uk-margin-small-right
           | {{ i+1 }}
-        span.fg-blue
+        span.fg-blue.uk-text-small
           | {{ company.value.industry }}
       
       card-company-facts.card-company(
