@@ -1,6 +1,6 @@
 <script>
 import { format as d3Format } from 'd3';
-import { formatNumber } from '@/assets/js/utility';
+import { bubbleRnDPatentOpts } from '@/assets/js/chartBubbleRnDPatent.js';
 
 import ChartStacked from '@/components/outputs/ChartStacked';
 import ChartBubble from '@/components/outputs/ChartBubble';
@@ -23,88 +23,14 @@ export default {
       numBubbles: 30,
       company1980to89BubbleOpts: {
         series: [],
-        chart: {
-          type: 'bubble',
-          marginBottom: 150,
-        },
-        legend: {
-          enabled: true,
-        },
-        yAxis: {
-          title: {
-            text: 'Total Number of Patents Over Ten Years',
-          },
-        },
-        xAxis: {
-          labels: {
-            formatter() {
-              return `$${formatNumber(this.value, 1e6, 2)}`;
-            },
-          },
-          title: {
-            text:
-              'Total Spent on Research & Development Over Ten Years<br> Size of a Circle Indicates Sales Revenue.',
-          },
-        },
         title: {
           text: 'R&D vs. Patent Count: Top 30 Companies (1980–1989)',
-        },
-        tooltip: {
-          useHTML: true,
-          formatter() {
-            return `<b>${
-              this.point.company
-            }</b><br>Total Spent on R&D: $${formatNumber(
-              this.point.x,
-              1e6,
-              2,
-            )}<br>Number of Patents: ${formatNumber(
-              this.point.y,
-            )}<br>Total Sales: $${formatNumber(this.point.z, 1e6, 2)}`;
-          },
         },
       },
       company2007to16BubbleOpts: {
         series: [],
-        chart: {
-          type: 'bubble',
-          marginBottom: 150,
-        },
-        legend: {
-          enabled: true,
-        },
-        yAxis: {
-          title: {
-            text: 'Total Number of Patents Over Ten Years',
-          },
-        },
-        xAxis: {
-          labels: {
-            formatter() {
-              return `$${formatNumber(this.value, 1e6, 2)}`;
-            },
-          },
-          title: {
-            text:
-              'Total Spent on Research & Development Over Ten Years<br> Size of a Circle Indicates Sales Revenue',
-          },
-        },
         title: {
           text: 'R&D vs. Patent Count: Top 30 Companies (2007–2016)',
-        },
-        tooltip: {
-          useHTML: true,
-          formatter() {
-            return `<b>${
-              this.point.company
-            }</b><br>Total Spent on R&D: $${formatNumber(
-              this.point.x,
-              1e6,
-              2,
-            )}<br>Number of Patents: ${formatNumber(
-              this.point.y,
-            )}<br>Total Sales: $${formatNumber(this.point.z, 1e6, 2)}`;
-          },
         },
       },
       yearIndustryColumnOpts: {
@@ -208,13 +134,17 @@ export default {
       });
     });
   },
+  created() {
+    Object.assign(this.company1980to89BubbleOpts, bubbleRnDPatentOpts);
+    Object.assign(this.company2007to16BubbleOpts, bubbleRnDPatentOpts);
+  },
 };
 </script>
 
 <template lang="pug">
 .uk-section.uk-animation-slide-top-small.uk-section-muted
   main.uk-container 
-    .uk-h1 Technology Industry Leading in Innovation
+    h1.uk-heading-small Technology Industry Leading in Innovation
     .uk-grid(uk-grid).uk-card-default.uk-padding
       div(class="uk-width-1-3@s")
         p.uk-margin-large-top Consistent with broader trends in business and society, innovation now more often takes place in technology-focused companies — those with a significant technological component in their business operations and products — than in any other industry.
@@ -231,9 +161,10 @@ export default {
          chart-stacked(:custom-options="yearIndustryStreamOpts") 
     .uk-grid(uk-grid).uk-card-default.uk-padding
       div(class="uk-width-1-3@s")
+        p(class="uk-hidden@s") [Please view the charts on a larger screen. They cannot be rendered on small screens.]
         p.uk-margin-large-top The two bubble charts show the top 30 companies, by total count of patents over ten years, of two very different periods: 1980–1989 and 2007–2016. The periods represent the first ten and last ten years of our dataset's coverage. 
         p Today's top companies generate an order of magnitude more patents than those of 1980s. We cannot directly compare R&amp;D expenditure between these two periods without taking the changing value of US$ into account. It, however, appears that the growth in patents over time is faster than the growth in R&amp;D expenditure.
-      div(class="uk-width-2-3@s")
+      div(class="uk-width-2-3@s uk-visible@s")
          chart-bubble(:custom-options="company1980to89BubbleOpts") 
          chart-bubble(:custom-options="company2007to16BubbleOpts") 
 
