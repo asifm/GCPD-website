@@ -32,6 +32,10 @@ export default {
         chart: {
           type: 'column',
           zoomType: 'xy',
+          scrollablePlotArea: {
+            minWidth: 500,
+            scrollPositionX: 0,
+          },
         },
         series: [],
         xAxis: {

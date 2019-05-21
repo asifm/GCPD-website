@@ -33,6 +33,10 @@ export default {
           marginTop: 40,
           marginBottom: 150,
           plotBorderWidth: 1,
+          scrollablePlotArea: {
+            minWidth: 500,
+            scrollPositionX: 0,
+          },
         },
         series: [],
         legend: {

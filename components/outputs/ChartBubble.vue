@@ -21,6 +21,10 @@ export default {
         chart: {
           type: 'bubble',
           zoomType: 'xy',
+          scrollablePlotArea: {
+            minWidth: 500,
+            scrollPositionX: 0,
+          },
         },
         title: {
           text: '',
@@ -46,6 +50,5 @@ export default {
 
 <template lang="pug">
 div
-  //- p {{ chartOptions }}
   chart-highchart(:options="chartOptions")
 </template>
