@@ -1,7 +1,5 @@
 import Vue from 'vue';
-import {
-  format as d3Format
-} from 'd3-format';
+import { format as d3Format } from 'd3';
 
 Vue.filter('thousandComma', val => d3Format(',')(val));
 
