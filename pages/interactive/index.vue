@@ -107,7 +107,7 @@ export default {
 <template lang="pug">
 div.uk-section.uk-padding-remove-vertical.uk-margin-medium
   div.uk-container.uk-container-expand
-    div.uk-h2#heading(
+    div.uk-h2#heading-interactive(
       data-intro="Use this tool to explore the entire global corporate patent dataset."
       ) <span class="my-text-heavy fg-orange-300"> Explore </span> the World of Corporate Patents
       
@@ -158,7 +158,7 @@ div.uk-section.uk-padding-remove-vertical.uk-margin-medium
             data-step=4 
             data-intro="The circles on the map show total patent counts by country. To see the data for a country, hover over its circle. <br><br> Double click to zoom and drag to pan. Get back to full view using the reset button above.<br><br> When the data changes, the circles rescale based on the then current minimum and maximum."
             )
-          div.my-text-thin.uk-animation-fade.fg-blue-400.uk-position-fixed#totalcount(
+          div.my-text-thin.uk-animation-fade.fg-blue-400.uk-position-fixed#totalcountpatents(
             v-show="sumPatentsInSelectedData > 0"
             ) {{  sumPatentsInSelectedDataAnimated | thousandComma  }} patents
 
@@ -179,11 +179,20 @@ div.uk-section.uk-padding-remove-vertical.uk-margin-medium
           )
         
 </template>
-<style lang="scss" scoped>
-#totalcount {
+<style lang="scss">
+#totalcountpatents {
   font-size: 2rem;
 }
-#heading {
+#heading-interactive {
   font-size: 2.3rem;
+}
+.introjs-button {
+  font-size: 1.1em;
+}
+.introjs-skipbutton {
+  color: #000000;
+}
+.introjs-tooltiptext {
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 </style>
