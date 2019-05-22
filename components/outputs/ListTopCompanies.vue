@@ -80,7 +80,7 @@ div(
       :class="company.value.region | makeKebab "
       )
       div
-        span.uk-label.bg-white.fg-blue.uk-position-top-right
+        span.uk-label.bg-white.fg-blue.uk-position-bottom-left
           | {{ i+1 }}
       
         span.fg-black.uk-text-bold.uk-text-uppercase  {{ company.key }} <br />
