@@ -1,11 +1,9 @@
 <script>
-// todo: change layout of controls?: one below another instead of side by side
-// todo: create cleaner layout; use flex?
 import introJs from 'intro.js';
 import { TweenLite } from 'gsap';
 
-import { lists } from '@/assets/data/listData';
-import { FilterBus } from '@/assets/js/FilterBus';
+import { lists } from '@/assets/data/listData.js';
+import { FilterBus } from '@/assets/js/FilterBus.js';
 
 import ComputeData from '@/components/ComputeData';
 
@@ -15,7 +13,6 @@ import InputRange from '@/components/inputs/InputRange';
 import ListTopCompanies from '@/components/outputs/ListTopCompanies';
 import MapWithCircles from '@/components/outputs/MapWithCircles';
 
-// todo p1: Remove from data the unimportant countries
 let keyCounter = 0;
 // default parameters
 const defaultCountry = 'All Countries';
@@ -108,13 +105,14 @@ export default {
 div.uk-section.uk-padding-remove-vertical.uk-margin-medium
   div.uk-container.uk-container-expand
     div.uk-h2#heading-interactive(
-      data-intro="Use this tool to explore the entire global corporate patent dataset."
+      data-intro="Use this tool to explore the Global Corporate Patent Dataset across years, industries and countries."
       ) <span class="my-text-heavy fg-orange-300"> Explore </span> the World of Corporate Patents
       
-    div.uk-grid(uk-grid)
-      div.uk-width-3-4
-        div.uk-width-1-1.uk-grid.uk-flex-bottom(uk-grid)
-          div.uk-width-1-4(
+    div.uk-grid.uk-margin-remove(uk-grid)
+      div(class="uk-width-3-4@m uk-flex-last@m")
+        div.uk-grid.uk-flex-bottom(uk-grid)
+          div(
+            class="uk-width-1-4@m"
             data-step=2
             data-intro="Select a country and/or an industry. <br><br> The data and visualizations will change to reflect your selection."
             )
@@ -131,34 +129,36 @@ div.uk-section.uk-padding-remove-vertical.uk-margin-medium
                 param-list="industries" 
                 )
 
-          div.uk-width-1-2(
+          div(
+            class="uk-width-1-2@m"
             data-step=3 
             data-intro="Filter the data by years. Select a period by changing the beginning year, end year, or both."
             )
-            
             input-range(
               :key="yearsComponentKey"
               :rangeYears_="defaultRangeYears"
               )
           
-          div.uk-width-1-4
-            div(
-              data-step=7 
-              data-intro="You can again start this guide from here. <br><br>At any point, you can set everything on the page to its beginning state using the reset button."
-              )
-              button.uk-button.uk-button-small.uk-margin-small(
+          div(
+            class="uk-width-1-4@m"
+            data-step=7 
+            data-intro="You can again start this guide from here. <br><br>At any point, you can set everything on the page to its beginning state using the reset button."
+            )
+              button.uk-button.uk-button-small.uk-margin-small.bg-orange-100.fg-blue(
                 @click="startGuide"
                 ) Guide
               br
-              button.uk-button.uk-button-small(
+              button.uk-button.uk-button-small.bg-orange-100.fg-blue(
                 @click="resetData"
                 ) Reset Data &amp; Map
-            
-        div.uk-width-1-1.uk-margin-top.uk-margin-medium-left(
+        hr    
+        div.uk-width-1-1.uk-margin-top(
             data-step=4 
             data-intro="The circles on the map show total patent counts by country. To see the data for a country, hover over its circle. <br><br> Double click to zoom and drag to pan. Get back to full view using the reset button above.<br><br> When the data changes, the circles rescale based on the then current minimum and maximum."
             )
-          div.my-text-thin.uk-animation-fade.fg-blue-400.uk-position-fixed#totalcountpatents(
+          p(class="uk-hidden@m") Please view the map on a larger screen. It's not optimized for small screens, but you can pan/move the map to see other regions. 
+          div.my-text-thin.uk-animation-fade.fg-blue-400.uk-position-fixed#total-count-patents(
+            class="uk-visible@m"
             v-show="sumPatentsInSelectedData > 0"
             ) {{  sumPatentsInSelectedDataAnimated | thousandComma  }} patents
 
@@ -166,10 +166,10 @@ div.uk-section.uk-padding-remove-vertical.uk-margin-medium
             :width="900" 
             :height="500"
             )
-      div.uk-width-1-4
+      div(class="uk-width-1-4@m")
         //- compute-data(:key="computeComponentKey")
         compute-data
-        list-top-companies.uk-box-shadow-large.uk-animation-slide-left(
+        list-top-companies.uk-box-shadow-small.uk-animation-slide-left(
           :key="listComponentKey"
           :listLength="listLength" 
           data-position="auto" 
@@ -179,18 +179,21 @@ div.uk-section.uk-padding-remove-vertical.uk-margin-medium
           )
         
 </template>
-<style lang="scss">
-#totalcountpatents {
+
+<style>
+#total-count-patents {
   font-size: 2rem;
 }
+
 #heading-interactive {
-  font-size: 2.3rem;
+  font-size: 2.4rem;
 }
+
 .introjs-button {
-  font-size: 1.1em;
+  font-size: 1.1em !important;
 }
 .introjs-skipbutton {
-  color: #000000;
+  color: #000000 !important;
 }
 .introjs-tooltiptext {
   font-family: Georgia, 'Times New Roman', Times, serif;
