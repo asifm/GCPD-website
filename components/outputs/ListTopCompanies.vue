@@ -57,10 +57,10 @@ export default {
 div(
   v-show="topCompanies"
   )
-  div.uk-card-header.uk-padding-small.bg-white.uk-animation-fade
+  div.uk-card-header.uk-padding-small.uk-animation-fade.uk-tile-muted
     //- Show end year only if it's different from start year; same start and end means single year selection
     //- h3.uk-h3.fg-orange-900.uk-margin-small-top  {{ startYear }}<span v-show="startYear != endYear">–{{ endYear }}</span>
-    h3.uk-h3.uk-text-right.fg-blue-900  {{ geography }} <br />
+    h3.uk-h3.fg-blue-900  {{ geography }} <br />
       span.fg-orange-300  {{ industry_desc }}
 
     h5.uk-h5.my-text-heavy.fg-blue-900.uk-margin-remove(
@@ -74,20 +74,20 @@ div(
       span.my-text-tiny.uk-label.region-label.other Other
   
   ul.uk-list.uk-padding-remove
-    li.uk-text-left.uk-animation-slide-left.uk-padding-small.uk-box-shadow-small.list-item(
+    li#top-company-card.uk-text-left.uk-animation-slide-left.uk-padding-small.uk-box-shadow-small.list-item(
       v-for="(company, i) in topCompanies.slice(0, listLength)" 
       :key="company.value.gvkey" 
       :class="company.value.region | makeKebab "
       )
       div
+        span.uk-label.bg-white.fg-blue.uk-position-top-right
+          | {{ i+1 }}
+      
         span.fg-black.uk-text-bold.uk-text-uppercase  {{ company.key }} <br />
         h3.uk-margin-remove.fg-blue-900.uk-text-large.uk-float-right
           | {{ company.value.patentcount | thousandComma }}
-        span.uk-label.bg-white.fg-blue.uk-margin-small-right
-          | {{ i+1 }}
         span.fg-blue.uk-text-small
           | {{ company.value.industry }}
-      
       card-company-facts.card-company(
         :company="company",
         :startYear="startYear",
@@ -97,7 +97,8 @@ div(
 </template>
 
 <style lang="scss" scoped>
-.list-item {
+#top-company-card {
+  font-family: FranklinGothicURW;
   transition: background-color 0.15s;
   &:hover {
     background-color: white;
