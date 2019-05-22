@@ -80,12 +80,13 @@ export default {
     div.uk-padding-small.uk-margin-top
       h3 Top Ten Companies <span class="fg-orange-900">by Yearly Counts of Patents Assigned</span>
       p The years indicate when the patents were granted by the USPTO.
-      .uk-grid(uk-grid)
-        div(class="uk-width-1-5@s")
+      .uk-grid(uk-grid).uk-margin-auto
+        div(class="uk-width-1-4@s").uk-card.uk-card-body.uk-padding-small.uk-tile-muted
           vue-select(:options="regionList" v-model="region" :clearable="false" max-height="300px")
           br 
           vue-select(:options="industryList" v-model="industry" :clearable="false")
-        div(class="uk-width-1-5@s")
+
+        div.uk-card.uk-card-body.uk-padding-small
           button.uk-button.uk-button-small(@click="showFinancials = !showFinancials") 
             span(v-if="!showFinancials") Show Financial Summary
             span(v-else) Hide Financial Summary
@@ -94,33 +95,35 @@ export default {
           button.uk-button.uk-button-small(@click="updateYearsToShow") 
             span(v-if="showLastFiveYears") Show Years 2007–2011
             span(v-else) Show Years 2012–2016
-        div(class="uk-width-2-5@s")
+
+        div.uk-card.uk-card-body.uk-padding-small.uk-tile-muted
           div
-            p What the colors mean
+            .uk-h5 What the colors mean
             span.my-text-tiny.uk-label.region-label.asia-pacific Asia Pacific
             span.my-text-tiny.uk-label.region-label.europe Europe
             span.my-text-tiny.uk-label.region-label.north-america North America
             span.my-text-tiny.uk-label.region-label.other Other
-        div(class="uk-width-1-5@s").uk-list.uk-card-default.uk-card-body.uk-padding-small
+        div.uk-card.uk-card-body.uk-padding-small
           .uk-h5 See more data highlights
-          ul
+          ul.uk-list
             li: nuxt-link(to="/data-highlights/rise-of-asia") The Rise of Asia 
             li: nuxt-link(to="/data-highlights/tech-leading-innovation") Technology Industry Leading in Innovation 
     div.bg-white.uk-padding-small.uk-padding-remove-left
       .uk-grid.uk-grid-small(uk-grid class="uk-child-width-1-3@s uk-child-width-expand@m")
         .uk-panel(v-for="yearArr in dataByYear.slice(0, 5)")
-          .uk-label.bg-orange-900.uk-text-large(v-if="yearArr[0] !== undefined") {{ yearArr[0].year }}
-          .uk-card.uk-animation-fade.uk-card-default.uk-margin-small-bottom(v-for="companyObj in yearArr")
-            ul.uk-list.uk-padding-small.uk-margin-remove(:class="companyObj.region | makeKebab")
+          .uk-label.bg-orange-900.uk-text-large.uk-box-shadow-small(v-if="yearArr[0] !== undefined") {{ yearArr[0].year }}
+          .uk-card.uk-animation-fade.uk-card-default.uk-margin-small-bottom(v-for="(companyObj, i) in yearArr")
+            ul.company-info-card.uk-list.uk-padding-small.uk-margin-remove.uk-inline-clip(:class="companyObj.region | makeKebab")
               li.uk-text-small
                 | {{ companyObj.industry}}
               li.fg-blue.uk-text-bold.uk-text-uppercase.uk-text-break.uk-margin-remove
                 | {{ companyObj.company | removePeriods }}
               li.uk-text-small.uk-margin-remove.uk-padding-remove.uk-text-left.fg-blue
                 | {{ companyObj.country }}
-              li.fg-black.uk-padding-remove.uk-text-right
-                span.patentcount {{ companyObj.patentcount | thousandComma }} Patents
-
+              li.fg-black.uk-padding-small.uk-position-bottom-right
+                span.uk-text-emphasis.patentcount {{ companyObj.patentcount | thousandComma }}
+              span.uk-label.bg-white.fg-blue.uk-position-top-right.my-text-heavy.uk-box-shadow-small
+                | {{ i+1 }}
             ul(v-if="showFinancials").uk-list.uk-animation-slide-top-small.fg-orange-900.uk-text-right.uk-text-small.uk-padding-small.uk-padding-remove-top.financials
               li Assets 
                 span.fg-blue
@@ -144,6 +147,11 @@ export default {
 
 <style lang="scss">
 @import 'vue-select/dist/vue-select.css';
+
+.company-info-card {
+  font-family: FranklinGothicURW;
+  display: list-item;
+}
 .financials {
   line-height: 0.9rem;
 }
