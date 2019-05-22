@@ -69,10 +69,7 @@ export default {
       )
 </template>
 
-<style lang="scss" scoped>
-ul {
-  font-family: FranklinGothicURW;
-}
+<style lang="scss">
 #year-input {
   width: 70px;
 }
