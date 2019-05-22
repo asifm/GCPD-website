@@ -80,8 +80,9 @@ export default {
     div.uk-padding-small.uk-margin-top
       h3 Top Ten Companies <span class="fg-orange-900">by Yearly Counts of Patents Assigned</span>
       p The years indicate when the patents were granted by the USPTO.
-      .uk-grid(uk-grid).uk-margin-auto
-        div(class="uk-width-1-4@s").uk-card.uk-card-body.uk-padding-small.uk-tile-muted
+     
+      #control-panel.uk-grid(uk-grid).uk-margin-auto.uk-flex-bottom
+        div(class="uk-width-1-4@s").uk-card.uk-card-body.uk-padding-small
           vue-select(:options="regionList" v-model="region" :clearable="false" max-height="300px")
           br 
           vue-select(:options="industryList" v-model="industry" :clearable="false")
@@ -96,7 +97,7 @@ export default {
             span(v-if="showLastFiveYears") Show Years 2007–2011
             span(v-else) Show Years 2012–2016
 
-        div.uk-card.uk-card-body.uk-padding-small.uk-tile-muted
+        div.uk-card.uk-card-body.uk-padding-small
           div
             .uk-h5 What the colors mean
             span.my-text-tiny.uk-label.region-label.asia-pacific Asia Pacific
@@ -146,8 +147,10 @@ export default {
 </template>
 
 <style lang="scss">
-@import 'vue-select/dist/vue-select.css';
-
+// @import 'vue-select/dist/vue-select.css';
+#control-panel {
+  border-bottom: 1px solid #232d4b;
+}
 .company-info-card {
   font-family: FranklinGothicURW;
   display: list-item;
