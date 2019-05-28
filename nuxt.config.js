@@ -12,7 +12,7 @@ module.exports = {
       lang: 'en',
     },
     title:
-      'Global Corporate Patent Dataset: Linking USPTO Patents to Publicly Listed Companies',
+      'Global Corporate Patent Dataset: Linking USPTO Patents to Listed Companies',
     meta: [
       {
         charset: 'utf-8',
