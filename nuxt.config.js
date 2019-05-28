@@ -11,7 +11,8 @@ module.exports = {
     htmlAttrs: {
       lang: 'en',
     },
-    title: 'Global Corporate Patent Dataset',
+    title:
+      'Global Corporate Patent Dataset: Linking USPTO Patents to Publicly Listed Companies',
     meta: [
       {
         charset: 'utf-8',
@@ -26,13 +27,12 @@ module.exports = {
         content: pkg.description,
       },
     ],
-    script: [
-      {
-        // src:
-        // 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.24/js/uikit-icons.min.js',
-      },
-    ],
+    script: [],
     link: [
+      {
+        rel: 'canonical',
+        href: 'https://patents.darden.virginia.edu',
+      },
       {
         rel: 'preload',
         href: '/style/fonts/FranklinGothicURW/FranklinGothicURW-Hea.woff',
@@ -104,10 +104,10 @@ module.exports = {
     extend(config, ctx) {
       if (ctx.isClient) {
         config.devtool = 'source-map';
-        console.log('config.devtool', config.devtool);
+        // console.log('config.devtool', config.devtool);
       } else {
         config.devtool = 'inline-source-map';
-        console.log('config.devtool', config.devtool);
+        // console.log('config.devtool', config.devtool);
       }
       config.module.rules.push(
         {
