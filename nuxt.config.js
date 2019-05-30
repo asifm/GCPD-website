@@ -11,8 +11,7 @@ module.exports = {
     htmlAttrs: {
       lang: 'en',
     },
-    title:
-      'Global Corporate Patent Dataset: Linking USPTO Patents to Listed Companies',
+    title: 'UVA Darden Global Corporate Patent Dataset',
     meta: [
       {
         charset: 'utf-8',
