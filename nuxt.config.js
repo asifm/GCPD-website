@@ -36,13 +36,13 @@ module.exports = {
         rel: 'preload',
         href: '/style/fonts/FranklinGothicURW/FranklinGothicURW-Hea.woff',
         as: 'font',
-        crossorigin: true,
+        crossorigin: 'anonymous',
       },
       {
         rel: 'preload',
         href: '/style/fonts/FranklinGothicURW/FranklinGothicURW-Med.woff',
         as: 'font',
-        crossorigin: true,
+        crossorigin: 'anonymous',
       },
       {
         rel: 'preload',
