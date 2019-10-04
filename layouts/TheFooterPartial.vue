@@ -22,7 +22,7 @@ footer
               a(href="https://www.twitter.com/BattenInstitute" target="_blank" rel="noreferrer") @BattenInstitute
               
           .uk-button.uk-button-default.uk-button-small.uk-margin-small-top
-            a(href="https://www.darden.virginia.edu/batten-institute/about/" target="_blank" rel="noreferrer").uk-link-reset More about Batten Institute
+            a(href="https://www.darden.virginia.edu/batten-institute/" target="_blank" rel="noreferrer").uk-link-reset More about Batten Institute
             
         div(class="uk-tile uk-padding uk-width-2-5@m")
           div
