@@ -8,7 +8,7 @@ footer
     .uk-container.uk-container-expand
       div(uk-grid).uk-grid.uk-padding-remove
         div(class="uk-width-1-5@m uk-visible@m")
-          img#battenlogo(alt="Batten Institute for Entrepreneurship & Innovation" src="https://res.cloudinary.com/asifm/image/upload/w_500/v1544568270/batten-logo-long_tpsmit.jpg").bg-white.uk-padding-small.uk-position-medium
+          img#battenlogo(alt="Batten Institute for Entrepreneurship & Innovation" src="https://res.cloudinary.com/asifm/image/upload/c_scale,w_500/v1600971482/UVA_Darden_Batten_stacked.rgb_i27kn0.png").bg-white.uk-padding-small.uk-position-medium
     
         div(class="uk-tile uk-padding uk-width-2-5@m")
           div
